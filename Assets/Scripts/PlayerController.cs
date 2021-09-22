@@ -52,16 +52,6 @@ public class PlayerController : MonoBehaviour
         m_movementInput = new Vector2(Input.GetAxis("MoveHorizontal"), Input.GetAxis("MoveVertical"));
 
         m_movementInput.Normalize();
-
-        if (MovementKeysHeld()) {
-            m_rigidBody.drag -= 100;
-            m_rigidBody.drag = Mathf.Max(m_rigidBody.drag, m_linearDragMoving);
-            m_rigidBody.angularDrag -= 100;
-            m_rigidBody.angularDrag = Mathf.Max(m_rigidBody.angularDrag, m_angularDragMoving);
-        } else {
-            m_rigidBody.drag = m_linearDragStopping;
-            m_rigidBody.angularDrag = m_angularDragStopping;
-        }
     }
 
     private bool MovementKeysHeld()
@@ -90,6 +80,17 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
+        // Trying to get the feel of the original game movement, it's close but not still there
+        if (MovementKeysHeld()) {
+            m_rigidBody.drag -= 100;
+            m_rigidBody.drag = Mathf.Max(m_rigidBody.drag, m_linearDragMoving);
+            m_rigidBody.angularDrag -= 100;
+            m_rigidBody.angularDrag = Mathf.Max(m_rigidBody.angularDrag, m_angularDragMoving);
+        } else {
+            m_rigidBody.drag = m_linearDragStopping;
+            m_rigidBody.angularDrag = m_angularDragStopping;
+        }
+
         m_rigidBody.velocity = m_movementInput * m_velocityScalar;
     }
 

@@ -260,6 +260,26 @@ PrefabInstance:
       propertyPath: deceleration
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1320424646, guid: 240201c9c534bb74298eb790d51d9ecc, type: 3}
+      propertyPath: m_velocityScalar
+      value: 7.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320424646, guid: 240201c9c534bb74298eb790d51d9ecc, type: 3}
+      propertyPath: m_linearDragMoving
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320424646, guid: 240201c9c534bb74298eb790d51d9ecc, type: 3}
+      propertyPath: m_angularDragMoving
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320424646, guid: 240201c9c534bb74298eb790d51d9ecc, type: 3}
+      propertyPath: m_linearDragStopping
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320424646, guid: 240201c9c534bb74298eb790d51d9ecc, type: 3}
+      propertyPath: m_angularDragStopping
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 676480109136798338, guid: 240201c9c534bb74298eb790d51d9ecc, type: 3}
       propertyPath: m_SortingLayer
       value: 1
@@ -271,6 +291,10 @@ PrefabInstance:
     - target: {fileID: 2084746969904965501, guid: 240201c9c534bb74298eb790d51d9ecc, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5860163486602979414, guid: 240201c9c534bb74298eb790d51d9ecc, type: 3}
+      propertyPath: m_Interpolate
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5860163486602979414, guid: 240201c9c534bb74298eb790d51d9ecc, type: 3}
       propertyPath: m_UseFullKinematicContacts

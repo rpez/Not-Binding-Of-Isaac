@@ -11,12 +11,12 @@ public class PlayerController : MonoBehaviour
     // public Vector2 m_shootingInput; // TO-DO: Make shooting velocity-based
 
     // Player movement values
-    public float m_linearDragMoving = 16.0f;
-    public float m_angularDragMoving = 6.0f;
-    public float m_linearDragStopping = 800.0f;
-    public float m_angularDragStopping = 800.0f;
+    public float m_linearDragMoving = 5.0f;
+    public float m_angularDragMoving = 5.0f;
+    public float m_linearDragStopping = 500.0f;
+    public float m_angularDragStopping = 500.0f;
 
-    public float m_velocityScalar = 8.5f;
+    public float m_velocityScalar = 7.25f;
 
     // Start is called before the first frame update
     void Start()
@@ -53,11 +53,11 @@ public class PlayerController : MonoBehaviour
 
         m_movementInput.Normalize();
 
-        // TO-DO: Add a small bit of acceleration at the beginning to Isaac here.
-
         if (MovementKeysHeld()) {
-            m_rigidBody.drag = m_linearDragMoving;
-            m_rigidBody.angularDrag = m_angularDragMoving;
+            m_rigidBody.drag -= 100;
+            m_rigidBody.drag = Mathf.Max(m_rigidBody.drag, m_linearDragMoving);
+            m_rigidBody.angularDrag -= 100;
+            m_rigidBody.angularDrag = Mathf.Max(m_rigidBody.angularDrag, m_angularDragMoving);
         } else {
             m_rigidBody.drag = m_linearDragStopping;
             m_rigidBody.angularDrag = m_angularDragStopping;

@@ -48,11 +48,11 @@ MonoBehaviour:
   m_projectile: {fileID: 2817758380016501947, guid: dada014b925c4114fad484b747cc4aee, type: 3}
   m_rigidBody: {fileID: 5860163486602979414}
   m_movementInput: {x: 0, y: 0}
-  m_linearDragMoving: 16
-  m_angularDragMoving: 2
-  m_linearDragStopping: 800
-  m_angularDragStopping: 800
-  m_velocityScalar: 8.5
+  m_linearDragMoving: 10
+  m_angularDragMoving: 10
+  m_linearDragStopping: 1000
+  m_angularDragStopping: 1000
+  m_velocityScalar: 7
 --- !u!50 &5860163486602979414
 Rigidbody2D:
   serializedVersion: 4

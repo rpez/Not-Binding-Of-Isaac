@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float m_speed = 1f;
-    public float m_acceleration = 10f;
-    public float m_deceleration = 100f;
+    public float m_accelerationTime = 1f;
     public float m_maxSpeed = 5f;
     public GameObject m_projectile;
 
@@ -41,22 +39,21 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // Get input direction
         Vector2 direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        //if (Input.GetKey(KeyCode.W)) direction.y = 1;
-        //if (Input.GetKey(KeyCode.A)) direction.x = -1;
-        //if (Input.GetKey(KeyCode.S)) direction.y = -1;
-        //if (Input.GetKey(KeyCode.D)) direction.x = 1;
         direction.Normalize();
 
-        Debug.Log(direction);
+        // Manually lerp from current speed to max speed
+        m_rigidbody.velocity = m_rigidbody.velocity * 0.8f + direction * m_maxSpeed * 0.2f;
 
-        m_rigidbody.AddForce(m_acceleration * direction);
-        if (m_rigidbody.velocity.magnitude > m_maxSpeed) m_rigidbody.velocity = direction * m_maxSpeed;
-        
-        if (m_rigidbody.velocity.magnitude > 0f && direction.magnitude == 0f)
-        {
-            m_rigidbody.AddForce(-m_rigidbody.velocity * m_deceleration);
-        }
+        // Not entirely sure if this does what it is supposed to :D
+        // Should make turning snappier tho
+        if ((Input.GetAxisRaw("Horizontal") == 1 && m_rigidbody.velocity.x < 0) ||
+            (Input.GetAxisRaw("Horizontal") == -1 && m_rigidbody.velocity.x > 0))
+            m_rigidbody.velocity = new Vector2(m_rigidbody.velocity.x * 0f, m_rigidbody.velocity.y);
+        if ((Input.GetAxisRaw("Vertical") == 1 && m_rigidbody.velocity.y < 0) ||
+            (Input.GetAxisRaw("Vertical") == -1 && m_rigidbody.velocity.y > 0))
+            m_rigidbody.velocity = new Vector2(m_rigidbody.velocity.x, m_rigidbody.velocity.y * 0f);
     }
 
     private void Shoot(Vector3 dir)

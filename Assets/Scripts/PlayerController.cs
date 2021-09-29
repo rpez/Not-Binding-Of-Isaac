@@ -49,8 +49,6 @@ public class PlayerController : MonoBehaviour
             {
                 Shoot(Vector3.right);
             }
-
-            m_lastShot = 0f;
         }
     }
 
@@ -77,5 +75,6 @@ public class PlayerController : MonoBehaviour
     {
         GameObject pro = GameObject.Instantiate(m_projectile, m_shootPosition.transform.position, Quaternion.identity);
         pro.GetComponent<Projectile>().Init(dir, m_rigidbody.velocity);
+        m_lastShot = 0f;
     }
 }

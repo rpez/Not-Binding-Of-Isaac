@@ -16,16 +16,18 @@ public class Projectile : MonoBehaviour
     {
         m_rigidBody = GetComponent<Rigidbody2D>();
 
+        // Add x and y components of parent object's velocity, scaled by a factor
+        // The parent movement component is neglected if it is facing the opposite way of shoot direction
         Vector2 additional = Vector2.zero;
         if (Mathf.Abs(parentVelocity.x) >= m_parentSpeedThreshold
             && (Mathf.Sign(direction.x) == Mathf.Sign(parentVelocity.x)
-            || direction.x < 0.1f))
+            || Mathf.Abs(direction.x) < 0.1f))
         {
             additional = new Vector2(Mathf.Sign(parentVelocity.x), additional.y);
         }
         if (Mathf.Abs(parentVelocity.y) >= m_parentSpeedThreshold
             && (Mathf.Sign(direction.y) == Mathf.Sign(parentVelocity.y)
-            || direction.x < 0.1f))
+            || Mathf.Abs(direction.y) < 0.1f))
         {
             additional = new Vector2(additional.x, Mathf.Sign(parentVelocity.y));
         }

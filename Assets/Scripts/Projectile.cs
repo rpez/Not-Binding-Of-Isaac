@@ -4,26 +4,37 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public float m_speed = 1;
+    public float m_speed = 1f;
+    public float m_parentSpeedScale = 1f;
+    public float m_parentSpeedThreshold = 2f;
+    public float m_lifeTime = 1f;
+    public int m_damage = 1;
 
-    private Vector3 m_direction;
+    private Rigidbody2D m_rigidBody;
 
-    public void Init(Vector3 direction)
+    public void Init(Vector2 direction, Vector2 parentVelocity)
     {
-        m_direction = direction;
+        m_rigidBody = GetComponent<Rigidbody2D>();
+        Vector2 additional = Vector2.zero;
+        if (Vector2.Dot(parentVelocity, direction) * parentVelocity.magnitude >= m_parentSpeedThreshold)
+        {
+            additional = parentVelocity;
+            additional = additional.normalized + direction.normalized;
+            additional.Normalize();
+        }
+        
+        m_rigidBody.velocity = (direction + additional * m_parentSpeedScale) * m_speed;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        Destroy(gameObject, 5f);
+        Destroy(gameObject, m_lifeTime);
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        float delta = Time.deltaTime;
 
-        transform.Translate(m_direction * delta * m_speed);
     }
 }

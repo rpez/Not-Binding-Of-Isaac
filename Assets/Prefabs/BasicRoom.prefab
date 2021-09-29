@@ -21,9 +21,9 @@ GameObject:
   - component: {fileID: 2098982638}
   - component: {fileID: 2098982637}
   - component: {fileID: 2098982636}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BasicRoom
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -365,7 +365,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3018062026666640293}
   - component: {fileID: 3018062026666640292}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: steamworkshop_webupload_previewfile_144481984_preview
   m_TagString: Untagged
   m_Icon: {fileID: 0}

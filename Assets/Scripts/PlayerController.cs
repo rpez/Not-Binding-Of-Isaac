@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     public GameObject m_projectile;
     public GameObject m_shootPosition;
 
+    public Animator m_animator;
+
     private Rigidbody2D m_rigidbody;
     private float m_lastShot = 0f;
     private float m_shootInterval;
@@ -50,6 +52,7 @@ public class PlayerController : MonoBehaviour
                 Shoot(Vector3.right);
             }
         }
+        Animate();
     }
 
     private void FixedUpdate()
@@ -69,6 +72,17 @@ public class PlayerController : MonoBehaviour
         if ((Input.GetAxisRaw("Vertical") == 1 && m_rigidbody.velocity.y < 0) ||
             (Input.GetAxisRaw("Vertical") == -1 && m_rigidbody.velocity.y > 0))
             m_rigidbody.velocity = new Vector2(m_rigidbody.velocity.x, m_rigidbody.velocity.y * 0f);
+    }
+
+    private void Animate()
+    {
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S)) {
+            m_animator.SetBool("VerticalOnly", true);
+        } else {
+            m_animator.SetBool("VerticalOnly", false);
+        }
+        m_animator.SetFloat("Horizontal", Input.GetAxisRaw("Horizontal"));
+        m_animator.SetFloat("Vertical", Input.GetAxisRaw("Vertical"));
     }
 
     private void Shoot(Vector3 dir)

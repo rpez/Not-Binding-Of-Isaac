@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Isaac_movement_down
+  m_Name: Isaac_move_left
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,11 +20,11 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: -3886617932930792203, guid: 3d16d35c7a2d04720aa8008594c0413a, type: 3}
+      value: {fileID: 4700435130288655506, guid: 3d16d35c7a2d04720aa8008594c0413a, type: 3}
     - time: 0.083333336
-      value: {fileID: -6450197213461708938, guid: 3d16d35c7a2d04720aa8008594c0413a, type: 3}
+      value: {fileID: -8856373492089523687, guid: 3d16d35c7a2d04720aa8008594c0413a, type: 3}
     - time: 0.16666667
-      value: {fileID: -5417780276645124597, guid: 3d16d35c7a2d04720aa8008594c0413a, type: 3}
+      value: {fileID: 2128278138308715983, guid: 3d16d35c7a2d04720aa8008594c0413a, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -44,9 +44,9 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: -3886617932930792203, guid: 3d16d35c7a2d04720aa8008594c0413a, type: 3}
-    - {fileID: -6450197213461708938, guid: 3d16d35c7a2d04720aa8008594c0413a, type: 3}
-    - {fileID: -5417780276645124597, guid: 3d16d35c7a2d04720aa8008594c0413a, type: 3}
+    - {fileID: 4700435130288655506, guid: 3d16d35c7a2d04720aa8008594c0413a, type: 3}
+    - {fileID: -8856373492089523687, guid: 3d16d35c7a2d04720aa8008594c0413a, type: 3}
+    - {fileID: 2128278138308715983, guid: 3d16d35c7a2d04720aa8008594c0413a, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

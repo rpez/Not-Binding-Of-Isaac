@@ -16,7 +16,7 @@ public class RoomManager : MonoBehaviour
         GenerateNewFloor(5);
         foreach (Room room in m_rooms)
         {
-            GameObject.Instantiate(m_roomPrefab, new Vector3(room.m_coordinates.Item1 * 15f, room.m_coordinates.Item2 * 10f, 0), Quaternion.identity);
+            GameObject.Instantiate(m_roomPrefab, new Vector3(room.m_coordinates.Item1 * 20f, room.m_coordinates.Item2 * 12f, 0), Quaternion.identity);
         }
     }
 

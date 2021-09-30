@@ -196,8 +196,8 @@ TextureImporter:
       name: Isaac_1_1
       rect:
         serializedVersion: 2
-        x: 312
-        y: 588
+        x: 309
+        y: 596
         width: 153
         height: 185
       alignment: 0
@@ -218,7 +218,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 507
-        y: 583
+        y: 605
         width: 158
         height: 190
       alignment: 0
@@ -238,10 +238,10 @@ TextureImporter:
       name: Isaac_1_3
       rect:
         serializedVersion: 2
-        x: 718
-        y: 580
-        width: 158
-        height: 190
+        x: 716
+        y: 600
+        width: 159
+        height: 189
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -259,10 +259,10 @@ TextureImporter:
       name: Isaac_1_4
       rect:
         serializedVersion: 2
-        x: 906
-        y: 586
+        x: 908
+        y: 599
         width: 152
-        height: 185
+        height: 186
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -302,7 +302,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 114
-        y: 399
+        y: 387
         width: 158
         height: 189
       alignment: 0
@@ -322,8 +322,8 @@ TextureImporter:
       name: Isaac_1_7
       rect:
         serializedVersion: 2
-        x: 315
-        y: 388
+        x: 314
+        y: 378
         width: 153
         height: 189
       alignment: 0
@@ -343,9 +343,9 @@ TextureImporter:
       name: Isaac_1_8
       rect:
         serializedVersion: 2
-        x: 507
-        y: 211
-        width: 159
+        x: 511
+        y: 408
+        width: 158
         height: 189
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -364,8 +364,8 @@ TextureImporter:
       name: Isaac_1_9
       rect:
         serializedVersion: 2
-        x: 507
-        y: 397
+        x: 719
+        y: 408
         width: 158
         height: 189
       alignment: 0
@@ -385,10 +385,10 @@ TextureImporter:
       name: Isaac_1_10
       rect:
         serializedVersion: 2
-        x: 711
-        y: 210
-        width: 158
-        height: 192
+        x: 906
+        y: 396
+        width: 153
+        height: 190
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -406,10 +406,10 @@ TextureImporter:
       name: Isaac_1_11
       rect:
         serializedVersion: 2
-        x: 717
-        y: 395
-        width: 158
-        height: 188
+        x: 160
+        y: 324
+        width: 45
+        height: 44
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -427,10 +427,10 @@ TextureImporter:
       name: Isaac_1_12
       rect:
         serializedVersion: 2
-        x: 904
-        y: 386
-        width: 152
-        height: 190
+        x: 315
+        y: 183
+        width: 153
+        height: 189
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -448,10 +448,10 @@ TextureImporter:
       name: Isaac_1_13
       rect:
         serializedVersion: 2
-        x: 160
-        y: 324
-        width: 45
-        height: 44
+        x: 507
+        y: 211
+        width: 159
+        height: 189
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -469,10 +469,10 @@ TextureImporter:
       name: Isaac_1_14
       rect:
         serializedVersion: 2
-        x: 313
-        y: 197
-        width: 153
-        height: 189
+        x: 711
+        y: 210
+        width: 158
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -512,7 +512,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 508
-        y: 22
+        y: 11
         width: 159
         height: 189
       alignment: 0
@@ -532,9 +532,9 @@ TextureImporter:
       name: Isaac_1_17
       rect:
         serializedVersion: 2
-        x: 711
-        y: 19
-        width: 158
+        x: 712
+        y: 13
+        width: 159
         height: 190
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -553,9 +553,9 @@ TextureImporter:
       name: Isaac_1_18
       rect:
         serializedVersion: 2
-        x: 895
+        x: 920
         y: 23
-        width: 217
+        width: 192
         height: 159
       alignment: 0
       pivot: {x: 0, y: 0}

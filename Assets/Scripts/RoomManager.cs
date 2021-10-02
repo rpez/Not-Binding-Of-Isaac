@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class RoomManager : MonoBehaviour
 {
@@ -13,10 +14,11 @@ public class RoomManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GenerateNewFloor(5);
+        GenerateNewFloor(10);
         foreach (Room room in m_rooms)
         {
-            GameObject.Instantiate(m_roomPrefab, new Vector3(room.m_coordinates.Item1 * 20f, room.m_coordinates.Item2 * 12f, 0), Quaternion.identity);
+            GameObject roomObj = GameObject.Instantiate(m_roomPrefab, new Vector3(room.m_coordinates.Item1 * 19.2f, room.m_coordinates.Item2 * 10.8f, 0), Quaternion.identity);
+            roomObj.GetComponent<RoomObject>().Init(room.m_neigbours.Select(x => x != null).ToArray());
         }
     }
 
@@ -67,6 +69,7 @@ public class RoomManager : MonoBehaviour
 
             Room newRoom = new Room(newCoords);
             selected.AttachRoom(rDir, newRoom);
+            newRoom.AttachRoom((rDir + 2) % 4, selected);
             m_rooms.Add(newRoom);
             m_coordsToRoom.Add(newCoords, newRoom);
             grid.Add(newCoords);

@@ -11,7 +11,7 @@ public class Room : MonoBehaviour
     public RoomTrigger[] m_doorTriggers = new RoomTrigger[4];
 
 
-    public void Init(bool[] existingDoors, Action<int> doorCallback, Action doorLockCallback)
+    public void Init(bool[] existingDoors, Action<int> doorCallback)
     {
         m_existingDoors = existingDoors;
         for (int i = 0; i < 4; i++)
@@ -22,16 +22,19 @@ public class Room : MonoBehaviour
         for (int i = 4; i < 8; i++)
         {
             m_doorTriggers[i - 4] = transform.GetChild(i).GetComponent<RoomTrigger>();
-            m_doorTriggers[i - 4].Init(doorCallback, doorLockCallback, i - 4);
+            m_doorTriggers[i - 4].Init(doorCallback, i - 4);
         }
 
         CloseAllDoors();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnRoomEnter()
     {
-        
+        Debug.Log("Room entered");
+
+        // TODO: check room state, spawn enemies
+
+        OpenAllDoors();
     }
 
     public void OpenAllDoors()

@@ -31,7 +31,7 @@ public class RoomManager : MonoBehaviour
             Room script = roomObj.GetComponent<Room>();
             room.m_room = script;
             m_roomObjs.Add(script);
-            script.Init(room.m_neigbours.Select(x => x != null).ToArray(), ChangeRoom, LockRoom);
+            script.Init(room.m_neigbours.Select(x => x != null).ToArray(), ChangeRoom);
         }
         m_rooms[0].m_room.OpenAllDoors();
     }
@@ -58,14 +58,9 @@ public class RoomManager : MonoBehaviour
         m_oldCameraPosition = m_camera.transform.position;
         FloorNode room = m_currentRoom.m_neigbours[dir];
         m_currentRoom = room;
-        m_currentRoom.m_room.OpenAllDoors();
+        m_currentRoom.m_room.OnRoomEnter();
         m_newCameraPosition = new Vector3(room.m_coordinates.Item1 * 19.2f, room.m_coordinates.Item2 * 10.8f, -10f);
         m_cameraMoving = true;
-    }
-
-    public void LockRoom()
-    {
-        m_currentRoom.m_room.CloseAllDoors();
     }
 
     public void GenerateNewFloor(int rooms)

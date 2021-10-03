@@ -8,15 +8,33 @@ public class RoomTrigger : MonoBehaviour
     private Collider2D m_trigger;
 
     private Action<int> m_doorCallback;
-    private Action doorLockCallback;
     private int m_direction;
+    private Vector3 m_playerOffset;
 
-    public void Init(Action<int> doorCallback, Action doorLockCallback, int direction)
+    public void Init(Action<int> doorCallback, int direction)
     {
         m_doorCallback = doorCallback;
         m_direction = direction;
 
         m_trigger = GetComponent<Collider2D>();
+
+        switch (direction)
+        {
+            case 0:
+                m_playerOffset = new Vector3(0f, 2.5f, 0f);
+                break;
+            case 1:
+                m_playerOffset = new Vector3(-4.5f, 0f, 0f);
+                break;
+            case 2:
+                m_playerOffset = new Vector3(0f, -2.5f, 0f);
+                break;
+            case 3:
+                m_playerOffset = new Vector3(4.5f, 0f, 0f);
+                break;
+            default:
+                break;
+        }
     }
 
     public void SetActive(bool active)
@@ -28,15 +46,8 @@ public class RoomTrigger : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            collision.gameObject.transform.position = collision.gameObject.transform.position + m_playerOffset;
             m_doorCallback.Invoke(m_direction);
-        }
-    }
-
-    public void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            doorLockCallback.Invoke();
         }
     }
 }

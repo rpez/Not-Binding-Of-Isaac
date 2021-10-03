@@ -14,7 +14,7 @@ public class RoomManager : MonoBehaviour
     private Dictionary<(int, int), FloorNode> m_coordsToRoom = new Dictionary<(int, int), FloorNode>();
 
     private bool m_cameraMoving = false;
-    private float m_cameraMoveDuration = 0.5f;
+    private float m_cameraMoveDuration = 0.3f;
     private float m_cameraMoveTime;
     private Vector3 m_oldCameraPosition;
     private Vector3 m_newCameraPosition;

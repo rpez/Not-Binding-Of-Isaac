@@ -6,13 +6,14 @@ public class PlayerController : MonoBehaviour
 {
     public int m_health = 6;
     public int m_maxHealth = 6;
+    public float m_invincibilityTime = 0.5f;
 
     public float m_attackSpeed = 1f;
-    public float m_accelerationTime = 1f;
     public float m_maxSpeed = 5f;
 
     public GameObject m_projectile;
     public GameObject m_shootPosition;
+    public GameUI m_ui;
 
     public Animator m_animator;
 
@@ -20,17 +21,48 @@ public class PlayerController : MonoBehaviour
     private float m_lastShot = 0f;
     private float m_shootInterval;
 
+    private bool m_invincible;
+    private float m_invincibilityCounter = 0f;
+    private bool m_isDead;
+
+    // FOr testing, remove when enemies implemented
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Damage(1);
+        }
+    }
+
+    public void Damage(int amount)
+    {
+        if (!m_invincible)
+        {
+            m_health -= amount;
+            m_invincible = true;
+            m_invincibilityCounter = 0f;
+            if (m_health <= 0)
+            {
+                m_health = 0;
+                m_isDead = true;
+            }
+            m_ui.UpdatePlayerHealth(m_health);
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
         m_rigidbody = GetComponent<Rigidbody2D>();
         m_shootInterval = 1f / m_attackSpeed;
         m_lastShot = m_shootInterval;
+        m_isDead = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (m_isDead) return;
+
         m_lastShot += Time.deltaTime;
 
         if (m_lastShot >= m_shootInterval)
@@ -52,11 +84,23 @@ public class PlayerController : MonoBehaviour
                 Shoot(Vector3.right);
             }
         }
+
+        if (m_invincible)
+        {
+            m_invincibilityCounter += Time.deltaTime;
+            if (m_invincibilityCounter >= m_invincibilityTime)
+            {
+                m_invincible = false;
+            }
+        }
+
         Animate();
     }
 
     private void FixedUpdate()
     {
+        if (m_isDead) return;
+
         // Get input direction
         Vector2 direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         direction.Normalize();

@@ -36,15 +36,28 @@ public class Projectile : MonoBehaviour
         m_rigidBody.velocity = (direction + additional * m_parentSpeedScale) * m_speed;
     }
 
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        switch (collision.gameObject.tag)
+        {
+            case "Enemy":
+                // TODO: do damage to enemy
+                Destroy(gameObject);
+                break;
+            case "Wall":
+                Destroy(gameObject);
+                break;
+            case "Obstacle":
+                // TODO: do damage to obstacle
+                Destroy(gameObject);
+                break;
+
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         Destroy(gameObject, m_lifeTime);
-    }
-
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-
     }
 }

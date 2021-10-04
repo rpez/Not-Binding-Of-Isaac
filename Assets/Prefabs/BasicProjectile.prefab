@@ -50,9 +50,8 @@ MonoBehaviour:
   m_parentSpeedScale: 0.5
   m_parentSpeedThreshold: 2
   m_lifeTime: 1
-  m_collisionForce: 10
+  m_collisionForce: 8
   m_baseDamage: 3.5
-  m_damage: 1
 --- !u!58 &637175352
 CircleCollider2D:
   m_ObjectHideFlags: 0

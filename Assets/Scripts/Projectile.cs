@@ -8,7 +8,7 @@ public class Projectile : MonoBehaviour
     public float m_parentSpeedScale = 0.5f;
     public float m_parentSpeedThreshold = 2f;
     public float m_lifeTime = 1f;
-    public float m_collisionForce = 10f;
+    public float m_collisionForce = 8f;
     public float m_baseDamage = 3.5f;
 
     private Rigidbody2D m_rigidBody;

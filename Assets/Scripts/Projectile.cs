@@ -8,6 +8,7 @@ public class Projectile : MonoBehaviour
     public float m_parentSpeedScale = 1f;
     public float m_parentSpeedThreshold = 2f;
     public float m_lifeTime = 1f;
+    public float m_collisionForce = 2f;
     public int m_damage = 1;
 
     private Rigidbody2D m_rigidBody;
@@ -41,7 +42,15 @@ public class Projectile : MonoBehaviour
         switch (collision.gameObject.tag)
         {
             case "Enemy":
-                // TODO: do damage to enemy
+                MonsterController monster = collision.gameObject.GetComponent<MonsterController>();
+
+                // Damage the monster
+                monster.DamageMonster(3.5f);
+
+                // Make the monster "jump back" from collision with the projectile
+                monster.SetRigidbodyVelocity(m_rigidBody.velocity * m_collisionForce);
+
+                // Destroy projectile
                 Destroy(gameObject);
                 break;
             case "Wall":

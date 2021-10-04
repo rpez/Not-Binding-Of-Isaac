@@ -25,16 +25,7 @@ public class PlayerController : MonoBehaviour
     private float m_invincibilityCounter = 0f;
     private bool m_isDead;
 
-    // FOr testing, remove when enemies implemented
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Enemy")
-        {
-            Damage(1);
-        }
-    }
-
-    public void Damage(int amount)
+    public void DamagePlayer(int amount)
     {
         if (!m_invincible)
         {

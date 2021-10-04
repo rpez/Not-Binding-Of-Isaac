@@ -12,6 +12,8 @@ public class GaperController : MonoBehaviour, MonsterController
     public CircleCollider2D m_circleCollider;
     private GameObject m_player;
 
+    public Animator m_animator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,10 +25,11 @@ public class GaperController : MonoBehaviour, MonsterController
     {
         if (m_isDead)
         {
-            // Right now destroy rigid body and collider to stop checks.
+            // Right now destroy rigidbody and collider to stop checks.
             // Later on should destroy self when changing rooms.
             Destroy(m_rigidBody);
             Destroy(m_circleCollider);
+            PlayAnimation("Death");
             return;
         }
 
@@ -37,6 +40,8 @@ public class GaperController : MonoBehaviour, MonsterController
         if (canSeePlayer)
         {
             MoveTowardsPlayer(m_playerPos);
+        } else {
+            // AStarMoveTowardsPlayer();
         }
     }
 
@@ -71,5 +76,10 @@ public class GaperController : MonoBehaviour, MonsterController
             PlayerController player = collision.gameObject.GetComponent<PlayerController>();
             player.DamagePlayer(1);
         }
+    }
+
+    public void PlayAnimation(string animation)
+    {
+        m_animator.Play(animation);
     }
 }

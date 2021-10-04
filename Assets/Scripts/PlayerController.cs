@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
 
     public Animator m_animator;
 
-    private Rigidbody2D m_rigidbody;
+    private Rigidbody2D m_rigidBody;
     private float m_lastShot = 0f;
     private float m_shootInterval;
 
@@ -36,14 +36,21 @@ public class PlayerController : MonoBehaviour
             {
                 m_health = 0;
                 m_isDead = true;
+                m_rigidBody.velocity = Vector2.zero;
+                PlayAnimation("Death");
+            }
+            else
+            {
+                PlayAnimation("TakeDamage");
             }
             m_ui.UpdatePlayerHealth(m_health);
+            
         }
     }
     // Start is called before the first frame update
     void Start()
     {
-        m_rigidbody = GetComponent<Rigidbody2D>();
+        m_rigidBody = GetComponent<Rigidbody2D>();
         m_shootInterval = 1f / m_attackSpeed;
         m_lastShot = m_shootInterval;
         m_isDead = false;
@@ -85,7 +92,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        Animate();
+        AnimateMovement();
     }
 
     private void FixedUpdate()
@@ -97,33 +104,55 @@ public class PlayerController : MonoBehaviour
         direction.Normalize();
 
         // Manually lerp from current speed to max speed
-        m_rigidbody.velocity = m_rigidbody.velocity * 0.8f + direction * m_maxSpeed * 0.2f;
+        m_rigidBody.velocity = m_rigidBody.velocity * 0.8f + direction * m_maxSpeed * 0.2f;
 
         // Not entirely sure if this does what it is supposed to :D
         // Should make turning snappier tho
-        if ((Input.GetAxisRaw("Horizontal") == 1 && m_rigidbody.velocity.x < 0) ||
-            (Input.GetAxisRaw("Horizontal") == -1 && m_rigidbody.velocity.x > 0))
-            m_rigidbody.velocity = new Vector2(m_rigidbody.velocity.x * 0f, m_rigidbody.velocity.y);
-        if ((Input.GetAxisRaw("Vertical") == 1 && m_rigidbody.velocity.y < 0) ||
-            (Input.GetAxisRaw("Vertical") == -1 && m_rigidbody.velocity.y > 0))
-            m_rigidbody.velocity = new Vector2(m_rigidbody.velocity.x, m_rigidbody.velocity.y * 0f);
+        if ((Input.GetAxisRaw("Horizontal") == 1 && m_rigidBody.velocity.x < 0) ||
+            (Input.GetAxisRaw("Horizontal") == -1 && m_rigidBody.velocity.x > 0))
+            m_rigidBody.velocity = new Vector2(m_rigidBody.velocity.x * 0f, m_rigidBody.velocity.y);
+        if ((Input.GetAxisRaw("Vertical") == 1 && m_rigidBody.velocity.y < 0) ||
+            (Input.GetAxisRaw("Vertical") == -1 && m_rigidBody.velocity.y > 0))
+            m_rigidBody.velocity = new Vector2(m_rigidBody.velocity.x, m_rigidBody.velocity.y * 0f);
     }
 
-    private void Animate()
+    private void AnimateMovement()
     {
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S)) {
-            m_animator.SetBool("VerticalOnly", true);
-        } else {
-            m_animator.SetBool("VerticalOnly", false);
+        // don't interrupt taking damage
+        if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("TakeDamage")) {
+            return;
         }
-        m_animator.SetFloat("Horizontal", Input.GetAxisRaw("Horizontal"));
-        m_animator.SetFloat("Vertical", Input.GetAxisRaw("Vertical"));
+
+        if (Input.GetAxisRaw("Vertical") > 0)
+        {
+            PlayAnimation("MoveUp");
+        }
+        else if (Input.GetAxisRaw("Vertical") < 0)
+        {
+            PlayAnimation("MoveDown");
+        }
+        else if (Input.GetAxisRaw("Horizontal") < 0)
+        {
+            PlayAnimation("MoveLeft");
+        }
+        else if (Input.GetAxisRaw("Horizontal") > 0)
+        {
+            PlayAnimation("MoveRight");
+        }
+        else {
+            PlayAnimation("Stand");
+        }
     }
 
     private void Shoot(Vector3 dir)
     {
         GameObject pro = GameObject.Instantiate(m_projectile, m_shootPosition.transform.position, Quaternion.identity);
-        pro.GetComponent<Projectile>().Init(dir, m_rigidbody.velocity);
+        pro.GetComponent<Projectile>().Init(dir, m_rigidBody.velocity);
         m_lastShot = 0f;
+    }
+
+    public void PlayAnimation(string animation)
+    {
+        m_animator.Play(animation);
     }
 }

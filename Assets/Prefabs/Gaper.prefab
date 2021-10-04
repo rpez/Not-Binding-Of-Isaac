@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1951445238951672152}
   - component: {fileID: 5579256003791653846}
   - component: {fileID: 6320623780055147271}
+  - component: {fileID: -7329333747717641394}
   m_Layer: 7
   m_Name: Gaper
   m_TagString: Enemy
@@ -75,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: -5782521184205631276, guid: fdf6c6364c77b4c42b55d9037798992f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -102,6 +103,7 @@ MonoBehaviour:
   m_isDead: 0
   m_rigidBody: {fileID: 6320623780055147271}
   m_circleCollider: {fileID: 5579256003791653846}
+  m_animator: {fileID: -7329333747717641394}
 --- !u!58 &5579256003791653846
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -139,3 +141,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!95 &-7329333747717641394
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1238543218463400353}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cda2457e73a9546bc92377d6de79dbb5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

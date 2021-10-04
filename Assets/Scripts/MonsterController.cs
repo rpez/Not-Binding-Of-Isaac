@@ -13,4 +13,6 @@ public interface MonsterController
     void SetRigidbodyVelocity(Vector2 velocity);
 
     void OnTriggerStay2D(Collider2D collision);
+
+    void PlayAnimation(string animation);
 }

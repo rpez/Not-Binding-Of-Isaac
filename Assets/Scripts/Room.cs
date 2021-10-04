@@ -1,34 +1,63 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-    public (int, int) m_coordinates;
+    private bool[] m_existingDoors = new bool[4];
+    private GameObject[] m_doors = new GameObject[4];
+    private Collider2D[] m_doorColliders = new Collider2D[4];
+    public RoomTrigger[] m_doorTriggers = new RoomTrigger[4];
 
-    public Room[] m_neigbours = new Room[4];
-    public int m_neighbourAmount = 0;
 
-    public Room((int, int) coordinates)
+    public void Init(bool[] existingDoors, Action<int> doorCallback)
     {
-        m_coordinates = coordinates;
+        m_existingDoors = existingDoors;
+        for (int i = 0; i < 4; i++)
+        {
+            m_doors[i] = transform.GetChild(i).gameObject;
+            m_doorColliders[i] = m_doors[i].GetComponent<Collider2D>();
+        }
+        for (int i = 4; i < 8; i++)
+        {
+            m_doorTriggers[i - 4] = transform.GetChild(i).GetComponent<RoomTrigger>();
+            m_doorTriggers[i - 4].Init(doorCallback, i - 4);
+        }
+
+        CloseAllDoors();
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void OnRoomEnter()
     {
-        
+        Debug.Log("Room entered");
+
+        // TODO: check room state, spawn enemies
+
+        OpenAllDoors();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OpenAllDoors()
     {
-        
+        for (int i = 0; i < 4; i++) OpenDoor(i);
     }
 
-    public void AttachRoom(int direction, Room room)
+    public void OpenDoor(int dir)
     {
-        m_neigbours[direction] = room;
-        m_neighbourAmount++;
+        if (m_existingDoors[dir])
+        {
+            m_doorColliders[dir].enabled = false;
+            m_doorTriggers[dir].SetActive(true);
+        }
+    }
+
+    public void CloseAllDoors()
+    {
+        for (int i = 0; i < 4; i++) CloseDoor(i);
+    }
+
+    public void CloseDoor(int dir)
+    {
+        m_doorColliders[dir].enabled = true;
     }
 }

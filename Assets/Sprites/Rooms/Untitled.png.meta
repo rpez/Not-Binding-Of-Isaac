@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Sprites/Rooms/Untitled.png.meta
 guid: 0a76f0dfa466b46219195c13bc9e6c6a
+=======
+guid: 77d98052a720df946aeadddc036038d4
+>>>>>>> 3ecec503e8c26c503a8bf49a18e8253c52a77e2f:Assets/Sprites/empty_heart.png.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}

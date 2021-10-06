@@ -8,6 +8,7 @@ public class RoomManager : MonoBehaviour
     public int m_roomAmount;
     public GameObject m_roomPrefab;
     public GameObject m_camera;
+    public GameObject[] m_roomPool;
 
     private List<FloorNode> m_rooms = new List<FloorNode>();
     private List<Room> m_roomObjs = new List<Room>();

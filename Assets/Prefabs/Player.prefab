@@ -80,7 +80,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_health: 6
   m_maxHealth: 6
-  m_invincibilityTime: 0.5
+  m_invincibilityTime: 1
   m_attackSpeed: 3
   m_maxSpeed: 5
   m_projectile: {fileID: 2817758380016501947, guid: dada014b925c4114fad484b747cc4aee, type: 3}

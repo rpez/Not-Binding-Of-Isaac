@@ -720,6 +720,10 @@ PrefabInstance:
       propertyPath: m_ui
       value: 
       objectReference: {fileID: 1906211545}
+    - target: {fileID: 1320424646, guid: 240201c9c534bb74298eb790d51d9ecc, type: 3}
+      propertyPath: m_invincibilityTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2084746969904965501, guid: 240201c9c534bb74298eb790d51d9ecc, type: 3}
       propertyPath: m_Name
       value: Player
@@ -833,5 +837,17 @@ PrefabInstance:
       propertyPath: m_camera
       value: 
       objectReference: {fileID: 519420028}
+    - target: {fileID: 7168942525093897218, guid: 6c090b964bcc0aa41814d64d862583c8, type: 3}
+      propertyPath: m_roomPool.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168942525093897218, guid: 6c090b964bcc0aa41814d64d862583c8, type: 3}
+      propertyPath: m_roomPool.Array.data[0]
+      value: 
+      objectReference: {fileID: 1125368283543465865, guid: c6f0bdc285537a044aa31d40c7b01a8d, type: 3}
+    - target: {fileID: 7168942525093897218, guid: 6c090b964bcc0aa41814d64d862583c8, type: 3}
+      propertyPath: m_roomPool.Array.data[1]
+      value: 
+      objectReference: {fileID: 1125368283543465865, guid: 050f4ea1ad4ca9c438956997e4f1363f, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c090b964bcc0aa41814d64d862583c8, type: 3}

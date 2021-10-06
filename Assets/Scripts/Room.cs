@@ -5,11 +5,15 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
+    public SpawnEntity[] m_spawnGrid;
+    public RoomTrigger[] m_doorTriggers = new RoomTrigger[4];
+
+    private bool m_cleared;
+
     private bool[] m_existingDoors = new bool[4];
     private GameObject[] m_doors = new GameObject[4];
     private Collider2D[] m_doorColliders = new Collider2D[4];
-    public RoomTrigger[] m_doorTriggers = new RoomTrigger[4];
-
+    private List<MonsterController> m_enemies = new List<MonsterController>();
 
     public void Init(bool[] existingDoors, Action<int> doorCallback)
     {
@@ -25,16 +29,26 @@ public class Room : MonoBehaviour
             m_doorTriggers[i - 4].Init(doorCallback, i - 4);
         }
 
-        CloseAllDoors();
+        m_cleared = false;
     }
 
     public void OnRoomEnter()
     {
-        Debug.Log("Room entered");
+        if (m_cleared) OpenAllDoors();
+        else
+        {
+            foreach (SpawnEntity entity in m_spawnGrid)
+            {
+                GameObject spawn = GameObject.Instantiate(entity.m_object, transform.position, Quaternion.identity, transform);
+                MonsterController monster = spawn.GetComponent<MonsterController>();
+                if (monster != null)
+                {
+                    m_enemies.Add(monster);
+                }
+            }
 
-        // TODO: check room state, spawn enemies
-
-        OpenAllDoors();
+            CloseAllDoors();
+        }
     }
 
     public void OpenAllDoors()
@@ -60,4 +74,17 @@ public class Room : MonoBehaviour
     {
         m_doorColliders[dir].enabled = true;
     }
+
+    private void Update()
+    {
+        if 
+    }
+}
+
+[Serializable]
+public class SpawnEntity
+{
+    public GameObject m_object;
+    public int m_x;
+    public int m_y;
 }

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1068901696}
   - component: {fileID: 1068901697}
   - component: {fileID: 8947557879090691985}
+  - component: {fileID: 3366881980645483376}
   m_Layer: 0
   m_Name: DoorEast
   m_TagString: Untagged
@@ -110,6 +111,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3366881980645483376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068901695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc56baddbb9ea744780d4d6dd99708df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_openSprite: {fileID: -2869115396899081085, guid: c9d68757876784ae1bd2aa60937893de, type: 3}
+  m_closedSprite: {fileID: -4950680412457382125, guid: c9d68757876784ae1bd2aa60937893de, type: 3}
 --- !u!1 &1349882026
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,6 +206,7 @@ GameObject:
   - component: {fileID: 1538302455}
   - component: {fileID: 1538302456}
   - component: {fileID: 7204206886403279662}
+  - component: {fileID: 5405040287271869900}
   m_Layer: 0
   m_Name: DoorSouth
   m_TagString: Untagged
@@ -290,6 +306,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5405040287271869900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1538302454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc56baddbb9ea744780d4d6dd99708df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_openSprite: {fileID: -2869115396899081085, guid: c9d68757876784ae1bd2aa60937893de, type: 3}
+  m_closedSprite: {fileID: -4950680412457382125, guid: c9d68757876784ae1bd2aa60937893de, type: 3}
 --- !u!1 &1675573094
 GameObject:
   m_ObjectHideFlags: 0
@@ -511,6 +541,7 @@ GameObject:
   - component: {fileID: 1813210010}
   - component: {fileID: 1813210011}
   - component: {fileID: 3453812492172789873}
+  - component: {fileID: 7968232973513677199}
   m_Layer: 0
   m_Name: DoorNorth
   m_TagString: Untagged
@@ -610,6 +641,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7968232973513677199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813210009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc56baddbb9ea744780d4d6dd99708df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_openSprite: {fileID: -2869115396899081085, guid: c9d68757876784ae1bd2aa60937893de, type: 3}
+  m_closedSprite: {fileID: -4950680412457382125, guid: c9d68757876784ae1bd2aa60937893de, type: 3}
 --- !u!1 &1962880477
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,6 +666,7 @@ GameObject:
   - component: {fileID: 1962880478}
   - component: {fileID: 1962880479}
   - component: {fileID: 2603638351040419216}
+  - component: {fileID: 3177254617648338879}
   m_Layer: 0
   m_Name: DoorWest
   m_TagString: Untagged
@@ -720,6 +766,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3177254617648338879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1962880477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc56baddbb9ea744780d4d6dd99708df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_openSprite: {fileID: -2869115396899081085, guid: c9d68757876784ae1bd2aa60937893de, type: 3}
+  m_closedSprite: {fileID: -4950680412457382125, guid: c9d68757876784ae1bd2aa60937893de, type: 3}
 --- !u!1 &1125368283543465865
 GameObject:
   m_ObjectHideFlags: 0
@@ -1040,6 +1100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 096095274e58f1c43b5ae3aad32c7507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_spawnGrid: []
   m_doorTriggers:
   - {fileID: 0}
   - {fileID: 0}

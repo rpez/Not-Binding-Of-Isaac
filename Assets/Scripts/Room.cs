@@ -12,7 +12,7 @@ public class Room : MonoBehaviour
     private bool m_active;
 
     private bool[] m_existingDoors = new bool[4];
-    private GameObject[] m_doors = new GameObject[4];
+    private Door[] m_doors = new Door[4];
     private Collider2D[] m_doorColliders = new Collider2D[4];
     private List<MonsterController> m_enemies = new List<MonsterController>();
 
@@ -21,8 +21,9 @@ public class Room : MonoBehaviour
         m_existingDoors = existingDoors;
         for (int i = 0; i < 4; i++)
         {
-            m_doors[i] = transform.GetChild(i).gameObject;
+            m_doors[i] = transform.GetChild(i).GetComponent<Door>();
             m_doorColliders[i] = m_doors[i].GetComponent<Collider2D>();
+            if (!m_existingDoors[i]) m_doors[i].gameObject.GetComponent<SpriteRenderer>().sprite = null;
         }
         for (int i = 4; i < 8; i++)
         {
@@ -43,7 +44,7 @@ public class Room : MonoBehaviour
             foreach (SpawnEntity entity in m_spawnGrid)
             {
                 // Room corner plus scaled coordinates (squares are approx. 105x105 pixels)
-                Vector3 pos = new Vector3(10.5f * -6f, 10.5f * -3f) + new Vector3(10.5f * entity.m_x, 10.5f * entity.m_y);
+                Vector3 pos = new Vector3(1.05f * -6f, 1.05f * -3f) + new Vector3(1.05f * entity.m_x, 1.05f * entity.m_y);
                 GameObject spawn = GameObject.Instantiate(entity.m_object, transform.position + pos, Quaternion.identity, transform);
                 MonsterController monster = spawn.GetComponent<MonsterController>();
                 if (monster != null)
@@ -70,6 +71,7 @@ public class Room : MonoBehaviour
     {
         if (m_existingDoors[dir])
         {
+            m_doors[dir].gameObject.GetComponent<SpriteRenderer>().sprite = m_doors[dir].m_openSprite;
             m_doorColliders[dir].enabled = false;
             m_doorTriggers[dir].SetActive(true);
         }
@@ -82,7 +84,11 @@ public class Room : MonoBehaviour
 
     public void CloseDoor(int dir)
     {
-        m_doorColliders[dir].enabled = true;
+        if (m_existingDoors[dir])
+        {
+            m_doors[dir].gameObject.GetComponent<SpriteRenderer>().sprite = m_doors[dir].m_closedSprite;
+            m_doorColliders[dir].enabled = true;
+        }
     }
 
     private void Update()

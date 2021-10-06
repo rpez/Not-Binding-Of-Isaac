@@ -15,4 +15,6 @@ public interface MonsterController
     void OnTriggerStay2D(Collider2D collision);
 
     void PlayAnimation(string animation);
+
+    public bool IsDead();
 }

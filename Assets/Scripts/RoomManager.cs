@@ -6,7 +6,6 @@ using System.Linq;
 public class RoomManager : MonoBehaviour
 {
     public int m_roomAmount;
-    public GameObject m_roomPrefab;
     public GameObject m_camera;
     public GameObject[] m_roomPool;
 
@@ -26,15 +25,22 @@ public class RoomManager : MonoBehaviour
     void Start()
     {
         GenerateNewFloor(10);
-        foreach (FloorNode room in m_rooms)
+        for (int i = 0; i < m_rooms.Count; i++)
         {
-            GameObject roomObj = GameObject.Instantiate(m_roomPrefab, new Vector2(room.m_coordinates.Item1 * 19.2f, room.m_coordinates.Item2 * 10.8f), Quaternion.identity);
+            FloorNode room = m_rooms[i];
+            GameObject roomPrefab;
+            if (i == 0)
+            {
+                roomPrefab = m_roomPool[0];
+            }
+            else roomPrefab = m_roomPool[Random.Range(0, m_roomPool.Length)];
+            GameObject roomObj = GameObject.Instantiate(roomPrefab, new Vector2(room.m_coordinates.Item1 * 19.2f, room.m_coordinates.Item2 * 10.8f), Quaternion.identity);
             Room script = roomObj.GetComponent<Room>();
             room.m_room = script;
             m_roomObjs.Add(script);
             script.Init(room.m_neigbours.Select(x => x != null).ToArray(), ChangeRoom);
         }
-        m_rooms[0].m_room.OpenAllDoors();
+        m_roomObjs[0].OnRoomEnter();
     }
 
     // Update is called once per frame
@@ -55,6 +61,7 @@ public class RoomManager : MonoBehaviour
 
     public void ChangeRoom(int dir)
     {
+        m_currentRoom.m_room.OnRoomLeave();
         m_currentRoom.m_room.CloseAllDoors();
         m_oldCameraPosition = m_camera.transform.position;
         FloorNode room = m_currentRoom.m_neigbours[dir];

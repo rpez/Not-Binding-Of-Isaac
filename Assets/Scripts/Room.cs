@@ -9,6 +9,7 @@ public class Room : MonoBehaviour
     public RoomTrigger[] m_doorTriggers = new RoomTrigger[4];
 
     private bool m_cleared;
+    private bool m_active;
 
     private bool[] m_existingDoors = new bool[4];
     private GameObject[] m_doors = new GameObject[4];
@@ -30,16 +31,20 @@ public class Room : MonoBehaviour
         }
 
         m_cleared = false;
+        m_active = false;
     }
 
     public void OnRoomEnter()
     {
+        m_active = true;
         if (m_cleared) OpenAllDoors();
         else
         {
             foreach (SpawnEntity entity in m_spawnGrid)
             {
-                GameObject spawn = GameObject.Instantiate(entity.m_object, transform.position, Quaternion.identity, transform);
+                // Room corner plus scaled coordinates (squares are approx. 105x105 pixels)
+                Vector3 pos = new Vector3(10.5f * -6f, 10.5f * -3f) + new Vector3(10.5f * entity.m_x, 10.5f * entity.m_y);
+                GameObject spawn = GameObject.Instantiate(entity.m_object, transform.position + pos, Quaternion.identity, transform);
                 MonsterController monster = spawn.GetComponent<MonsterController>();
                 if (monster != null)
                 {
@@ -49,6 +54,11 @@ public class Room : MonoBehaviour
 
             CloseAllDoors();
         }
+    }
+
+    public void OnRoomLeave()
+    {
+        m_active = false;
     }
 
     public void OpenAllDoors()
@@ -77,7 +87,14 @@ public class Room : MonoBehaviour
 
     private void Update()
     {
-        if 
+        if (!m_active) return;
+
+        // TODO: kinda ugly approach, if enough time, implement with callbacks maybe
+        if (!m_cleared && m_enemies.TrueForAll(x => x.IsDead()))
+        {
+            m_cleared = true;
+            OpenAllDoors();
+        }
     }
 }
 

@@ -1110,6 +1110,18 @@ MonoBehaviour:
   - m_object: {fileID: 1238543218463400353, guid: 999cfc11edc3d6d469bbb76881c21b7d, type: 3}
     m_x: 5
     m_y: 3
+  - m_object: {fileID: 1238543218463400353, guid: 999cfc11edc3d6d469bbb76881c21b7d, type: 3}
+    m_x: 8
+    m_y: 3
+  - m_object: {fileID: 1238543218463400353, guid: 999cfc11edc3d6d469bbb76881c21b7d, type: 3}
+    m_x: 9
+    m_y: 3
+  - m_object: {fileID: 1238543218463400353, guid: 999cfc11edc3d6d469bbb76881c21b7d, type: 3}
+    m_x: 10
+    m_y: 3
+  - m_object: {fileID: 1238543218463400353, guid: 999cfc11edc3d6d469bbb76881c21b7d, type: 3}
+    m_x: 11
+    m_y: 3
   m_doorTriggers:
   - {fileID: 0}
   - {fileID: 0}

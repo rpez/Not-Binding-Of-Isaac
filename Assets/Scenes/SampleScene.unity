@@ -663,6 +663,10 @@ PrefabInstance:
       propertyPath: m_ui
       value: 
       objectReference: {fileID: 1906211545}
+    - target: {fileID: 2135463650, guid: 240201c9c534bb74298eb790d51d9ecc, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2084746969904965501, guid: 240201c9c534bb74298eb790d51d9ecc, type: 3}
       propertyPath: m_Name
       value: Player

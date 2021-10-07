@@ -69,7 +69,7 @@ public class GaperController : MonoBehaviour, MonsterController
         m_rigidBody.velocity = velocity;
     }
 
-    public void OnTriggerStay2D(Collider2D collision)
+    public void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {

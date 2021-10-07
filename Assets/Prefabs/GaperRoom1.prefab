@@ -1110,6 +1110,30 @@ MonoBehaviour:
   - m_object: {fileID: 1238543218463400353, guid: 999cfc11edc3d6d469bbb76881c21b7d, type: 3}
     m_x: 5
     m_y: 3
+  - m_object: {fileID: 425073977077010494, guid: 590e7c8180ee6f642b19347c02fa8a4a, type: 3}
+    m_x: 0
+    m_y: 0
+  - m_object: {fileID: 425073977077010494, guid: 590e7c8180ee6f642b19347c02fa8a4a, type: 3}
+    m_x: 12
+    m_y: 6
+  - m_object: {fileID: 425073977077010494, guid: 590e7c8180ee6f642b19347c02fa8a4a, type: 3}
+    m_x: 0
+    m_y: 6
+  - m_object: {fileID: 425073977077010494, guid: 590e7c8180ee6f642b19347c02fa8a4a, type: 3}
+    m_x: 12
+    m_y: 0
+  - m_object: {fileID: 425073977077010494, guid: 590e7c8180ee6f642b19347c02fa8a4a, type: 3}
+    m_x: 8
+    m_y: 3
+  - m_object: {fileID: 425073977077010494, guid: 590e7c8180ee6f642b19347c02fa8a4a, type: 3}
+    m_x: 4
+    m_y: 3
+  - m_object: {fileID: 425073977077010494, guid: 590e7c8180ee6f642b19347c02fa8a4a, type: 3}
+    m_x: 7
+    m_y: 4
+  - m_object: {fileID: 425073977077010494, guid: 590e7c8180ee6f642b19347c02fa8a4a, type: 3}
+    m_x: 5
+    m_y: 2
   m_doorTriggers:
   - {fileID: 0}
   - {fileID: 0}

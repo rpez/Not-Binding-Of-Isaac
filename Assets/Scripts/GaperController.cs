@@ -19,9 +19,8 @@ public class GaperController : MonoBehaviour, MonsterController
     {
         m_player = GameObject.Find("Player");
     }
-
-    // Update is called once per frame
-    void Update()
+    
+    void FixedUpdate()
     {
         if (m_isDead)
         {
@@ -33,21 +32,27 @@ public class GaperController : MonoBehaviour, MonsterController
             return;
         }
 
-        Vector3 m_playerPos = m_player.transform.position;
-        // replace later with raycasting to check if player is seen
-        bool canSeePlayer = true;
+        Vector3 playerPos = m_player.GetComponent<Collider2D>().bounds.center - transform.position;
+
+        // for debugging
+        // Debug.DrawRay(transform.position, toPlayer * 15f, Color.green);
+
+        // 15f length for the ray should be enough for current room size
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, playerPos, 15f, LayerMask.GetMask("Player", "Wall"), 0, 0);
+
+        bool canSeePlayer = hit.collider != null && hit.collider.gameObject.tag == "Player";
 
         if (canSeePlayer)
         {
-            MoveTowardsPlayer(m_playerPos);
+            MoveTo(playerPos);
         } else {
             // AStarMoveTowardsPlayer();
         }
     }
 
-    public void MoveTowardsPlayer(Vector3 playerPos)
+    public void MoveTo(Vector3 position)
     {
-        Vector2 direction = new Vector2(playerPos.x - gameObject.transform.position.x, playerPos.y - gameObject.transform.position.y);
+        Vector2 direction = new Vector2(position.x, position.y);
         direction.Normalize();
 
         // Manually lerp from current speed to max speed

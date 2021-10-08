@@ -104,6 +104,7 @@ MonoBehaviour:
   m_isDead: 0
   m_rigidBody: {fileID: 6320623780055147271}
   m_circleCollider: {fileID: 5579256003791653846}
+  m_boxCollider: {fileID: 9054295031668193151}
   m_animator: {fileID: -7329333747717641394}
 --- !u!58 &5579256003791653846
 CircleCollider2D:

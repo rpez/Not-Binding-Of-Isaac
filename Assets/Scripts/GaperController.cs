@@ -10,6 +10,7 @@ public class GaperController : MonoBehaviour, MonsterController
 
     public Rigidbody2D m_rigidBody;
     public CircleCollider2D m_circleCollider;
+    public BoxCollider2D m_boxCollider;
     private GameObject m_player;
 
     public Animator m_animator;
@@ -28,6 +29,7 @@ public class GaperController : MonoBehaviour, MonsterController
             // Later on should destroy self when changing rooms.
             Destroy(m_rigidBody);
             Destroy(m_circleCollider);
+            Destroy(m_boxCollider);
             PlayAnimation("Death");
             return;
         }

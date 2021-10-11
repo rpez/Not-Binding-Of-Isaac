@@ -8,7 +8,7 @@ public interface MonsterController
 {
     void DamageMonster(float amount);
 
-    void MoveTowardsPlayer(Vector3 playerPos);
+    void MoveTo(Vector3 position);
 
     void SetRigidbodyVelocity(Vector2 velocity);
 

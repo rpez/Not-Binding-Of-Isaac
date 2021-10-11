@@ -19,6 +19,7 @@ public class GaperController : MonoBehaviour, MonsterController
     void Start()
     {
         m_player = GameObject.Find("Player");
+        Physics2D.queriesStartInColliders = false;
     }
     
     void FixedUpdate()

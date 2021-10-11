@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1068901696}
   - component: {fileID: 1068901697}
   - component: {fileID: 8947557879090691985}
-  - component: {fileID: 3366881980645483376}
+  - component: {fileID: 6736764887957082499}
   m_Layer: 0
   m_Name: DoorEast
   m_TagString: Untagged
@@ -111,7 +111,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3366881980645483376
+--- !u!114 &6736764887957082499
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 1538302455}
   - component: {fileID: 1538302456}
   - component: {fileID: 7204206886403279662}
-  - component: {fileID: 5405040287271869900}
+  - component: {fileID: 5377893466841693022}
   m_Layer: 0
   m_Name: DoorSouth
   m_TagString: Untagged
@@ -306,7 +306,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5405040287271869900
+--- !u!114 &5377893466841693022
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -541,7 +541,7 @@ GameObject:
   - component: {fileID: 1813210010}
   - component: {fileID: 1813210011}
   - component: {fileID: 3453812492172789873}
-  - component: {fileID: 7968232973513677199}
+  - component: {fileID: 8709945314866244444}
   m_Layer: 0
   m_Name: DoorNorth
   m_TagString: Untagged
@@ -641,7 +641,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7968232973513677199
+--- !u!114 &8709945314866244444
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -666,7 +666,7 @@ GameObject:
   - component: {fileID: 1962880478}
   - component: {fileID: 1962880479}
   - component: {fileID: 2603638351040419216}
-  - component: {fileID: 3177254617648338879}
+  - component: {fileID: 6286180896696588855}
   m_Layer: 0
   m_Name: DoorWest
   m_TagString: Untagged
@@ -766,7 +766,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3177254617648338879
+--- !u!114 &6286180896696588855
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -800,7 +800,7 @@ GameObject:
   - component: {fileID: 9054124006222926312}
   - component: {fileID: 6821174515144698290}
   m_Layer: 0
-  m_Name: BasicRoom
+  m_Name: GaperRoom1
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1100,7 +1100,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 096095274e58f1c43b5ae3aad32c7507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_spawnGrid: []
+  m_spawnGrid:
+  - m_object: {fileID: 1238543218463400353, guid: 999cfc11edc3d6d469bbb76881c21b7d, type: 3}
+    m_x: 6
+    m_y: 3
+  - m_object: {fileID: 1238543218463400353, guid: 999cfc11edc3d6d469bbb76881c21b7d, type: 3}
+    m_x: 7
+    m_y: 3
+  - m_object: {fileID: 1238543218463400353, guid: 999cfc11edc3d6d469bbb76881c21b7d, type: 3}
+    m_x: 5
+    m_y: 3
   m_doorTriggers:
   - {fileID: 0}
   - {fileID: 0}

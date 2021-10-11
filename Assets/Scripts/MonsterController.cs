@@ -8,11 +8,13 @@ public interface MonsterController
 {
     void DamageMonster(float amount);
 
-    void MoveTowardsPlayer(Vector3 playerPos);
+    void MoveTo(Vector3 position);
 
     void SetRigidbodyVelocity(Vector2 velocity);
 
-    void OnTriggerStay2D(Collider2D collision);
+    void OnCollisionStay2D(Collision2D collision);
 
     void PlayAnimation(string animation);
+
+    public bool IsDead();
 }

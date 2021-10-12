@@ -64,10 +64,11 @@ public class Projectile : MonoBehaviour
                 Destroy(gameObject);
                 break;
             case "Obstacle":
-                // TODO: do damage to obstacle
+                // bug: hits twice???
                 Destroy(gameObject);
+                Obstacle obstacle = collision.gameObject.GetComponent<Obstacle>();
+                obstacle.DamageObstacle();
                 break;
-
         }
     }
 

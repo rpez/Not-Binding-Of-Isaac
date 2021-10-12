@@ -24,13 +24,13 @@ public class RoomTrigger : MonoBehaviour
                 m_playerOffset = new Vector3(0f, 2.5f, 0f);
                 break;
             case 1:
-                m_playerOffset = new Vector3(-4.5f, 0f, 0f);
+                m_playerOffset = new Vector3(-5.5f, 0f, 0f);
                 break;
             case 2:
                 m_playerOffset = new Vector3(0f, -2.5f, 0f);
                 break;
             case 3:
-                m_playerOffset = new Vector3(4.5f, 0f, 0f);
+                m_playerOffset = new Vector3(5.5f, 0f, 0f);
                 break;
             default:
                 break;

@@ -8,8 +8,10 @@ public class RoomManager : MonoBehaviour
     public int m_roomAmount;
     public GameObject m_camera;
     public GameObject[] m_roomPool;
+    public GameObject[] m_bossRoomPool;
 
     private List<FloorNode> m_rooms = new List<FloorNode>();
+    private int m_bossRoomIndex = int.MaxValue;
     private List<Room> m_roomObjs = new List<Room>();
     private Dictionary<(int, int), FloorNode> m_coordsToRoom = new Dictionary<(int, int), FloorNode>();
 
@@ -33,6 +35,7 @@ public class RoomManager : MonoBehaviour
             {
                 roomPrefab = m_roomPool[0];
             }
+            else if (i == m_bossRoomIndex) roomPrefab = m_bossRoomPool[Random.Range(0, m_bossRoomPool.Length)];
             else roomPrefab = m_roomPool[Random.Range(1, m_roomPool.Length)];
             GameObject roomObj = GameObject.Instantiate(roomPrefab, new Vector2(room.m_coordinates.Item1 * 19.2f, room.m_coordinates.Item2 * 10.8f), Quaternion.identity);
             Room script = roomObj.GetComponent<Room>();
@@ -81,9 +84,12 @@ public class RoomManager : MonoBehaviour
         m_rooms.Add(new FloorNode((0, 0)));
         m_currentRoom = m_rooms[0];
         m_coordsToRoom.Add((0, 0), m_rooms[0]);
+        int longestDistance = 0;
         while (createdRooms < rooms)
         {
             int rIndex = Random.Range(0, grid.Count);
+            // Prevent any additional doors from boss room
+            if (rIndex == m_bossRoomIndex) continue;
             (int, int) coords = grid[rIndex];
             FloorNode selected = m_coordsToRoom[coords];
             if (selected.m_neighbourAmount >= 4) continue;
@@ -117,6 +123,15 @@ public class RoomManager : MonoBehaviour
             m_rooms.Add(newRoom);
             m_coordsToRoom.Add(newCoords, newRoom);
             grid.Add(newCoords);
+            // Determine boss room coords by taxi distance
+            // NOTE: taxi distance isn't always the longest path from the start
+            // Couldn't bother writing a pathfinding algorithm
+            int taxiDistance = Mathf.Abs(newCoords.Item1) + Mathf.Abs(newCoords.Item2);
+            if (taxiDistance > longestDistance)
+            {
+                longestDistance = taxiDistance;
+                m_bossRoomIndex = grid.Count() - 1;
+            }
 
             createdRooms++;
         }

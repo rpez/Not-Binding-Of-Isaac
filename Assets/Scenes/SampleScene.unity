@@ -788,5 +788,13 @@ PrefabInstance:
       propertyPath: m_camera
       value: 
       objectReference: {fileID: 519420028}
+    - target: {fileID: 7168942525093897218, guid: 6c090b964bcc0aa41814d64d862583c8, type: 3}
+      propertyPath: m_bossRoomPool.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168942525093897218, guid: 6c090b964bcc0aa41814d64d862583c8, type: 3}
+      propertyPath: m_bossRoomPool.Array.data[0]
+      value: 
+      objectReference: {fileID: 1125368283543465865, guid: 46ff37fe4fca670479d42fc549615d8c, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c090b964bcc0aa41814d64d862583c8, type: 3}

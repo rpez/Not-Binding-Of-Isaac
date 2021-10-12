@@ -42,6 +42,10 @@ public class Projectile : MonoBehaviour
         switch (collision.gameObject.tag)
         {
             case "Enemy":
+                if (collision.isTrigger) {
+                    return;
+                }
+
                 MonsterController monster = collision.gameObject.GetComponent<MonsterController>();
 
                 // Damage the monster

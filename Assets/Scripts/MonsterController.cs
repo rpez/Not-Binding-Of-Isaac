@@ -17,4 +17,6 @@ public interface MonsterController
     void PlayAnimation(string animation);
 
     public bool IsDead();
+
+    public void Activate();
 }

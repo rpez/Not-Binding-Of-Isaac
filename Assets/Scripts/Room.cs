@@ -50,6 +50,7 @@ public class Room : MonoBehaviour
                 if (monster != null)
                 {
                     m_enemies.Add(monster);
+                    StartCoroutine(ReleaseEnemy(1f, monster));
                 }
             }
 
@@ -101,6 +102,12 @@ public class Room : MonoBehaviour
             m_cleared = true;
             OpenAllDoors();
         }
+    }
+
+    private IEnumerator ReleaseEnemy(float delay, MonsterController monster)
+    {
+        yield return new WaitForSeconds(delay);
+        monster.Activate();
     }
 }
 

@@ -14,12 +14,14 @@ public class GaperController : MonoBehaviour, MonsterController
     private GameObject m_player;
 
     public Animator m_animator;
+    private bool m_active;
 
     // Start is called before the first frame update
     void Start()
     {
         m_player = GameObject.Find("Player");
         Physics2D.queriesStartInColliders = false;
+        m_active = false;
     }
     
     void FixedUpdate()
@@ -34,6 +36,8 @@ public class GaperController : MonoBehaviour, MonsterController
             PlayAnimation("Death");
             return;
         }
+
+        if (!m_active) return;
 
         Vector3 playerPos = m_player.GetComponent<Collider2D>().bounds.center - transform.position;
 
@@ -149,5 +153,10 @@ public class GaperController : MonoBehaviour, MonsterController
     public bool IsDead()
     {
         return m_isDead;
+    }
+
+    public void Activate()
+    {
+        m_active = true;
     }
 }

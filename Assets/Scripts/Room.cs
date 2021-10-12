@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
+    public float m_enemyActivationTime = 1f;
+
     public SpawnEntity[] m_spawnGrid;
     public RoomTrigger[] m_doorTriggers = new RoomTrigger[4];
 
@@ -50,7 +52,7 @@ public class Room : MonoBehaviour
                 if (monster != null)
                 {
                     m_enemies.Add(monster);
-                    StartCoroutine(ReleaseEnemy(1f, monster));
+                    StartCoroutine(ReleaseEnemy(m_enemyActivationTime, monster));
                 }
             }
 

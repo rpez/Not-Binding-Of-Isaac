@@ -48,4 +48,5 @@ MonoBehaviour:
   m_roomPool:
   - {fileID: 1125368283543465865, guid: c6f0bdc285537a044aa31d40c7b01a8d, type: 3}
   - {fileID: 1125368283543465865, guid: 050f4ea1ad4ca9c438956997e4f1363f, type: 3}
+  - {fileID: 1125368283543465865, guid: 813e37561a3222f41aaf42913e7df405, type: 3}
   - {fileID: 1125368283543465865, guid: fb2d9c006b622924aa6858af9432fcae, type: 3}

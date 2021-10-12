@@ -788,9 +788,5 @@ PrefabInstance:
       propertyPath: m_camera
       value: 
       objectReference: {fileID: 519420028}
-    - target: {fileID: 7168942525093897218, guid: 6c090b964bcc0aa41814d64d862583c8, type: 3}
-      propertyPath: m_roomPool.Array.data[2]
-      value: 
-      objectReference: {fileID: 1125368283543465865, guid: fb2d9c006b622924aa6858af9432fcae, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c090b964bcc0aa41814d64d862583c8, type: 3}

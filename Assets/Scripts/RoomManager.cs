@@ -33,7 +33,7 @@ public class RoomManager : MonoBehaviour
             {
                 roomPrefab = m_roomPool[0];
             }
-            else roomPrefab = m_roomPool[Random.Range(0, m_roomPool.Length)];
+            else roomPrefab = m_roomPool[Random.Range(1, m_roomPool.Length)];
             GameObject roomObj = GameObject.Instantiate(roomPrefab, new Vector2(room.m_coordinates.Item1 * 19.2f, room.m_coordinates.Item2 * 10.8f), Quaternion.identity);
             Room script = roomObj.GetComponent<Room>();
             room.m_room = script;

@@ -5,7 +5,7 @@ using UnityEngine;
 public class GaperController : MonoBehaviour, MonsterController
 {
     public float m_health = 10f;
-    private float m_maxSpeed = 3.5f;
+    private float m_maxSpeed = 4.2f; // 42 !!!
     public bool m_isDead = false;
 
     public Rigidbody2D m_rigidBody;

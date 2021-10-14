@@ -1102,7 +1102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_enemyActivationTime: 1
   m_spawnGrid:
-  - m_object: {fileID: 1812767426481042035, guid: 1b090604dd2eb6a45b1c394eec40a717, type: 3}
+  - m_object: {fileID: 6480376401310731247, guid: 6a2b111495d8dd441a22720417b5ee9e, type: 3}
     m_x: 6
     m_y: 3
   m_doorTriggers:

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Constants;
 
 public class AStar
 {
@@ -14,10 +15,10 @@ public class AStar
     private int m_yMax;
 
     // Operate on a grid with a range of ([0..xSize-1], [0..ySize-1])
-    public AStar(int xSize, int ySize)
+    public AStar()
     {
-        m_xMax = xSize;
-        m_yMax = ySize;
+        m_xMax = GRID_MAX_X;
+        m_yMax = GRID_MAX_Y;
     }
 
     private void Initialize((int, int) startNode, (int, int) goalNode, List<(int, int)> obstacles)

@@ -18,6 +18,7 @@ public class PoolBossController : MonoBehaviour, MonsterController
 
     public Animator m_animator;
     private bool m_active;
+    private int m_animState;
 
     private float m_currentTime;
     private float m_waitTime;
@@ -49,14 +50,22 @@ public class PoolBossController : MonoBehaviour, MonsterController
 
         Vector3 playerPos = m_player.GetComponent<Collider2D>().bounds.center - transform.position;
 
+        if (m_boss.GetComponent<AnimationHandler>().m_inAnimation)
+        {
+            Debug.Log("I BE DOIN THAT ANIM");
+            return;
+        }
+
         m_currentTime += Time.deltaTime;
 
         if (m_currentTime >= m_waitTime)
         {
             m_pool.transform.position = transform.position;
             m_pool.GetComponent<SpriteRenderer>().enabled = true;
-            m_pool.GetComponent<Animator>().SetBool("Despawn", false);
-            m_boss.GetComponent<Animator>().SetInt("Pool", 0);
+            m_pool.GetComponent<Animator>().SetBool("Despawn", m_animState % 2 == 0);
+            m_boss.GetComponent<Animator>().SetInteger("State", m_animState);
+            m_animState++;
+            m_currentTime = 0;
         }
     }
 

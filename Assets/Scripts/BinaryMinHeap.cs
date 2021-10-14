@@ -2,15 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*public static class ExtensionMethods
-{
-    public static void Deconstruct<K, V>(this KeyValuePair<K, V> kvp, out K key, out V val)
-    {
-        key = kvp.Key;
-        val = kvp.Value;
-    }
-}*/
-
 public class BinaryMinHeap
 {
     private int m_maxSize;

@@ -20,7 +20,7 @@ public class AStar
         m_yMax = ySize;
     }
 
-    private void Initialize((int, int) startNode, (int, int) goalNode)
+    private void Initialize((int, int) startNode, (int, int) goalNode, List<(int, int)> obstacles)
     {
         m_startNode = startNode;
         m_goalNode = goalNode;
@@ -31,7 +31,10 @@ public class AStar
         {
             for (int y = 0; y < m_yMax; y++)
             {
-                m_gScores.Add((x, y), Mathf.Infinity);  // initialize all nodes with Inf
+                if (!obstacles.Contains((x, y)))
+                {
+                    m_gScores.Add((x, y), Mathf.Infinity);  // initialize all nodes with Inf
+                }
             }
         }
 
@@ -53,36 +56,34 @@ public class AStar
 
     private float CalculateFScore((int, int) node)
     {
-        // Use Chebyshev distance from goal node as admissible heuristic to guide A*
-        // Euclidean distance is not admissible as it might over-estimate the cost
-        float hScore = Mathf.Max(Mathf.Abs(node.Item1 - m_goalNode.Item1), Mathf.Abs(node.Item2 - m_goalNode.Item2));
+        // Use Euclidean distance from goal node as admissible heuristic to guide A*
+        float hScore = Mathf.Sqrt((node.Item1 - m_goalNode.Item1) * (node.Item1 - m_goalNode.Item1) +
+            (node.Item2 - m_goalNode.Item2) * (node.Item2 - m_goalNode.Item2));
         return m_gScores[node] + hScore;
     }
 
     private List<(int, int)> GetNeighbours((int, int) node)
     {
+        List<(int, int)> neighbourValues = new List<(int, int)>()
+        {
+            (-1, 0),   // center left
+            (-1, -1),  // upper left
+            (-1, 1),   // lower left
+            (1, 0),    // center right
+            (1, -1),   // upper right
+            (1, 1),    // lower right
+            (0, -1),   // upper center
+            (0, 1)     // lower center
+        };
+
         List<(int, int)> neighbours = new List<(int, int)>();
 
-        if (node.Item1 != 0)
+        foreach ((int, int) neighbourVal in neighbourValues)
         {
-            neighbours.Add(TupleAdd(node, (-1, 0)));                                // center left
+            (int, int) neighbour = TupleAdd(node, neighbourVal);
 
-            if (node.Item2 != 0) neighbours.Add(TupleAdd(node, (-1, -1)));          // upper left
-
-            if (node.Item2 != m_yMax - 1) neighbours.Add(TupleAdd(node, (-1, 1)));  // lower left
+            if (m_gScores.ContainsKey(neighbour)) neighbours.Add(neighbour);
         }
-
-        if (node.Item1 != m_xMax - 1)
-        {
-            neighbours.Add(TupleAdd(node, (1, 0)));                                 // center right
-
-            if (node.Item2 != 0) neighbours.Add(TupleAdd(node, (1, -1)));           // upper right
-
-            if (node.Item2 != m_yMax - 1) neighbours.Add(TupleAdd(node, (1, 1)));   // lower right
-        }
-
-        if (node.Item2 != 0) neighbours.Add(TupleAdd(node, (0, -1)));               // upper center
-        if (node.Item2 != m_yMax - 1) neighbours.Add(TupleAdd(node, (0, 1)));       // lower center
 
         return neighbours;
     }
@@ -102,7 +103,19 @@ public class AStar
         return route;
     }
 
-    public List<(int, int)> Solve((int, int) startNode, (int, int) goalNode)
+    /*
+    Solve for the shortest route using A*.
+    The third method obstacles is optional and defaults to null, so you can either use it with no obstacles:
+
+    AStar.Solve((startNodeX, startNodeY), (goalNodeX, goalNodeY))
+
+    or for example with a single obstacle:
+
+    AStar.Solve((startNodeX, startNodeY), (goalNodeX, goalNodeY), new List<(int, int)>(){ (obstacleX, obstacleY) }).
+
+    Returns a list of grid squares to travel to or an empty list if not successful.
+    */
+    public List<(int, int)> Solve((int, int) startNode, (int, int) goalNode, List<(int, int)> obstacles = null)
     {
         if (startNode.Item1 < 0 || startNode.Item1 >= m_xMax || startNode.Item2 < 0 || startNode.Item2 >= m_yMax)
         {
@@ -115,7 +128,9 @@ public class AStar
             return null;
         }
 
-        Initialize(startNode, goalNode);
+        obstacles ??= new List<(int, int)>();
+
+        Initialize(startNode, goalNode, obstacles);
 
         while (m_openNodes.Count > 0)
         {
@@ -147,6 +162,6 @@ public class AStar
                 }
             }
         }
-        return null;  // visited all nodes but failed to find a path
+        return new List<(int, int)>();  // visited all nodes but failed to find a path
     }
 }

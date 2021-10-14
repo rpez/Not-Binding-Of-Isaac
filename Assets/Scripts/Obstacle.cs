@@ -5,7 +5,7 @@ using UnityEngine;
 public class Obstacle : MonoBehaviour
 {
 
-    public int m_health = 6;  // 3 hits because of a bug
+    public int m_health = 3;  // 3 hits to destroy by default
 
     public void DamageObstacle()
     {

@@ -39,13 +39,13 @@ public class Projectile : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.isTrigger) {
+            return;
+        }
+
         switch (collision.gameObject.tag)
         {
             case "Enemy":
-                if (collision.isTrigger) {
-                    return;
-                }
-
                 MonsterController monster = collision.gameObject.GetComponent<MonsterController>();
 
                 // Damage the monster

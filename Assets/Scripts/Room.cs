@@ -18,6 +18,11 @@ public class Room : MonoBehaviour
     private Collider2D[] m_doorColliders = new Collider2D[4];
     private List<MonsterController> m_enemies = new List<MonsterController>();
 
+    private Grid m_grid = new Grid();
+
+    private List<(int, int)> m_obstacleCoords = new List<(int, int)>();
+    public List<(int, int)> Obstacles => m_obstacleCoords;
+
     public void Init(bool[] existingDoors, Action<int> doorCallback)
     {
         m_existingDoors = existingDoors;
@@ -46,13 +51,19 @@ public class Room : MonoBehaviour
             foreach (SpawnEntity entity in m_spawnGrid)
             {
                 // Room corner plus scaled coordinates (squares are approx. 105x105 pixels)
-                Vector3 pos = new Vector3(1.05f * -6f, 1.05f * -3f) + new Vector3(1.05f * entity.m_x, 1.05f * entity.m_y);
-                GameObject spawn = GameObject.Instantiate(entity.m_object, transform.position + pos, Quaternion.identity, transform);
+                Vector3 spawnCoords = m_grid.GridToWorldCoordinates(entity.m_x, entity.m_y, transform.position);
+                GameObject spawn = GameObject.Instantiate(entity.m_object, spawnCoords, Quaternion.identity, transform);
                 MonsterController monster = spawn.GetComponent<MonsterController>();
+
                 if (monster != null)
                 {
                     m_enemies.Add(monster);
                     StartCoroutine(ReleaseEnemy(m_enemyActivationTime, monster));
+                }
+
+                if (spawn.tag == "Obstacle")
+                {
+                    m_obstacleCoords.Add((entity.m_x, entity.m_y));
                 }
             }
 

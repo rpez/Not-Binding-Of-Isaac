@@ -5,13 +5,7 @@ using static Constants;
 
 public class Grid
 {
-  private int[,] m_grid;
   private Vector3 origoPos = new Vector3(-GRID_MAX_X / 2, -GRID_MAX_Y / 2);
-
-  public Grid()
-  {
-    int[,] m_grid = new int[GRID_MAX_X, GRID_MAX_Y];
-  }
 
   public Vector3 GridToWorldCoordinates(int x, int y, Vector3 roomPos)
   {

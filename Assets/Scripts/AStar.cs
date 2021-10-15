@@ -76,13 +76,13 @@ public class AStar
         List<(int, int)> neighbourValues = new List<(int, int)>()
         {
             (-1, 0),   // center left
-            (-1, 1),   // upper left
-            (-1, -1),  // lower left
+            (-1, -1),  // upper left
+            (-1, 1),   // lower left
             (1, 0),    // center right
-            (1, 1),    // upper right
-            (1, -1),   // lower right
-            (0, 1),    // upper center
-            (0, -1)    // lower center
+            (1, -1),   // upper right
+            (1, 1),    // lower right
+            (0, -1),   // upper center
+            (0, 1)     // lower center
         };
 
         List<(int, int)> neighbours = new List<(int, int)>();

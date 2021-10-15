@@ -76,22 +76,30 @@ public class AStar
         List<(int, int)> neighbourValues = new List<(int, int)>()
         {
             (-1, 0),   // center left
-            (-1, -1),  // upper left
-            (-1, 1),   // lower left
+            (-1, 1),   // upper left
+            (-1, -1),  // lower left
             (1, 0),    // center right
-            (1, -1),   // upper right
-            (1, 1),    // lower right
-            (0, -1),   // upper center
-            (0, 1)     // lower center
+            (1, 1),    // upper right
+            (1, -1),   // lower right
+            (0, 1),    // upper center
+            (0, -1)    // lower center
         };
 
         List<(int, int)> neighbours = new List<(int, int)>();
 
         foreach ((int, int) neighbourVal in neighbourValues)
         {
+            bool diagonalNeighbour = Mathf.Abs(neighbourVal.Item1) + Mathf.Abs(neighbourVal.Item2) == 2;
             (int, int) neighbour = TupleAdd(node, neighbourVal);
 
-            if (m_gScores.ContainsKey(neighbour)) neighbours.Add(neighbour);
+            if (m_gScores.ContainsKey(neighbour))
+            {
+                // make sure we are actually able to move diagonally
+                if (!diagonalNeighbour || m_gScores.ContainsKey((neighbour.Item1, node.Item2)) || m_gScores.ContainsKey((node.Item1, neighbour.Item2)))
+                {
+                    neighbours.Add(neighbour);
+                }
+            }
         }
 
         return neighbours;

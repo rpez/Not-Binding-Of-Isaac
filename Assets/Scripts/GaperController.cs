@@ -77,52 +77,6 @@ public class GaperController : MonoBehaviour, MonsterController
 
             MoveTo(playerPos);
         }
-        /*
-        else if (hit.collider.gameObject.tag == "Enemy")
-        {
-            if (m_AStarMovingToNextNode)
-            {
-                StopCoroutine(m_AStarMoveTo);
-                m_AStarMovingToNextNode = false;
-            }
-
-            // Try to dodge your fellow enemy. This way the enemies can try to surround the player.
-
-            // Get the bounding box of the blocking enemy as 4x Vector3
-            Bounds b = hit.collider.bounds;
-            Vector3[] bounds = new Vector3[]
-            {
-                new Vector3(b.min.x, b.min.y),
-                new Vector3(b.min.x, b.max.y),
-                new Vector3(b.max.x, b.min.y),
-                new Vector3(b.max.x, b.max.y)
-            };
-
-            // Find the second closest bounding box corner to me
-            Vector3 closest = Vector3.positiveInfinity;
-            Vector3 secondClosest = Vector3.positiveInfinity;
-
-            foreach (Vector3 v in bounds)
-            {
-                if (Vector3.Distance(v, transform.position) < closest.magnitude)
-                {
-                    secondClosest = closest;
-                    closest = v;
-                }
-                else if (Vector3.Distance(v, transform.position) < secondClosest.magnitude)
-                {
-                    secondClosest = v;
-                }
-            }
-
-            // Reflect the vector secondClosest across the line playerPos, where playerPos is a straight line towards the player.
-            // This makes the enemies try to scatter a bit in order to not block each other.
-            // See: https://en.wikipedia.org/wiki/Reflection_(mathematics)#Reflection_across_a_line_in_the_plane
-            Vector3 enemyPos = secondClosest - transform.position;
-            Vector3 reflection = 2 * Vector3.Dot(enemyPos, playerPos) / Vector3.Dot(playerPos, playerPos) * playerPos - enemyPos;
-
-            MoveTo(reflection);
-        }*/
     }
 
     private IEnumerator AStarMoveTo(List<Vector3Int> route)

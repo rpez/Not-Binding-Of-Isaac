@@ -14,7 +14,7 @@ public class AStar
     private int m_xMax;
     private int m_yMax;
 
-    // Operate on a grid with a range of ([0..xSize-1], [0..ySize-1])
+    // Operate on a grid with a range of [0..GRID_MAX_X-1], [0..GRID_MAX_Y-1]
     public AStar()
     {
         m_xMax = GRID_MAX_X;
@@ -62,7 +62,7 @@ public class AStar
 
     private float CalculateFScore((int, int) node)
     {
-        // Use Euclidean distance from goal node as admissible heuristic to guide A*
+        // Use Euclidean distance squared from goal node as admissible heuristic to guide A*
         // We're quite greedy and leave out Mathf.Sqrt() since our obstacles are quite easy
         // http://theory.stanford.edu/~amitp/GameProgramming/Heuristics.html#euclidean-distance-squared
 
@@ -105,9 +105,7 @@ public class AStar
         return neighbours;
     }
 
-    /*
-    Reconstruct route. Returns properly scaled Vector3Ints from startNode to goalNode.
-    */
+    // Reconstruct route. Returns properly scaled Vector3Ints from startNode to goalNode.
     private List<Vector3Int> ReconstructRoute()
     {
         List<Vector3Int> route = new List<Vector3Int>();
@@ -136,7 +134,7 @@ public class AStar
                 prevDirection = direction;
             }
 
-            // Break here to allow adding startNode to last Vector3Int.
+            // Break here in order to add startNode to the last Vector3Int.
             if (currentNode == m_startNode) break;
             
             prevNode = currentNode;

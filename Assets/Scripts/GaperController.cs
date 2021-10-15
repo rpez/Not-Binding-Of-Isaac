@@ -140,5 +140,6 @@ public class GaperController : MonoBehaviour, MonsterController
     public void Activate()
     {
         m_active = true;
+        PlayAnimation("Move");
     }
 }

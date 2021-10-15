@@ -58,7 +58,7 @@ public class Room : MonoBehaviour
                 if (monster != null)
                 {
                     m_enemies.Add(monster);
-                    StartCoroutine(ReleaseEnemy(m_enemyActivationTime, monster));
+                    StartCoroutine(ReleaseEnemy(m_enemyActivationTime + UnityEngine.Random.Range(0.0f, 0.3f), monster));
                 }
 
                 if (spawn.tag == "Obstacle")

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
+using UnityEngine.Timeline;
 
 public class PoolBossController : MonoBehaviour, MonsterController
 {
@@ -20,8 +22,20 @@ public class PoolBossController : MonoBehaviour, MonsterController
     private bool m_active;
     private int m_animState;
 
+    private enum BossState { Normal, Shoot, IntoPool, TargetIsaac, OutOfPool, Wait };
+
     private float m_currentTime;
     private float m_waitTime;
+    private BossState m_state = BossState.IntoPool;
+    private Animator m_poolAnim;
+    private Animator m_bossAnim;
+
+    private PlayableDirector m_director;
+    private TimelineAsset m_currentTimeline;
+
+    public PlayableAsset m_shootTimeline;
+    public PlayableAsset m_intoPoolTimeline;
+    public PlayableAsset m_outOfPoolTimeline;
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +44,12 @@ public class PoolBossController : MonoBehaviour, MonsterController
         Physics2D.queriesStartInColliders = false;
         m_active = false;
         m_waitTime = 5f;
-        m_pool.GetComponent<SpriteRenderer>().enabled = false;
+        m_poolAnim = m_pool.GetComponent<Animator>();
+        m_bossAnim= m_boss.GetComponent<Animator>();
+
+        m_director = GetComponent<PlayableDirector>();
+        ChangeTimeline(m_intoPoolTimeline);
+        m_currentTimeline = m_director.playableAsset as TimelineAsset;
     }
     
     void FixedUpdate()
@@ -48,34 +67,69 @@ public class PoolBossController : MonoBehaviour, MonsterController
 
         //if (!m_active) return;
 
-        Vector3 playerPos = m_player.GetComponent<Collider2D>().bounds.center - transform.position;
-
-        if (m_boss.GetComponent<AnimationHandler>().m_inAnimation)
+        switch (m_state)
         {
-            Debug.Log("I BE DOIN THAT ANIM");
-            return;
+            case BossState.Normal:
+                m_currentTime += Time.deltaTime;
+                if (m_currentTime >= m_waitTime)
+                {
+                    ChangeTimeline(m_intoPoolTimeline);
+                    m_state = BossState.IntoPool;
+                    m_currentTime = 0;
+                }
+                break;
+            case BossState.Shoot:
+                break;
+            case BossState.IntoPool:
+                break;
+            case BossState.TargetIsaac:
+                transform.position = m_player.transform.position;
+                m_state = BossState.OutOfPool;
+                break;
+            case BossState.OutOfPool:
+                break;
+            default:
+                break;
         }
+    }
 
-        m_currentTime += Time.deltaTime;
-
-        if (m_currentTime >= m_waitTime)
+    public void OnAnimationEnd()
+    {
+        switch (m_state)
         {
-            m_pool.transform.position = transform.position;
-            m_pool.GetComponent<SpriteRenderer>().enabled = true;
-            m_pool.GetComponent<Animator>().SetBool("Despawn", m_animState % 2 == 0);
-            m_boss.GetComponent<Animator>().SetInteger("State", m_animState);
-            m_animState++;
-            m_currentTime = 0;
+            case BossState.Shoot:
+                m_state = BossState.Normal;
+                ChangeTimeline(m_intoPoolTimeline);
+                break;
+            case BossState.IntoPool:
+                m_state = BossState.TargetIsaac;
+                ChangeTimeline(m_outOfPoolTimeline);
+                break;
+            case BossState.OutOfPool:
+                m_state = BossState.Shoot;
+                ChangeTimeline(m_shootTimeline);
+                break;
+            default:
+                break;
         }
+    }
+
+    public void ChangeTimeline(PlayableAsset asset)
+    {
+        m_director.playableAsset = asset;
+
+        m_director.RebuildGraph();
+        m_director.time = 0.0;
+        m_director.Play();
     }
 
     public void MoveTo(Vector3 position)
     {
-        Vector2 direction = new Vector2(position.x, position.y);
-        direction.Normalize();
+        //Vector2 direction = new Vector2(position.x, position.y);
+        //direction.Normalize();
 
-        // Manually lerp from current speed to max speed
-        SetRigidbodyVelocity(m_rigidBody.velocity * 0.8f + direction * m_maxSpeed * 0.2f);
+        //// Manually lerp from current speed to max speed
+        //SetRigidbodyVelocity(m_rigidBody.velocity * 0.8f + direction * m_maxSpeed * 0.2f);
     }
 
     public void DamageMonster(float amount)

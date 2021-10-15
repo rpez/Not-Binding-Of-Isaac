@@ -18,7 +18,7 @@ public class Room : MonoBehaviour
     private Collider2D[] m_doorColliders = new Collider2D[4];
     private List<MonsterController> m_enemies = new List<MonsterController>();
 
-    private Grid m_grid = new Grid();
+    private NavigationGrid m_grid = new NavigationGrid();
 
     private List<(int, int)> m_obstacleCoords = new List<(int, int)>();
     public List<(int, int)> Obstacles => m_obstacleCoords;

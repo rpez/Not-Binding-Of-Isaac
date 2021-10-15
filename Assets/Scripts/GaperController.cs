@@ -15,7 +15,7 @@ public class GaperController : MonoBehaviour, MonsterController
     private Vector3 m_parentRoomPos;
 
     private AStar m_AStar = new AStar();
-    private Grid m_grid = new Grid();
+    private NavigationGrid m_grid = new NavigationGrid();
     private IEnumerator m_AStarMoveTo;
 
     public Animator m_animator;

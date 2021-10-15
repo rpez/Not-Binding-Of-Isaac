@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static Constants;
 
-public class Grid
+public class NavigationGrid
 {
   private Vector3 origoPos = new Vector3(-GRID_MAX_X / 2, -GRID_MAX_Y / 2);
 

@@ -134,8 +134,8 @@ public class GaperController : MonoBehaviour, MonsterController
             Vector3 nextNode = m_grid.GridToWorldCoordinates(node.x + x, node.y + y, m_parentRoomPos);
             MoveTo(nextNode - transform.position);
 
-            while (Vector3.Distance(nextNode, transform.position) >= 0.1f) {
-                yield return new WaitForSeconds(0.1f);
+            while (Vector3.Distance(nextNode, transform.position) >= 0.01f) {
+                yield return null;
             }
         }
     }

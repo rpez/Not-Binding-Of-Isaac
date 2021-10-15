@@ -25,6 +25,7 @@ public class Grid
     // I would think that one would use FloorToInt here, but for some reason RoundToInt gives the correct answers...
     (int, int) gridCoords = (Mathf.RoundToInt(coords.x), Mathf.RoundToInt(coords.y));
 
-    return gridCoords;
+    // Clamp the values here to be extra sure we never go over the maximum grid
+    return (Mathf.Clamp(gridCoords.Item1, 0, GRID_MAX_X - 1), Mathf.Clamp(gridCoords.Item2, 0, GRID_MAX_Y - 1));
   }
 }

@@ -12,14 +12,21 @@ public class GaperController : MonoBehaviour, MonsterController
     public CircleCollider2D m_circleCollider;
     public BoxCollider2D m_boxCollider;
     private GameObject m_player;
+    private Vector3 m_parentRoomPos;
+
+    private AStar m_AStar = new AStar();
+    private Grid m_grid = new Grid();
+    private IEnumerator m_AStarMoveTo;
 
     public Animator m_animator;
     private bool m_active;
+    private bool m_AStarMovingToNextNode;
 
     // Start is called before the first frame update
     void Start()
     {
         m_player = GameObject.Find("Player");
+        m_parentRoomPos = transform.parent.gameObject.transform.position;
         Physics2D.queriesStartInColliders = false;
         m_active = false;
     }
@@ -44,25 +51,41 @@ public class GaperController : MonoBehaviour, MonsterController
         // 15f length for the ray should be enough for current room size
         RaycastHit2D hit = Physics2D.Raycast(transform.position, playerPos, 15f);
 
-        bool debugRays = true;
-
-        if (hit.collider.gameObject.tag == "Wall")
+        if (hit.collider.gameObject.tag == "Wall" || hit.collider.gameObject.tag == "Obstacle" || hit.collider.gameObject.tag == "Enemy")
         {
-            // AStarMoveTowardsPlayer();
+            if (m_AStarMovingToNextNode) {
+                return;
+            }
+
+            (int, int) playerCoords = m_grid.WorldToGridCoordinates(m_player.transform.position, m_parentRoomPos);
+            (int, int) monsterCoords = m_grid.WorldToGridCoordinates(transform.position, m_parentRoomPos);
+
+            if (!m_player.GetComponent<PlayerController>().IsDead)
+            {
+                List<Vector3Int> route = m_AStar.Solve(monsterCoords, playerCoords, transform.parent.gameObject.GetComponent<Room>().Obstacles);
+                m_AStarMoveTo = AStarMoveTo(route);
+                StartCoroutine(m_AStarMoveTo);
+            }
         }
         else if (hit.collider.gameObject.tag == "Player")
         {
-            if (debugRays)
+            if (m_AStarMovingToNextNode)
             {
-                Vector3 drawRay1 = playerPos;
-                drawRay1.Normalize();
-                Debug.DrawRay(transform.position, drawRay1, Color.green);
+                StopCoroutine(m_AStarMoveTo);
+                m_AStarMovingToNextNode = false;
             }
-            
+
             MoveTo(playerPos);
         }
+        /*
         else if (hit.collider.gameObject.tag == "Enemy")
         {
+            if (m_AStarMovingToNextNode)
+            {
+                StopCoroutine(m_AStarMoveTo);
+                m_AStarMovingToNextNode = false;
+            }
+
             // Try to dodge your fellow enemy. This way the enemies can try to surround the player.
 
             // Get the bounding box of the blocking enemy as 4x Vector3
@@ -99,15 +122,20 @@ public class GaperController : MonoBehaviour, MonsterController
             Vector3 reflection = 2 * Vector3.Dot(enemyPos, playerPos) / Vector3.Dot(playerPos, playerPos) * playerPos - enemyPos;
 
             MoveTo(reflection);
+        }*/
+    }
 
-            if (debugRays)
-            {
-                Vector3 drawRay2 = enemyPos;
-                drawRay2.Normalize();
-                Vector3 drawRay3 = reflection;
-                drawRay3.Normalize();
-                Debug.DrawRay(transform.position, drawRay2, Color.blue);
-                Debug.DrawRay(transform.position, drawRay3, new Color(1.0f, 0.0f, 1.0f));
+    private IEnumerator AStarMoveTo(List<Vector3Int> route)
+    {
+        foreach (Vector3Int node in route)
+        {
+            (int x, int y) = m_grid.WorldToGridCoordinates(transform.position, m_parentRoomPos);
+
+            Vector3 nextNode = m_grid.GridToWorldCoordinates(node.x + x, node.y + y, m_parentRoomPos);
+            MoveTo(nextNode - transform.position);
+
+            while (Vector3.Distance(nextNode, transform.position) >= 0.1f) {
+                yield return new WaitForSeconds(0.1f);
             }
         }
     }

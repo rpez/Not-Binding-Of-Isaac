@@ -55,11 +55,19 @@ public class AStar
         return (node1.Item1 + node2.Item1, node1.Item2 + node2.Item2);
     }
 
+    private (int, int) TupleSubtract((int, int) node1, (int, int) node2)
+    {
+        return (node1.Item1 - node2.Item1, node1.Item2 - node2.Item2);
+    }
+
     private float CalculateFScore((int, int) node)
     {
         // Use Euclidean distance from goal node as admissible heuristic to guide A*
-        float hScore = Mathf.Sqrt((node.Item1 - m_goalNode.Item1) * (node.Item1 - m_goalNode.Item1) +
-            (node.Item2 - m_goalNode.Item2) * (node.Item2 - m_goalNode.Item2));
+        // We're quite greedy and leave out Mathf.Sqrt() since our obstacles are quite easy
+        // http://theory.stanford.edu/~amitp/GameProgramming/Heuristics.html#euclidean-distance-squared
+
+        float hScore = (node.Item1 - m_goalNode.Item1) * (node.Item1 - m_goalNode.Item1) +
+            (node.Item2 - m_goalNode.Item2) * (node.Item2 - m_goalNode.Item2);
         return m_gScores[node] + hScore;
     }
 
@@ -89,16 +97,45 @@ public class AStar
         return neighbours;
     }
 
-    private List<(int, int)> ReconstructRoute()
+    /*
+    Reconstruct route. Returns properly scaled Vector3Ints from startNode to goalNode.
+    */
+    private List<Vector3Int> ReconstructRoute()
     {
-        List<(int, int)> route = new List<(int, int)>();
+        List<Vector3Int> route = new List<Vector3Int>();
         (int, int) currentNode = m_goalNode;
 
-        while (currentNode != m_startNode) {
-            route.Add(currentNode);
+        (int, int) prevNode = (-1, -1);
+        (int, int) prevDirection = (0, 0);
+
+        // Build the route piece by piece from goalNode to startNode.
+        while (true) {
+            if (prevNode != (-1, -1))
+            {
+                (int, int) direction = TupleSubtract(prevNode, currentNode);
+
+                // If we have a different direction, create a new Vector3Int from here.
+                if (direction != prevDirection)
+                {
+                    route.Add(new Vector3Int(direction.Item1, direction.Item2, 0));
+                }
+                // If we have the same direction, add to the previous Vector3Int in order to scale it properly.
+                else
+                {
+                    route[route.Count - 1] = route[route.Count - 1] + new Vector3Int(direction.Item1, direction.Item2, 0);
+                }
+
+                prevDirection = direction;
+            }
+
+            // Break here to allow adding startNode to last Vector3Int.
+            if (currentNode == m_startNode) break;
+            
+            prevNode = currentNode;
             currentNode = m_path[currentNode];
         }
 
+        // Reverse the route so we have a path from startNode to goalNode.
         route.Reverse();
 
         return route;
@@ -114,19 +151,19 @@ public class AStar
 
     AStar.Solve((startNodeX, startNodeY), (goalNodeX, goalNodeY), new List<(int, int)>(){ (obstacleX, obstacleY) }).
 
-    Returns a list of grid squares to travel to or an empty list if not successful.
+    Returns a list of Vector3Ints to travel or an empty list if not successful.
     */
-    public List<(int, int)> Solve((int, int) startNode, (int, int) goalNode, List<(int, int)> obstacles = null)
+    public List<Vector3Int> Solve((int, int) startNode, (int, int) goalNode, List<(int, int)> obstacles = null)
     {
         if (startNode.Item1 < 0 || startNode.Item1 >= m_xMax || startNode.Item2 < 0 || startNode.Item2 >= m_yMax)
         {
             Debug.LogError("Cannot solve A* path. The start node exceeds the bounds of the grid.");
-            return null;
+            return new List<Vector3Int>();
         }
         else if (goalNode.Item1 < 0 || goalNode.Item1 >= m_xMax || goalNode.Item2 < 0 || goalNode.Item2 >= m_yMax)
         {
             Debug.LogError("Cannot solve A* path. The goal node exceeds the bounds of the grid.");
-            return null;
+            return new List<Vector3Int>();
         }
 
         obstacles ??= new List<(int, int)>();
@@ -163,6 +200,6 @@ public class AStar
                 }
             }
         }
-        return new List<(int, int)>();  // visited all nodes but failed to find a path
+        return new List<Vector3Int>();  // visited all nodes but failed to find a path
     }
 }

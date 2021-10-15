@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
     private float m_invincibilityCounter = 0f;
     private bool m_isDead;
 
+    public bool IsDead => m_isDead;
+
     public void DamagePlayer(int amount)
     {
         if (!m_invincible)

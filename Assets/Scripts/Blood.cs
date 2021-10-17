@@ -20,18 +20,11 @@ public class Blood : MonoBehaviour
 
         // Rotate randomly by 0, 45, ..., 315 degrees
         gameObject.transform.rotation = Quaternion.Euler(0, 0, UnityEngine.Random.Range(0, 8) * 45);
-
-        PlayAnimation("SpawnBlood");
     }
 
     // Update is called once per frame
     void Update()
     {
         
-    }
-
-    public void PlayAnimation(string animation)
-    {
-        m_animator.Play(animation);
     }
 }

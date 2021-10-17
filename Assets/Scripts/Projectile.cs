@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public float m_speed = 8f;
-    public float m_parentSpeedScale = 0.5f;
-    public float m_parentSpeedThreshold = 2f;
-    public float m_lifeTime = 1f;
-    public float m_collisionForce = 1f;
-    public float m_baseDamage = 3.5f;
+    private float m_speed = 8f;
+    private float m_parentSpeedScale = 0.5f;
+    private float m_parentSpeedThreshold = 2f;
+    private float m_lifeTime = 1f;
+    private float m_collisionForce = 5f;
+    private float m_baseDamage = 3.5f;
 
     private Rigidbody2D m_rigidBody;
 
@@ -53,7 +53,7 @@ public class Projectile : MonoBehaviour
                 monster.DamageMonster(m_baseDamage);
 
                 // Make the monster "jump back" from collision with the projectile
-                monster.SetRigidbodyVelocity(m_rigidBody.velocity * m_collisionForce);
+                monster.SetRigidbodyVelocity(m_rigidBody.velocity.normalized * m_collisionForce);
 
                 // Play monster animation
                 monster.PlayAnimation("TakeDamage");

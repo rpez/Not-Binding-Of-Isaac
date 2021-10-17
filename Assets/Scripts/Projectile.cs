@@ -11,9 +11,9 @@ public class Projectile : MonoBehaviour
     public float m_collisionForce = 1f;
     public float m_baseDamage = 3.5f;
 
-    private Rigidbody2D m_rigidBody;
+    protected Rigidbody2D m_rigidBody;
 
-    public void Init(Vector2 direction, Vector2 parentVelocity)
+    public virtual void Init(Vector2 direction, Vector2 parentVelocity)
     {
         m_rigidBody = GetComponent<Rigidbody2D>();
 
@@ -35,40 +35,6 @@ public class Projectile : MonoBehaviour
         additional.Normalize();
 
         m_rigidBody.velocity = (direction + additional * m_parentSpeedScale) * m_speed;
-    }
-
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        switch (collision.gameObject.tag)
-        {
-            case "Enemy":
-                if (collision.isTrigger) {
-                    return;
-                }
-
-                MonsterController monster = collision.gameObject.GetComponent<MonsterController>();
-
-                // Damage the monster
-                monster.DamageMonster(m_baseDamage);
-
-                // Make the monster "jump back" from collision with the projectile
-                monster.SetRigidbodyVelocity(m_rigidBody.velocity * m_collisionForce);
-
-                // Play monster animation
-                monster.PlayAnimation("TakeDamage");
-
-                // Destroy projectile
-                Destroy(gameObject);
-                break;
-            case "Wall":
-                Destroy(gameObject);
-                break;
-            case "Obstacle":
-                // TODO: do damage to obstacle
-                Destroy(gameObject);
-                break;
-
-        }
     }
 
     // Start is called before the first frame update

@@ -64,7 +64,7 @@ public class PoolBossController : MonoBehaviour, MonsterController
             return;
         }
 
-        //if (!m_active) return;
+        if (!m_active) return;
 
         switch (m_state)
         {
@@ -120,8 +120,8 @@ public class PoolBossController : MonoBehaviour, MonsterController
         {
             GameObject pro = GameObject.Instantiate(m_projectilePrefab, m_shootPosition.transform.position, Quaternion.identity);
             Projectile script = pro.GetComponent<Projectile>();
-            Vector3 newDir = Quaternion.Euler(0, (startOffset + i) * m_arcSegment, 0) * dir;
-            script.Init(newDir, Vector2.zero);
+            Vector3 newDir = Quaternion.Euler(0, 0, (startOffset + i) * m_arcSegment) * dir;
+            script.Init(newDir.normalized, Vector2.zero);
         }
     }
 
@@ -169,7 +169,7 @@ public class PoolBossController : MonoBehaviour, MonsterController
 
     public void PlayAnimation(string animation)
     {
-        //m_animator.Play(animation);
+        m_animator.Play(animation);
     }
 
     public bool IsDead()

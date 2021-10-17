@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3366881980645483376}
   m_Layer: 0
   m_Name: DoorEast
-  m_TagString: Untagged
+  m_TagString: RoomTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 468779332}
   m_Layer: 0
   m_Name: TriggerSouth
-  m_TagString: Untagged
+  m_TagString: RoomTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -209,7 +209,7 @@ GameObject:
   - component: {fileID: 5405040287271869900}
   m_Layer: 0
   m_Name: DoorSouth
-  m_TagString: Untagged
+  m_TagString: RoomTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -333,7 +333,7 @@ GameObject:
   - component: {fileID: 468779333}
   m_Layer: 0
   m_Name: TriggerWest
-  m_TagString: Untagged
+  m_TagString: RoomTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -403,7 +403,7 @@ GameObject:
   - component: {fileID: 468779334}
   m_Layer: 0
   m_Name: TriggerNorth
-  m_TagString: Untagged
+  m_TagString: RoomTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -473,7 +473,7 @@ GameObject:
   - component: {fileID: 468779331}
   m_Layer: 0
   m_Name: TriggerEast
-  m_TagString: Untagged
+  m_TagString: RoomTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -544,7 +544,7 @@ GameObject:
   - component: {fileID: 7968232973513677199}
   m_Layer: 0
   m_Name: DoorNorth
-  m_TagString: Untagged
+  m_TagString: RoomTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -669,7 +669,7 @@ GameObject:
   - component: {fileID: 3177254617648338879}
   m_Layer: 0
   m_Name: DoorWest
-  m_TagString: Untagged
+  m_TagString: RoomTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -39,13 +39,14 @@ public class Projectile : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
+        // Don't hit any triggers except RoomTriggers
+        if (collision.isTrigger && collision.gameObject.tag != "RoomTrigger") {
+            return;
+        }
+
         switch (collision.gameObject.tag)
         {
             case "Enemy":
-                if (collision.isTrigger) {
-                    return;
-                }
-
                 MonsterController monster = collision.gameObject.GetComponent<MonsterController>();
 
                 // Damage the monster
@@ -61,13 +62,13 @@ public class Projectile : MonoBehaviour
                 Destroy(gameObject);
                 break;
             case "Wall":
+            case "RoomTrigger":
                 Destroy(gameObject);
                 break;
             case "Obstacle":
                 // TODO: do damage to obstacle
                 Destroy(gameObject);
                 break;
-
         }
     }
 

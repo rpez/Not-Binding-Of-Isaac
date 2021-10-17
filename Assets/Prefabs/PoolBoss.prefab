@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 676172182}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShootPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23,12 +23,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 676172181}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.62, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 6480376401310731246}
-  m_RootOrder: 2
+  m_Father: {fileID: 3865169835753718002}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &915659240482792028
 GameObject:
@@ -41,10 +41,12 @@ GameObject:
   - component: {fileID: 3865169835753718002}
   - component: {fileID: 1071303864715047102}
   - component: {fileID: 8817789262396218504}
+  - component: {fileID: 8125415909234467735}
   - component: {fileID: 8036761620765679442}
   - component: {fileID: 919325812247527928}
   - component: {fileID: 4213438126220012084}
   - component: {fileID: 139086934}
+  - component: {fileID: 1919785683}
   m_Layer: 7
   m_Name: Boss
   m_TagString: Enemy
@@ -62,7 +64,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 676172182}
   m_Father: {fileID: 6480376401310731246}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -134,6 +137,22 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.88}
   serializedVersion: 2
   m_Radius: 0.87
+--- !u!58 &8125415909234467735
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915659240482792028}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 8982031f655735c4f95560599d99b847, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 2.09}
+  serializedVersion: 2
+  m_Radius: 0.81
 --- !u!61 &8036761620765679442
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -213,6 +232,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_inAnimation: 0
+--- !u!58 &1919785683
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915659240482792028}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 8982031f655735c4f95560599d99b847, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.88}
+  serializedVersion: 2
+  m_Radius: 0.87
 --- !u!1 &6480376401310731247
 GameObject:
   m_ObjectHideFlags: 0
@@ -225,9 +260,9 @@ GameObject:
   - component: {fileID: 139086936}
   - component: {fileID: 1766461452}
   - component: {fileID: 1766461453}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PoolBoss
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -245,7 +280,6 @@ Transform:
   m_Children:
   - {fileID: 3865169835753718002}
   - {fileID: 6480376402615058390}
-  - {fileID: 676172182}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -261,7 +295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfdc190c26eb3a644961f6f3fd09b63a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_health: 30
+  m_health: 100
   m_isDead: 0
   m_rigidBody: {fileID: 919325812247527928}
   m_circleCollider: {fileID: 8817789262396218504}
@@ -270,8 +304,8 @@ MonoBehaviour:
   m_boss: {fileID: 915659240482792028}
   m_pool: {fileID: 6480376402615058391}
   m_animator: {fileID: 4213438126220012084}
-  m_projectilePrefab: {fileID: 2817758380016501947, guid: dada014b925c4114fad484b747cc4aee, type: 3}
-  m_burstSize: 10
+  m_projectilePrefab: {fileID: 2817758380016501947, guid: bd339c421f7d18e46b1693ef18f7d1f2, type: 3}
+  m_burstSize: 7
   m_waitTime: 1
   m_shootTimeline: {fileID: 11400000, guid: 8b01158728467454782e6728b2d6791d, type: 2}
   m_intoPoolTimeline: {fileID: 11400000, guid: b0fe24e5cd6aa8d4c8b9f0adcee80311, type: 2}
@@ -380,7 +414,7 @@ GameObject:
   - component: {fileID: 6480376402615058390}
   - component: {fileID: 6480376402615058389}
   - component: {fileID: 6480376402615058388}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: pool
   m_TagString: Untagged
   m_Icon: {fileID: 0}

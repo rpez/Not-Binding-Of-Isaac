@@ -8,9 +8,17 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<< HEAD
   - component: {fileID: 6292756688811730077}
   - component: {fileID: 5129687343383583205}
   - component: {fileID: 1040870958}
+=======
+  - component: {fileID: 2817758380016501956}
+  - component: {fileID: 3611021736010188102}
+  - component: {fileID: 637175352}
+  - component: {fileID: 637175351}
+  - component: {fileID: -5224558221042665028}
+>>>>>>> fix boss shooting
   m_Layer: 10
   m_Name: ProjectileSprite
   m_TagString: Projectile
@@ -138,7 +146,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!114 &-2343469666029284120
+=======
+--- !u!114 &3611021736010188102
+>>>>>>> fix boss shooting
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,7 +159,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7065529132723044000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72cc4487604d7d043964841767663494, type: 3}
+  m_Script: {fileID: 11500000, guid: 5fdeb42bd1a9a994681dd7f76327cf71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_speed: 8

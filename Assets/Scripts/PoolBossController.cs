@@ -25,7 +25,7 @@ public class PoolBossController : MonoBehaviour, MonsterController
     private enum BossState { Normal, Shoot, IntoPool, TargetIsaac, OutOfPool, Wait };
 
     private float m_currentTime;
-    private float m_waitTime;
+    public float m_waitTime;
     private BossState m_state = BossState.IntoPool;
     private Animator m_poolAnim;
     private Animator m_bossAnim;
@@ -36,6 +36,7 @@ public class PoolBossController : MonoBehaviour, MonsterController
     public PlayableAsset m_shootTimeline;
     public PlayableAsset m_intoPoolTimeline;
     public PlayableAsset m_outOfPoolTimeline;
+    public PlayableAsset m_normalTimeline;
 
     // Start is called before the first frame update
     void Start()
@@ -43,7 +44,6 @@ public class PoolBossController : MonoBehaviour, MonsterController
         m_player = GameObject.Find("Player");
         Physics2D.queriesStartInColliders = false;
         m_active = false;
-        m_waitTime = 5f;
         m_poolAnim = m_pool.GetComponent<Animator>();
         m_bossAnim= m_boss.GetComponent<Animator>();
 
@@ -70,13 +70,6 @@ public class PoolBossController : MonoBehaviour, MonsterController
         switch (m_state)
         {
             case BossState.Normal:
-                m_currentTime += Time.deltaTime;
-                if (m_currentTime >= m_waitTime)
-                {
-                    ChangeTimeline(m_intoPoolTimeline);
-                    m_state = BossState.IntoPool;
-                    m_currentTime = 0;
-                }
                 break;
             case BossState.Shoot:
                 break;
@@ -97,9 +90,13 @@ public class PoolBossController : MonoBehaviour, MonsterController
     {
         switch (m_state)
         {
+            case BossState.Normal:
+                m_state = BossState.IntoPool;
+                ChangeTimeline(m_intoPoolTimeline);
+                break;
             case BossState.Shoot:
                 m_state = BossState.Normal;
-                ChangeTimeline(m_intoPoolTimeline);
+                ChangeTimeline(m_normalTimeline);
                 break;
             case BossState.IntoPool:
                 m_state = BossState.TargetIsaac;

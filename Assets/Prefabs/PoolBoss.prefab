@@ -142,7 +142,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 100
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0
@@ -239,9 +239,11 @@ MonoBehaviour:
   m_boss: {fileID: 915659240482792028}
   m_pool: {fileID: 6480376402615058391}
   m_animator: {fileID: 4213438126220012084}
+  m_waitTime: 1
   m_shootTimeline: {fileID: 11400000, guid: 8b01158728467454782e6728b2d6791d, type: 2}
   m_intoPoolTimeline: {fileID: 11400000, guid: b0fe24e5cd6aa8d4c8b9f0adcee80311, type: 2}
   m_outOfPoolTimeline: {fileID: 11400000, guid: 0ba47e0907521924ebda2dd04f325554, type: 2}
+  m_normalTimeline: {fileID: 11400000, guid: 9d35ee248c01dda4db57074522d63ebd, type: 2}
 --- !u!320 &1766461452
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -251,7 +253,7 @@ PlayableDirector:
   m_GameObject: {fileID: 6480376401310731247}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: b0fe24e5cd6aa8d4c8b9f0adcee80311, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: 9d35ee248c01dda4db57074522d63ebd, type: 2}
   m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
@@ -277,6 +279,12 @@ PlayableDirector:
     value: {fileID: 1766461453}
   - key: {fileID: 4130637914720679157, guid: b0fe24e5cd6aa8d4c8b9f0adcee80311, type: 2}
     value: {fileID: 1766461453}
+  - key: {fileID: 3819412456600658465, guid: 9d35ee248c01dda4db57074522d63ebd, type: 2}
+    value: {fileID: 4213438126220012084}
+  - key: {fileID: 4130637914720679157, guid: 9d35ee248c01dda4db57074522d63ebd, type: 2}
+    value: {fileID: 1766461453}
+  - key: {fileID: 0}
+    value: {fileID: 6480376402615058391}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &1766461453
@@ -381,7 +389,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -8525165665687653785, guid: 688e460fbe49a451f8deb64459a050dd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

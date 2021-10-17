@@ -19,16 +19,14 @@ public class PoolBossController : MonoBehaviour, MonsterController
     private GameObject m_player;
 
     public Animator m_animator;
+    public GameObject m_projectilePrefab;
+    public int m_burstSize;
     private bool m_active;
-    private int m_animState;
 
     private enum BossState { Normal, Shoot, IntoPool, TargetIsaac, OutOfPool, Wait };
 
-    private float m_currentTime;
     public float m_waitTime;
     private BossState m_state = BossState.IntoPool;
-    private Animator m_poolAnim;
-    private Animator m_bossAnim;
 
     private PlayableDirector m_director;
     private TimelineAsset m_currentTimeline;
@@ -38,14 +36,15 @@ public class PoolBossController : MonoBehaviour, MonsterController
     public PlayableAsset m_outOfPoolTimeline;
     public PlayableAsset m_normalTimeline;
 
+    public GameObject m_shootPosition;
+    public float m_arcSegment;
+
     // Start is called before the first frame update
     void Start()
     {
         m_player = GameObject.Find("Player");
         Physics2D.queriesStartInColliders = false;
         m_active = false;
-        m_poolAnim = m_pool.GetComponent<Animator>();
-        m_bossAnim= m_boss.GetComponent<Animator>();
 
         m_director = GetComponent<PlayableDirector>();
         ChangeTimeline(m_intoPoolTimeline);
@@ -108,6 +107,21 @@ public class PoolBossController : MonoBehaviour, MonsterController
                 break;
             default:
                 break;
+        }
+    }
+
+    public void Shoot()
+    {
+        Vector3 pos = m_player.transform.position;
+        Vector2 dir = pos - transform.position;
+        dir.Normalize();
+        int startOffset = -m_burstSize / 2;
+        for (int i = 0; i < m_burstSize; i++)
+        {
+            GameObject pro = GameObject.Instantiate(m_projectilePrefab, m_shootPosition.transform.position, Quaternion.identity);
+            Projectile script = pro.GetComponent<Projectile>();
+            Vector3 newDir = Quaternion.Euler(0, (startOffset + i) * m_arcSegment, 0) * dir;
+            script.Init(newDir, Vector2.zero);
         }
     }
 

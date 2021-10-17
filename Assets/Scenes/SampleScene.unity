@@ -130,9 +130,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1766461452, guid: 6a2b111495d8dd441a22720417b5ee9e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[12].key
-      value: 
+    - target: {fileID: 676172182, guid: 6a2b111495d8dd441a22720417b5ee9e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6480376401310731246, guid: 6a2b111495d8dd441a22720417b5ee9e, type: 3}
       propertyPath: m_RootOrder
@@ -181,6 +181,14 @@ PrefabInstance:
     - target: {fileID: 6480376401310731247, guid: 6a2b111495d8dd441a22720417b5ee9e, type: 3}
       propertyPath: m_Name
       value: PoolBoss
+      objectReference: {fileID: 0}
+    - target: {fileID: 8036761620765679442, guid: 6a2b111495d8dd441a22720417b5ee9e, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 2.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 8036761620765679442, guid: 6a2b111495d8dd441a22720417b5ee9e, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 3.47
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a2b111495d8dd441a22720417b5ee9e, type: 3}

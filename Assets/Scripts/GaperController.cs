@@ -13,6 +13,7 @@ public class GaperController : MonoBehaviour, MonsterController
     public BoxCollider2D m_boxCollider;
     private GameObject m_player;
     private Vector3 m_parentRoomPos;
+    public GameObject m_blood;
 
     private AStar m_AStar = new AStar();
     private NavigationGrid m_grid = new NavigationGrid();
@@ -31,21 +32,22 @@ public class GaperController : MonoBehaviour, MonsterController
         m_active = false;
     }
     
-    void FixedUpdate()
-    {
+    void Update() {
         if (m_isDead)
         {
-            // Right now destroy rigidbody and collider to stop checks.
-            // Later on should destroy self when changing rooms.
-            Destroy(m_rigidBody);
-            Destroy(m_circleCollider);
-            Destroy(m_boxCollider);
             PlayAnimation("Death");
-            return;
         }
+    }
 
-        if (!m_active) return;
+    void FixedUpdate()
+    {
+        if (!m_active || m_isDead) return;
 
+        RaycastToPlayer();
+    }
+
+    private void RaycastToPlayer()
+    {
         Vector3 playerPos = m_player.GetComponent<Collider2D>().bounds.center - transform.position;
 
         // 15f length for the ray should be enough for current room size
@@ -110,6 +112,7 @@ public class GaperController : MonoBehaviour, MonsterController
         {
             m_health = 0f;
             m_isDead = true;
+            StartCoroutine(OnDeath());
         }
     }
 
@@ -141,5 +144,28 @@ public class GaperController : MonoBehaviour, MonsterController
     {
         m_active = true;
         PlayAnimation("Move");
+    }
+
+    private IEnumerator OnDeath() {
+        Destroy(m_rigidBody);
+        Destroy(m_circleCollider);
+        Destroy(m_boxCollider);
+
+        gameObject.GetComponent<Renderer>().sortingLayerID = SortingLayer.NameToID("Background");
+        gameObject.GetComponent<Renderer>().sortingOrder = 2;
+
+        yield return new WaitForSeconds(1.0f);
+
+        CreateBlood();
+
+        yield return new WaitForSeconds(0.5f);
+
+        Destroy(gameObject);
+
+    }
+
+    private void CreateBlood()
+    {
+        Instantiate(m_blood, transform.position, Quaternion.identity, transform.parent);
     }
 }

@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_lifeTime: 1
-  m_collisionForce: 5
+  m_collisionForce: 2
   m_baseDamage: 3.5
 --- !u!50 &1846844951
 Rigidbody2D:

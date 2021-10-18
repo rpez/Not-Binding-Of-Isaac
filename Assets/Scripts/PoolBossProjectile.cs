@@ -10,7 +10,7 @@ public class PoolBossProjectile : Projectile
     {
         base.Init(direction, parentVelocity);
 
-        float rand = 1f + Random.Range(-m_randomSpeedMultiplier, m_randomSpeedMultiplier);
+        float rand = 0.5f + Random.Range(-m_randomSpeedMultiplier, m_randomSpeedMultiplier);
         m_rigidBody.velocity *= rand;
 
         transform.GetChild(0).right = -direction;

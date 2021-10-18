@@ -43,7 +43,6 @@ GameObject:
   - component: {fileID: 8817789262396218504}
   - component: {fileID: 8125415909234467735}
   - component: {fileID: 8036761620765679442}
-  - component: {fileID: 919325812247527928}
   - component: {fileID: 4213438126220012084}
   - component: {fileID: 139086934}
   - component: {fileID: 1919785683}
@@ -179,27 +178,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.72, y: 1.72}
   m_EdgeRadius: 0
---- !u!50 &919325812247527928
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 915659240482792028}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 100
-  m_LinearDrag: 0
-  m_AngularDrag: 0
-  m_GravityScale: 0
-  m_Material: {fileID: 6200000, guid: 8982031f655735c4f95560599d99b847, type: 2}
-  m_Interpolate: 2
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!95 &4213438126220012084
 Animator:
   serializedVersion: 3
@@ -260,6 +238,7 @@ GameObject:
   - component: {fileID: 139086936}
   - component: {fileID: 1766461452}
   - component: {fileID: 1766461453}
+  - component: {fileID: 974644804}
   m_Layer: 7
   m_Name: PoolBoss
   m_TagString: Enemy
@@ -295,9 +274,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfdc190c26eb3a644961f6f3fd09b63a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_health: 100
+  m_health: 150
   m_isDead: 0
-  m_rigidBody: {fileID: 919325812247527928}
+  m_rigidBody: {fileID: 974644804}
   m_circleCollider: {fileID: 8817789262396218504}
   m_boxCollider: {fileID: 8036761620765679442}
   m_animationHandler: {fileID: 139086934}
@@ -311,8 +290,10 @@ MonoBehaviour:
   m_intoPoolTimeline: {fileID: 11400000, guid: b0fe24e5cd6aa8d4c8b9f0adcee80311, type: 2}
   m_outOfPoolTimeline: {fileID: 11400000, guid: 0ba47e0907521924ebda2dd04f325554, type: 2}
   m_normalTimeline: {fileID: 11400000, guid: 9d35ee248c01dda4db57074522d63ebd, type: 2}
+  m_deadTimeline: {fileID: 11400000, guid: af672f90fe8e53845b7c0877e78199e6, type: 2}
   m_shootPosition: {fileID: 676172181}
   m_arcSegment: 10
+  m_bossSprite: {fileID: 1071303864715047102}
 --- !u!320 &1766461452
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -356,6 +337,10 @@ PlayableDirector:
     value: {fileID: 6480376402615058391}
   - key: {fileID: -4024425547313731209, guid: 8b01158728467454782e6728b2d6791d, type: 2}
     value: {fileID: 1766461453}
+  - key: {fileID: -5936076480900681363, guid: af672f90fe8e53845b7c0877e78199e6, type: 2}
+    value: {fileID: 4213438126220012084}
+  - key: {fileID: -8806718556165515688, guid: af672f90fe8e53845b7c0877e78199e6, type: 2}
+    value: {fileID: 6480376402615058388}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &1766461453
@@ -403,6 +388,27 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!50 &974644804
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6480376401310731247}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 10
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 6200000, guid: 8982031f655735c4f95560599d99b847, type: 2}
+  m_Interpolate: 2
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
 --- !u!1 &6480376402615058391
 GameObject:
   m_ObjectHideFlags: 0

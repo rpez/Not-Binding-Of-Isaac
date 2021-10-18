@@ -74,7 +74,7 @@ public class PoolBossController : MonoBehaviour, MonsterController
             return;
         }
 
-        //if (!m_active) return;
+        if (!m_active) return;
 
         switch (m_state)
         {

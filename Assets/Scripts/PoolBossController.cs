@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,21 +24,23 @@ public class PoolBossController : MonoBehaviour, MonsterController
     public int m_burstSize;
     private bool m_active;
 
-    private enum BossState { Normal, Shoot, IntoPool, TargetIsaac, OutOfPool, Wait };
+    private enum BossState { Normal, Shoot, IntoPool, TargetIsaac, OutOfPool, Wait, Dead };
 
     public float m_waitTime;
     private BossState m_state = BossState.IntoPool;
 
     private PlayableDirector m_director;
-    private TimelineAsset m_currentTimeline;
 
     public PlayableAsset m_shootTimeline;
     public PlayableAsset m_intoPoolTimeline;
     public PlayableAsset m_outOfPoolTimeline;
     public PlayableAsset m_normalTimeline;
+    public PlayableAsset m_deadTimeline;
 
     public GameObject m_shootPosition;
     public float m_arcSegment;
+
+    public SpriteRenderer m_bossSprite;
 
     // Start is called before the first frame update
     void Start()
@@ -48,7 +51,6 @@ public class PoolBossController : MonoBehaviour, MonsterController
 
         m_director = GetComponent<PlayableDirector>();
         ChangeTimeline(m_intoPoolTimeline);
-        m_currentTimeline = m_director.playableAsset as TimelineAsset;
     }
     
     void FixedUpdate()
@@ -64,7 +66,7 @@ public class PoolBossController : MonoBehaviour, MonsterController
             return;
         }
 
-        if (!m_active) return;
+        //if (!m_active) return;
 
         switch (m_state)
         {
@@ -145,11 +147,20 @@ public class PoolBossController : MonoBehaviour, MonsterController
 
     public void DamageMonster(float amount)
     {
+        if (m_isDead) return;
+
         m_health -= amount;
+
+        // Workaround for damaging
+        m_bossSprite.color = Color.red;
+        StartCoroutine(Delayed(0.1f, ResetColor));
         if (m_health <= 0f)
         {
             m_health = 0f;
             m_isDead = true;
+            ChangeTimeline(m_deadTimeline);
+            m_state = BossState.Dead;
+            StartCoroutine(Delayed(2f, () => Destroy(gameObject)));
         }
     }
 
@@ -160,16 +171,16 @@ public class PoolBossController : MonoBehaviour, MonsterController
 
     public void OnCollisionStay2D(Collision2D collision)
     {
-        //if (collision.gameObject.tag == "Player")
-        //{
-        //    PlayerController player = collision.gameObject.GetComponent<PlayerController>();
-        //    player.DamagePlayer(1);
-        //}
+        if (collision.gameObject.tag == "Player")
+        {
+            PlayerController player = collision.gameObject.GetComponent<PlayerController>();
+            player.DamagePlayer(1);
+        }
     }
 
     public void PlayAnimation(string animation)
     {
-        m_animator.Play(animation);
+        //m_animator.Play(animation);
     }
 
     public bool IsDead()
@@ -180,5 +191,16 @@ public class PoolBossController : MonoBehaviour, MonsterController
     public void Activate()
     {
         m_active = true;
+    }
+
+    private void ResetColor()
+    {
+        m_bossSprite.color = Color.white;
+    }
+
+    private IEnumerator Delayed(float delay, Action callback)
+    {
+        yield return new WaitForSeconds(delay);
+        callback.Invoke();
     }
 }

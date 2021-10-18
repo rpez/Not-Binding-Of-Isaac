@@ -8,7 +8,6 @@ using UnityEngine.Timeline;
 public class PoolBossController : MonoBehaviour, MonsterController
 {
     public float m_health = 10f;
-    private float m_maxSpeed = 4.2f; // 42 !!!
     public bool m_isDead = false;
 
     public Rigidbody2D m_rigidBody;
@@ -24,7 +23,8 @@ public class PoolBossController : MonoBehaviour, MonsterController
     public int m_burstSize;
     private bool m_active;
 
-    private enum BossState { Normal, Shoot, IntoPool, TargetIsaac, OutOfPool, Wait, Dead };
+    private enum BossState { Normal, Shoot, Charge, IntoPool,
+        TargetIsaac, OutOfPool, Wait, Dead };
 
     public float m_waitTime;
     private BossState m_state = BossState.IntoPool;
@@ -36,11 +36,19 @@ public class PoolBossController : MonoBehaviour, MonsterController
     public PlayableAsset m_outOfPoolTimeline;
     public PlayableAsset m_normalTimeline;
     public PlayableAsset m_deadTimeline;
+    public PlayableAsset m_chargeTimeline;
 
     public GameObject m_shootPosition;
     public float m_arcSegment;
 
     public SpriteRenderer m_bossSprite;
+
+    private Vector2 m_chargeTarget;
+    public float m_chargeTime = 1f;
+    public int m_chargeAmount = 3;
+    private int m_currentCharge = 0;
+    private bool m_chargeSet;
+    private float m_currentTime;
 
     // Start is called before the first frame update
     void Start()
@@ -70,17 +78,31 @@ public class PoolBossController : MonoBehaviour, MonsterController
 
         switch (m_state)
         {
-            case BossState.Normal:
-                break;
-            case BossState.Shoot:
-                break;
-            case BossState.IntoPool:
+            case BossState.Charge:
+                if (m_currentCharge > m_chargeAmount)
+                {
+                    m_chargeSet = true;
+                    StartCoroutine(Delayed(m_waitTime, () => {
+                        ChangeTimeline(m_normalTimeline);
+                        m_state = BossState.Normal;
+                        m_currentCharge = 0;
+                    }));
+                    return;
+                }
+                m_currentTime += Time.deltaTime;
+                if (!m_chargeSet)
+                {
+                    m_chargeTarget = m_player.transform.position;
+                    m_chargeSet = true;
+                    StartCoroutine(Delayed(m_chargeTime, ResetCharge));
+                    m_currentTime = 0;
+                }
+                Vector2 newPos = Vector2.Lerp(transform.position, m_chargeTarget, m_currentTime / m_chargeTime);
+                transform.position = newPos;
                 break;
             case BossState.TargetIsaac:
                 transform.position = m_player.transform.position;
                 m_state = BossState.OutOfPool;
-                break;
-            case BossState.OutOfPool:
                 break;
             default:
                 break;
@@ -92,8 +114,18 @@ public class PoolBossController : MonoBehaviour, MonsterController
         switch (m_state)
         {
             case BossState.Normal:
-                m_state = BossState.IntoPool;
-                ChangeTimeline(m_intoPoolTimeline);
+                
+                if (UnityEngine.Random.Range(0, 2) == 0)
+                {
+                    m_state = BossState.Charge;
+                    ChangeTimeline(m_chargeTimeline);
+                    ResetCharge();
+                }
+                else
+                {
+                    m_state = BossState.IntoPool;
+                    ChangeTimeline(m_intoPoolTimeline);
+                }
                 break;
             case BossState.Shoot:
                 m_state = BossState.Normal;
@@ -196,6 +228,12 @@ public class PoolBossController : MonoBehaviour, MonsterController
     private void ResetColor()
     {
         m_bossSprite.color = Color.white;
+    }
+
+    private void ResetCharge()
+    {
+        m_chargeSet = false;
+        m_currentCharge++;
     }
 
     private IEnumerator Delayed(float delay, Action callback)

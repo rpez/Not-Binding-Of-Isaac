@@ -188,7 +188,7 @@ Animator:
   m_GameObject: {fileID: 915659240482792028}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 77c9bb50229016345ae1db3094aa4961, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -291,9 +291,12 @@ MonoBehaviour:
   m_outOfPoolTimeline: {fileID: 11400000, guid: 0ba47e0907521924ebda2dd04f325554, type: 2}
   m_normalTimeline: {fileID: 11400000, guid: 9d35ee248c01dda4db57074522d63ebd, type: 2}
   m_deadTimeline: {fileID: 11400000, guid: af672f90fe8e53845b7c0877e78199e6, type: 2}
+  m_chargeTimeline: {fileID: 11400000, guid: e7e0a4fc610a97942bf008d05f057b74, type: 2}
   m_shootPosition: {fileID: 676172181}
   m_arcSegment: 10
   m_bossSprite: {fileID: 1071303864715047102}
+  m_chargeTime: 1
+  m_chargeAmount: 3
 --- !u!320 &1766461452
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -303,7 +306,7 @@ PlayableDirector:
   m_GameObject: {fileID: 6480376401310731247}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 9d35ee248c01dda4db57074522d63ebd, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: e7e0a4fc610a97942bf008d05f057b74, type: 2}
   m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
@@ -341,6 +344,8 @@ PlayableDirector:
     value: {fileID: 4213438126220012084}
   - key: {fileID: -8806718556165515688, guid: af672f90fe8e53845b7c0877e78199e6, type: 2}
     value: {fileID: 6480376402615058388}
+  - key: {fileID: 3819412456600658465, guid: e7e0a4fc610a97942bf008d05f057b74, type: 2}
+    value: {fileID: 4213438126220012084}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &1766461453

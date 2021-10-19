@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BasicProjectile : Projectile
 {
-     void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         switch (collision.gameObject.tag)
         {
@@ -26,18 +26,27 @@ public class BasicProjectile : Projectile
                 // Play monster animation
                 monster.PlayAnimation("TakeDamage");
 
+                SpawnEffect();
                 // Destroy projectile
                 Destroy(gameObject);
                 break;
             case "Wall":
+                SpawnEffect();
                 Destroy(gameObject);
                 break;
             case "Obstacle":
                 // TODO: do damage to obstacle
+                SpawnEffect();
                 Destroy(gameObject);
                 break;
 
         }
+    }
+
+    private void SpawnEffect()
+    {
+        GameObject impact = GameObject.Instantiate(m_impactEffect, transform.position, Quaternion.identity);
+        Destroy(impact, 2f);
     }
 
     // Start is called before the first frame update

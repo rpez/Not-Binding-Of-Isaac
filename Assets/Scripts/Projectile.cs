@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    public GameObject m_impactEffect;
+
     private float m_speed = 8f;
     private float m_parentSpeedScale = 0.5f;
     private float m_parentSpeedThreshold = 2f;

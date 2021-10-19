@@ -27,7 +27,7 @@ public class PoolBossController : MonoBehaviour, MonsterController
         TargetIsaac, OutOfPool, Wait, Dead };
 
     public float m_waitTime;
-    private BossState m_state = BossState.IntoPool;
+    private BossState m_state = BossState.Normal;
 
     private PlayableDirector m_director;
 
@@ -58,7 +58,7 @@ public class PoolBossController : MonoBehaviour, MonsterController
         m_active = false;
 
         m_director = GetComponent<PlayableDirector>();
-        ChangeTimeline(m_intoPoolTimeline);
+        ChangeTimeline(m_normalTimeline);
     }
     
     void FixedUpdate()

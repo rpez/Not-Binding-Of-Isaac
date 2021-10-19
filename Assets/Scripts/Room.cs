@@ -7,6 +7,8 @@ public class Room : MonoBehaviour
 {
     public float m_enemyActivationTime = 1f;
 
+    public int m_bossDir = -1;
+
     public SpawnEntity[] m_spawnGrid;
     public RoomTrigger[] m_doorTriggers = new RoomTrigger[4];
 

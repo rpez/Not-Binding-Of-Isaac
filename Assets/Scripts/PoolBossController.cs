@@ -118,9 +118,11 @@ public class PoolBossController : MonoBehaviour, MonsterController
                 
                 if (UnityEngine.Random.Range(0, 2) == 0)
                 {
-                    m_state = BossState.Charge;
                     ChangeTimeline(m_chargeTimeline);
-                    ResetCharge();
+                    StartCoroutine(Delayed(m_waitTime, () => {
+                        ResetCharge();
+                        m_state = BossState.Charge;
+                    }));
                 }
                 else
                 {
@@ -189,8 +191,10 @@ public class PoolBossController : MonoBehaviour, MonsterController
         StartCoroutine(Delayed(0.1f, ResetColor));
         if (m_health <= 0f)
         {
+            m_bossSprite.color = Color.white;
             m_health = 0f;
             m_isDead = true;
+            StopAllCoroutines();
             ChangeTimeline(m_deadTimeline);
             m_state = BossState.Dead;
             StartCoroutine(Delayed(2f, () => Destroy(gameObject)));

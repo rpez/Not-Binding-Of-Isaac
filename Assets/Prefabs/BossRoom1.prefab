@@ -1104,7 +1104,7 @@ MonoBehaviour:
   m_spawnGrid:
   - m_object: {fileID: 6480376401310731247, guid: 6a2b111495d8dd441a22720417b5ee9e, type: 3}
     m_x: 6
-    m_y: 3
+    m_y: 2
   m_doorTriggers:
   - {fileID: 0}
   - {fileID: 0}

@@ -93,6 +93,7 @@ public class PoolBossController : MonoBehaviour, MonsterController
                 if (!m_chargeSet)
                 {
                     m_chargeTarget = m_player.transform.position;
+                    m_chargeTarget -= (new Vector2(transform.position.x, transform.position.y) - m_chargeTarget).normalized;
                     m_chargeSet = true;
                     StartCoroutine(Delayed(m_chargeTime, ResetCharge));
                     m_currentTime = 0;
@@ -207,6 +208,8 @@ public class PoolBossController : MonoBehaviour, MonsterController
         {
             PlayerController player = collision.gameObject.GetComponent<PlayerController>();
             player.DamagePlayer(1);
+            m_circleCollider.enabled = false;
+            StartCoroutine(Delayed(0.2f, () => m_circleCollider.enabled = true));
         }
     }
 

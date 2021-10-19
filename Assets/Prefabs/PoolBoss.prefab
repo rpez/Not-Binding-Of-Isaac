@@ -41,11 +41,9 @@ GameObject:
   - component: {fileID: 3865169835753718002}
   - component: {fileID: 1071303864715047102}
   - component: {fileID: 8817789262396218504}
-  - component: {fileID: 8125415909234467735}
   - component: {fileID: 8036761620765679442}
   - component: {fileID: 4213438126220012084}
   - component: {fileID: 139086934}
-  - component: {fileID: 1919785683}
   m_Layer: 7
   m_Name: Boss
   m_TagString: Enemy
@@ -133,25 +131,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.88}
+  m_Offset: {x: 0, y: 1.16}
   serializedVersion: 2
-  m_Radius: 0.87
---- !u!58 &8125415909234467735
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 915659240482792028}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 8982031f655735c4f95560599d99b847, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 2.09}
-  serializedVersion: 2
-  m_Radius: 0.81
+  m_Radius: 1.1
 --- !u!61 &8036761620765679442
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -165,7 +147,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.88}
+  m_Offset: {x: 0, y: 1.16}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -176,7 +158,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.72, y: 1.72}
+  m_Size: {x: 1.72, y: 2.25}
   m_EdgeRadius: 0
 --- !u!95 &4213438126220012084
 Animator:
@@ -210,22 +192,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_inAnimation: 0
---- !u!58 &1919785683
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 915659240482792028}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 8982031f655735c4f95560599d99b847, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.88}
-  serializedVersion: 2
-  m_Radius: 0.87
 --- !u!1 &6480376401310731247
 GameObject:
   m_ObjectHideFlags: 0
@@ -295,7 +261,7 @@ MonoBehaviour:
   m_shootPosition: {fileID: 676172181}
   m_arcSegment: 10
   m_bossSprite: {fileID: 1071303864715047102}
-  m_chargeTime: 1
+  m_chargeTime: 1.5
   m_chargeAmount: 3
 --- !u!320 &1766461452
 PlayableDirector:
@@ -405,14 +371,14 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10
+  m_Mass: 0.0001
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: 8982031f655735c4f95560599d99b847, type: 2}
   m_Interpolate: 2
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 7
 --- !u!1 &6480376402615058391
 GameObject:

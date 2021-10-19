@@ -8,9 +8,17 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<< HEAD
   - component: {fileID: 6292756688811730077}
   - component: {fileID: 5129687343383583205}
   - component: {fileID: 1040870958}
+=======
+  - component: {fileID: 2817758380016501956}
+  - component: {fileID: 3611021736010188102}
+  - component: {fileID: 637175352}
+  - component: {fileID: 637175351}
+  - component: {fileID: -5224558221042665028}
+>>>>>>> 965197db21d33c4fb98127ee64a1dc73145e19af
   m_Layer: 10
   m_Name: ProjectileSprite
   m_TagString: Projectile
@@ -138,7 +146,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!114 &8776110882677907936
+=======
+--- !u!114 &3611021736010188102
+>>>>>>> 965197db21d33c4fb98127ee64a1dc73145e19af
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

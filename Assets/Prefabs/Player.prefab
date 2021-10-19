@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 391842520}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.05, y: -0.25, z: 0}
+  m_LocalPosition: {x: -0.05, y: -0.387, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7429508206667408862}
@@ -60,7 +60,7 @@ Transform:
   m_GameObject: {fileID: 2084746969904965501}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children:
   - {fileID: 391842521}
   m_Father: {fileID: 0}
@@ -83,7 +83,7 @@ MonoBehaviour:
   m_invincibilityTime: 1
   m_attackSpeed: 3
   m_maxSpeed: 5
-  m_projectile: {fileID: 2817758380016501947, guid: dada014b925c4114fad484b747cc4aee, type: 3}
+  m_projectile: {fileID: 7065529132723044000, guid: c8d240572c807474bb6a41518a7e6e49, type: 3}
   m_shootPosition: {fileID: 391842520}
   m_ui: {fileID: 0}
   m_animator: {fileID: 1232198527908601243}
@@ -106,7 +106,7 @@ Rigidbody2D:
   m_Material: {fileID: 6200000, guid: 8982031f655735c4f95560599d99b847, type: 2}
   m_Interpolate: 2
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!58 &2135463648
 CircleCollider2D:

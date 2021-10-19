@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 1238543218463400353}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -105,6 +105,7 @@ MonoBehaviour:
   m_rigidBody: {fileID: 6320623780055147271}
   m_circleCollider: {fileID: 5579256003791653846}
   m_boxCollider: {fileID: 9054295031668193151}
+  m_blood: {fileID: 6090824784018321916, guid: 63f57d7d3fde45947908bd4b36368576, type: 3}
   m_animator: {fileID: -7329333747717641394}
 --- !u!58 &5579256003791653846
 CircleCollider2D:

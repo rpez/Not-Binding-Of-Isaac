@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 312979456704553414}
   - component: {fileID: 6301186006563602668}
   m_Layer: 0
-  m_Name: obstacle_donut
+  m_Name: donut
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

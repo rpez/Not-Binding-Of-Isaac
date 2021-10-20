@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public float m_invincibilityTime = 0.5f;
 
     public float m_attackSpeed = 1f;
+    public float m_damageModifier = 1f;
     public float m_maxSpeed = 5f;
 
     public GameObject m_projectile;
@@ -26,6 +27,24 @@ public class PlayerController : MonoBehaviour
     private bool m_isDead;
 
     public bool IsDead => m_isDead;
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Item")
+        {
+            Item item = collision.gameObject.GetComponent<Item>();
+            m_animator.runtimeAnimatorController = item.m_mutationAnimator;
+            ApplyModifiers(item);
+        }
+    }
+
+    public void ApplyModifiers(Item item)
+    {
+        m_attackSpeed *= item.m_attackSpeedModifier;
+        m_damageModifier *= item.m_damageModifier;
+        m_maxSpeed *= item.m_speedModifier;
+        m_health = (int) (m_health * item.m_healthModifier) + 1;
+    }
 
     public void DamagePlayer(int amount)
     {
@@ -154,7 +173,7 @@ public class PlayerController : MonoBehaviour
     private void Shoot(Vector3 dir)
     {
         GameObject pro = GameObject.Instantiate(m_projectile, m_shootPosition.transform.position, Quaternion.identity);
-        pro.GetComponent<Projectile>().Init(dir, m_rigidBody.velocity);
+        pro.GetComponent<Projectile>().Init(dir, m_rigidBody.velocity, m_damageModifier);
         m_lastShot = 0f;
     }
 

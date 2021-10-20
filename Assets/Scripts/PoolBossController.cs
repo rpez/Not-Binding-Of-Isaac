@@ -158,7 +158,7 @@ public class PoolBossController : MonoBehaviour, MonsterController
             GameObject pro = GameObject.Instantiate(m_projectilePrefab, m_shootPosition.transform.position, Quaternion.identity);
             Projectile script = pro.GetComponent<Projectile>();
             Vector3 newDir = Quaternion.Euler(0, 0, (startOffset + i) * m_arcSegment) * dir;
-            script.Init(newDir.normalized, Vector2.zero);
+            script.Init(newDir.normalized, Vector2.zero, 1f);
         }
     }
 

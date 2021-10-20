@@ -18,7 +18,7 @@ public class BasicProjectile : Projectile
                 if (monster == null) monster = collision.gameObject.transform.parent.GetComponent<MonsterController>();
 
                 // Damage the monster
-                monster.DamageMonster(m_baseDamage);
+                monster.DamageMonster(m_baseDamage * m_damageModifier);
 
                 // Make the monster "jump back" from collision with the projectile
                 monster.SetRigidbodyVelocity(m_rigidBody.velocity * m_collisionForce);

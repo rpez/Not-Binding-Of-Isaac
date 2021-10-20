@@ -12,11 +12,13 @@ public class Projectile : MonoBehaviour
     public float m_lifeTime = 1f;
     public float m_collisionForce = 5f;
     public float m_baseDamage = 3.5f;
+    protected float m_damageModifier;
 
     protected Rigidbody2D m_rigidBody;
 
-    public virtual void Init(Vector2 direction, Vector2 parentVelocity)
+    public virtual void Init(Vector2 direction, Vector2 parentVelocity, float damageModifier)
     {
+        m_damageModifier = damageModifier;
         m_rigidBody = GetComponent<Rigidbody2D>();
 
         // Add x and y components of parent object's velocity, scaled by a factor

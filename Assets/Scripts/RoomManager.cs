@@ -65,7 +65,6 @@ public class RoomManager : MonoBehaviour
     public void ChangeRoom(int dir)
     {
         m_currentRoom.m_room.OnRoomLeave();
-        m_currentRoom.m_room.CloseAllDoors();
         m_oldCameraPosition = m_camera.transform.position;
         FloorNode room = m_currentRoom.m_neigbours[dir];
         m_currentRoom = room;

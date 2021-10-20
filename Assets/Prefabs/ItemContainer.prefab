@@ -259,7 +259,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_mutationAnimator: {fileID: 9100000, guid: 39fbbe38a390011498505d488897e549, type: 2}
-  m_damageModifier: 0.8
+  m_damageModifier: 0.5
   m_speedModifier: 1.5
   m_attackSpeedModifier: 2.5
   m_healthModifier: 1

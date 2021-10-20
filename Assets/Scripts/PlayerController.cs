@@ -43,7 +43,9 @@ public class PlayerController : MonoBehaviour
         m_attackSpeed *= item.m_attackSpeedModifier;
         m_damageModifier *= item.m_damageModifier;
         m_maxSpeed *= item.m_speedModifier;
-        m_health = (int) (m_health * item.m_healthModifier) + 1;
+        //m_health = (int) (m_maxHealth * item.m_healthModifier) + 1;
+
+        m_shootInterval = 1f / m_attackSpeed;
     }
 
     public void DamagePlayer(int amount)

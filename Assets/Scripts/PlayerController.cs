@@ -43,6 +43,10 @@ public class PlayerController : MonoBehaviour
 
             Destroy(item.gameObject);
         }
+        if (collision.gameObject.tag == "FloorComplete")
+        {
+            m_ui.GameOver(true);
+        }
     }
 
     public void ApplyModifiers(Item item)
@@ -69,6 +73,7 @@ public class PlayerController : MonoBehaviour
                 m_rigidBody.velocity = Vector2.zero;
                 PlaySound("IsaacDeath");
                 PlayAnimation("Death");
+                m_ui.GameOver(false);
             }
             else
             {

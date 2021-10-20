@@ -789,6 +789,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2853777281168633720}
+  - component: {fileID: 6821174515144698290}
   - component: {fileID: 2098982639}
   - component: {fileID: 2098982638}
   - component: {fileID: 2098982630}
@@ -798,7 +799,6 @@ GameObject:
   - component: {fileID: 2098982633}
   - component: {fileID: 2098982632}
   - component: {fileID: 9054124006222926312}
-  - component: {fileID: 6821174515144698290}
   m_Layer: 0
   m_Name: GaperRoom2
   m_TagString: Wall
@@ -828,6 +828,70 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6821174515144698290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125368283543465865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 096095274e58f1c43b5ae3aad32c7507, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_bossRoom: 0
+  m_bossRoomFlies: {fileID: 3337147604078501904, guid: f1ae689e6529596418f4484e248372d4, type: 3}
+  m_bossRoomOpen: {fileID: 4136353818613018556, guid: ab66f932d0ec142a991cc558e679d80e, type: 3}
+  m_bossRoomClosed: {fileID: 356004923696953939, guid: ab66f932d0ec142a991cc558e679d80e, type: 3}
+  m_hatch: {fileID: 6776931251637701618, guid: 22eedc25f2d649242b388683d9ce4196, type: 3}
+  m_enemyActivationTime: 1
+  m_spawnGrid:
+  - m_object: {fileID: 425073977077010494, guid: ccb628785125efd42ba00dde2cce8fab, type: 3}
+    m_x: 6
+    m_y: 3
+  - m_object: {fileID: 425073977077010494, guid: 19d421a7a6c8a2b47b6f2ba6513f3af5, type: 3}
+    m_x: 7
+    m_y: 3
+  - m_object: {fileID: 425073977077010494, guid: 590e7c8180ee6f642b19347c02fa8a4a, type: 3}
+    m_x: 5
+    m_y: 3
+  - m_object: {fileID: 425073977077010494, guid: ba5b4805c22c9e94b84786760fa6a161, type: 3}
+    m_x: 9
+    m_y: 2
+  - m_object: {fileID: 425073977077010494, guid: ba5b4805c22c9e94b84786760fa6a161, type: 3}
+    m_x: 9
+    m_y: 3
+  - m_object: {fileID: 425073977077010494, guid: ba5b4805c22c9e94b84786760fa6a161, type: 3}
+    m_x: 9
+    m_y: 4
+  - m_object: {fileID: 425073977077010494, guid: ba5b4805c22c9e94b84786760fa6a161, type: 3}
+    m_x: 3
+    m_y: 4
+  - m_object: {fileID: 425073977077010494, guid: ba5b4805c22c9e94b84786760fa6a161, type: 3}
+    m_x: 3
+    m_y: 3
+  - m_object: {fileID: 425073977077010494, guid: ba5b4805c22c9e94b84786760fa6a161, type: 3}
+    m_x: 3
+    m_y: 2
+  - m_object: {fileID: 1238543218463400353, guid: 999cfc11edc3d6d469bbb76881c21b7d, type: 3}
+    m_x: 6
+    m_y: 2
+  - m_object: {fileID: 1238543218463400353, guid: 999cfc11edc3d6d469bbb76881c21b7d, type: 3}
+    m_x: 6
+    m_y: 4
+  - m_object: {fileID: 1238543218463400353, guid: 999cfc11edc3d6d469bbb76881c21b7d, type: 3}
+    m_x: 8
+    m_y: 3
+  - m_object: {fileID: 1238543218463400353, guid: 999cfc11edc3d6d469bbb76881c21b7d, type: 3}
+    m_x: 4
+    m_y: 3
+  m_doorTriggers:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  m_isStartingRoom: 0
 --- !u!61 &2098982639
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1088,64 +1152,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6821174515144698290
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1125368283543465865}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 096095274e58f1c43b5ae3aad32c7507, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_bossRoomFlies: {fileID: 3337147604078501904, guid: f1ae689e6529596418f4484e248372d4, type: 3}
-  m_bossRoomOpen: {fileID: 4136353818613018556, guid: ab66f932d0ec142a991cc558e679d80e, type: 3}
-  m_bossRoomClosed: {fileID: 356004923696953939, guid: ab66f932d0ec142a991cc558e679d80e, type: 3}
-  m_enemyActivationTime: 1
-  m_spawnGrid:
-  - m_object: {fileID: 425073977077010494, guid: ccb628785125efd42ba00dde2cce8fab, type: 3}
-    m_x: 6
-    m_y: 3
-  - m_object: {fileID: 425073977077010494, guid: 19d421a7a6c8a2b47b6f2ba6513f3af5, type: 3}
-    m_x: 7
-    m_y: 3
-  - m_object: {fileID: 425073977077010494, guid: 590e7c8180ee6f642b19347c02fa8a4a, type: 3}
-    m_x: 5
-    m_y: 3
-  - m_object: {fileID: 425073977077010494, guid: ba5b4805c22c9e94b84786760fa6a161, type: 3}
-    m_x: 9
-    m_y: 2
-  - m_object: {fileID: 425073977077010494, guid: ba5b4805c22c9e94b84786760fa6a161, type: 3}
-    m_x: 9
-    m_y: 3
-  - m_object: {fileID: 425073977077010494, guid: ba5b4805c22c9e94b84786760fa6a161, type: 3}
-    m_x: 9
-    m_y: 4
-  - m_object: {fileID: 425073977077010494, guid: ba5b4805c22c9e94b84786760fa6a161, type: 3}
-    m_x: 3
-    m_y: 4
-  - m_object: {fileID: 425073977077010494, guid: ba5b4805c22c9e94b84786760fa6a161, type: 3}
-    m_x: 3
-    m_y: 3
-  - m_object: {fileID: 425073977077010494, guid: ba5b4805c22c9e94b84786760fa6a161, type: 3}
-    m_x: 3
-    m_y: 2
-  - m_object: {fileID: 1238543218463400353, guid: 999cfc11edc3d6d469bbb76881c21b7d, type: 3}
-    m_x: 6
-    m_y: 2
-  - m_object: {fileID: 1238543218463400353, guid: 999cfc11edc3d6d469bbb76881c21b7d, type: 3}
-    m_x: 6
-    m_y: 4
-  - m_object: {fileID: 1238543218463400353, guid: 999cfc11edc3d6d469bbb76881c21b7d, type: 3}
-    m_x: 8
-    m_y: 3
-  - m_object: {fileID: 1238543218463400353, guid: 999cfc11edc3d6d469bbb76881c21b7d, type: 3}
-    m_x: 4
-    m_y: 3
-  m_doorTriggers:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}

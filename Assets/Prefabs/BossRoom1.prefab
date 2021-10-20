@@ -789,6 +789,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2853777281168633720}
+  - component: {fileID: 6821174515144698290}
   - component: {fileID: 2098982639}
   - component: {fileID: 2098982638}
   - component: {fileID: 2098982630}
@@ -798,7 +799,6 @@ GameObject:
   - component: {fileID: 2098982633}
   - component: {fileID: 2098982632}
   - component: {fileID: 9054124006222926312}
-  - component: {fileID: 6821174515144698290}
   m_Layer: 0
   m_Name: BossRoom1
   m_TagString: Wall
@@ -844,6 +844,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6821174515144698290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125368283543465865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 096095274e58f1c43b5ae3aad32c7507, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_bossRoom: 1
+  m_bossRoomFlies: {fileID: 3337147604078501904, guid: f1ae689e6529596418f4484e248372d4, type: 3}
+  m_bossRoomOpen: {fileID: 4136353818613018556, guid: ab66f932d0ec142a991cc558e679d80e, type: 3}
+  m_bossRoomClosed: {fileID: 356004923696953939, guid: ab66f932d0ec142a991cc558e679d80e, type: 3}
+  m_hatch: {fileID: 6776931251637701618, guid: 22eedc25f2d649242b388683d9ce4196, type: 3}
+  m_enemyActivationTime: 3
+  m_spawnGrid:
+  - m_object: {fileID: 6480376401310731247, guid: 6a2b111495d8dd441a22720417b5ee9e, type: 3}
+    m_x: 6
+    m_y: 4
+  m_doorTriggers:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  m_isStartingRoom: 0
 --- !u!61 &2098982639
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1104,31 +1132,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6821174515144698290
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1125368283543465865}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 096095274e58f1c43b5ae3aad32c7507, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_bossRoomFlies: {fileID: 3337147604078501904, guid: f1ae689e6529596418f4484e248372d4, type: 3}
-  m_bossRoomOpen: {fileID: 4136353818613018556, guid: ab66f932d0ec142a991cc558e679d80e, type: 3}
-  m_bossRoomClosed: {fileID: 356004923696953939, guid: ab66f932d0ec142a991cc558e679d80e, type: 3}
-  m_enemyActivationTime: 1
-  m_spawnGrid:
-  - m_object: {fileID: 6480376401310731247, guid: 6a2b111495d8dd441a22720417b5ee9e, type: 3}
-    m_x: 6
-    m_y: 4
-  m_doorTriggers:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1001 &15113137184018102
 PrefabInstance:
   m_ObjectHideFlags: 0

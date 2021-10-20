@@ -10,6 +10,7 @@ TagManager:
   - Enemy
   - RoomTrigger
   - Item
+  - FloorComplete
   layers:
   - Default
   - TransparentFX

@@ -5,9 +5,12 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
+    public bool m_bossRoom = false;
+
     public GameObject m_bossRoomFlies;
     public Sprite m_bossRoomOpen;
     public Sprite m_bossRoomClosed;
+    public GameObject m_hatch;
 
     public float m_enemyActivationTime = 1f;
 
@@ -134,6 +137,7 @@ public class Room : MonoBehaviour
         if (!m_cleared && m_enemies.TrueForAll(x => x.IsDead()))
         {
             m_cleared = true;
+            if (m_bossRoom) GameObject.Instantiate(m_hatch, transform);
             OpenAllDoors();
         }
     }

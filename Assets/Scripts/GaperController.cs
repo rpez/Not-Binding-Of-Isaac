@@ -25,6 +25,8 @@ public class GaperController : MonoBehaviour, MonsterController
     private bool m_active;
     private bool m_AStarMovingToNextNode;
 
+    private Coroutine m_voice;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -148,7 +150,7 @@ public class GaperController : MonoBehaviour, MonsterController
         m_active = true;
         PlayAnimation("Move");
         m_audioController.PlayOneShot("GaperScream", playRandom: true);
-        StartCoroutine(PlaySound());
+        m_voice = StartCoroutine(PlaySound());
     }
 
     private IEnumerator PlaySound()
@@ -162,7 +164,7 @@ public class GaperController : MonoBehaviour, MonsterController
 
     private IEnumerator OnDeath()
     {
-        StopAllCoroutines();
+        StopCoroutine(m_voice);
 
         Destroy(m_rigidBody);
         Destroy(m_circleCollider);

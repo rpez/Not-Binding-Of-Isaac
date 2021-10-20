@@ -164,7 +164,7 @@ public class GaperController : MonoBehaviour, MonsterController
 
     private IEnumerator OnDeath()
     {
-        StopCoroutine(m_voice);
+        if (m_voice != null) StopCoroutine(m_voice);
 
         Destroy(m_rigidBody);
         Destroy(m_circleCollider);

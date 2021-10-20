@@ -15,13 +15,13 @@ public class AudioController : MonoBehaviour
     // A dictionary containing "grouped" list of AudioClips -> AudioClipGroups
     private IDictionary<string, List<AudioClip>> m_audioClips = new Dictionary<string, List<AudioClip>>();
 
-    // This will return true if an AudioClipGroup is playing at the moment
+    // From this dictionary you can determine if a certain AudioClipGroup is playing at the moment
     private IDictionary<string, bool> m_isPlaying = new Dictionary<string, bool>();
 
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(LoadAllAudioClips());
+        StartCoroutine(ASyncLoadAllAudioClips());
     }
 
     // note: indexing here starts from 1!
@@ -42,7 +42,7 @@ public class AudioController : MonoBehaviour
 
             m_audioSource.PlayOneShot(audioClipGroup[index]);
 
-            StartCoroutine(AudioGroupIsPlaying(name, audioClipGroup[index].length));
+            StartCoroutine(AudioClipGroupIsPlaying(name, audioClipGroup[index].length));
         }
         else
         {
@@ -50,14 +50,14 @@ public class AudioController : MonoBehaviour
         }
     }
 
-    private IEnumerator AudioGroupIsPlaying(string name, float audioClipLength)
+    private IEnumerator AudioClipGroupIsPlaying(string name, float audioClipLength)
     {
         m_isPlaying[name] = true;
         yield return new WaitForSeconds(audioClipLength);
         m_isPlaying[name] = false;
     }
 
-    private IEnumerator LoadAllAudioClips()
+    private IEnumerator ASyncLoadAllAudioClips()
     {
         foreach (string file in System.IO.Directory.GetFiles(Path.Combine(Application.dataPath, "Sounds")))
         {
@@ -92,6 +92,7 @@ public class AudioController : MonoBehaviour
                     AudioClips with other naming conventions will be put inside the dictionary normally, e.g. "boss_death.wav":
 
                         m_audioClips["BossDeath"][0]; // "boss_death.wav"
+                        m_audioClips["BossDeath"][1]; // error, this list has only length 1
                     */
 
                     // Check if the last two characters of the filename are an underscore and a number.

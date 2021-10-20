@@ -4,17 +4,21 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    public GameObject m_impactEffect;
+
     private float m_speed = 8f;
     private float m_parentSpeedScale = 0.5f;
     private float m_parentSpeedThreshold = 2f;
     public float m_lifeTime = 1f;
     public float m_collisionForce = 5f;
     public float m_baseDamage = 3.5f;
+    protected float m_damageModifier;
 
     protected Rigidbody2D m_rigidBody;
 
-    public virtual void Init(Vector2 direction, Vector2 parentVelocity)
+    public virtual void Init(Vector2 direction, Vector2 parentVelocity, float damageModifier)
     {
+        m_damageModifier = damageModifier;
         m_rigidBody = GetComponent<Rigidbody2D>();
 
         // Add x and y components of parent object's velocity, scaled by a factor

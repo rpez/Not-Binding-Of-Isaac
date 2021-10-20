@@ -9,6 +9,7 @@ TagManager:
   - Wall
   - Enemy
   - RoomTrigger
+  - Item
   layers:
   - Default
   - TransparentFX

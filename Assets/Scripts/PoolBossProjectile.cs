@@ -6,9 +6,9 @@ public class PoolBossProjectile : Projectile
 {
     public float m_randomSpeedMultiplier = 0.2f;
 
-    public override void Init(Vector2 direction, Vector2 parentVelocity)
+    public override void Init(Vector2 direction, Vector2 parentVelocity, float damageModifier = 1f)
     {
-        base.Init(direction, parentVelocity);
+        base.Init(direction, parentVelocity, damageModifier);
 
         float rand = 0.5f + Random.Range(-m_randomSpeedMultiplier, m_randomSpeedMultiplier);
         m_rigidBody.velocity *= rand;

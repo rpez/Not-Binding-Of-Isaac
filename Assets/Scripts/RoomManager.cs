@@ -6,9 +6,11 @@ using System.Linq;
 public class RoomManager : MonoBehaviour
 {
     public int m_roomAmount;
+    public int m_itemRoomAmount;
     public GameObject m_camera;
     public GameObject[] m_roomPool;
     public GameObject[] m_bossRoomPool;
+    public GameObject[] m_itemRoomPool;
 
     private List<FloorNode> m_rooms = new List<FloorNode>();
     private int m_bossRoomIndex = int.MaxValue;
@@ -26,7 +28,23 @@ public class RoomManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GenerateNewFloor(10);
+        GenerateNewFloor(m_roomAmount);
+
+        int[] itemRooms = new int[m_itemRoomAmount];
+        List<int> freeRooms = new List<int>();
+        // Find all room ids that can be converted to item rooms
+        for (int i = 0; i < m_roomAmount; i++)
+        {
+            if (i != 0 && i != m_bossRoomIndex) freeRooms.Add(i);
+        }
+        // Pick some of the to actually be item rooms
+        for (int i = 0; i < m_itemRoomAmount; i++)
+        {
+            int id = Random.Range(0, freeRooms.Count);
+            itemRooms[i] = freeRooms[id];
+            freeRooms.RemoveAt(id);
+        }
+        // Spawn rooms
         for (int i = 0; i < m_rooms.Count; i++)
         {
             FloorNode room = m_rooms[i];
@@ -36,12 +54,21 @@ public class RoomManager : MonoBehaviour
                 roomPrefab = m_roomPool[0];
             }
             else if (i == m_bossRoomIndex) roomPrefab = m_bossRoomPool[Random.Range(0, m_bossRoomPool.Length)];
+            else if (itemRooms.Contains(i)) roomPrefab = m_itemRoomPool[Random.Range(0, m_itemRoomPool.Length)];
             else roomPrefab = m_roomPool[Random.Range(1, m_roomPool.Length)];
             GameObject roomObj = GameObject.Instantiate(roomPrefab, new Vector2(room.m_coordinates.Item1 * 19.2f, room.m_coordinates.Item2 * 10.8f), Quaternion.identity);
             Room script = roomObj.GetComponent<Room>();
             room.m_room = script;
             m_roomObjs.Add(script);
-            script.Init(room.m_neigbours.Select(x => x != null).ToArray(), ChangeRoom);
+
+            // Kinda stupid way to handle this, but the floors are small so not that big of a deal
+            int bossDir = -1;
+            for (int k = 0; k < room.m_neigbours.Length; k++)
+            {
+                if (room.m_neigbours[k] == m_rooms[m_bossRoomIndex]) bossDir = k;
+            }
+
+            script.Init(room.m_neigbours.Select(x => x != null).ToArray(), ChangeRoom, bossDir);
         }
         m_roomObjs[0].OnRoomEnter();
     }

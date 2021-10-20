@@ -150,6 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fdeb42bd1a9a994681dd7f76327cf71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_impactEffect: {fileID: 8447636931715873366, guid: d1f59e263ccf3314ba170b46449724e0, type: 3}
   m_lifeTime: 1
   m_collisionForce: 2
   m_baseDamage: 3.5

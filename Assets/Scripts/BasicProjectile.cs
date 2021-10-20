@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BasicProjectile : Projectile
 {
-
     private AudioController m_audioController;
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -21,7 +20,7 @@ public class BasicProjectile : Projectile
                 if (monster == null) monster = collision.gameObject.transform.parent.GetComponent<MonsterController>();
 
                 // Damage the monster
-                monster.DamageMonster(m_baseDamage);
+                monster.DamageMonster(m_baseDamage * m_damageModifier);
 
                 // Make the monster "jump back" from collision with the projectile
                 monster.SetRigidbodyVelocity(m_rigidBody.velocity * m_collisionForce);
@@ -29,18 +28,27 @@ public class BasicProjectile : Projectile
                 // Play monster animation
                 monster.PlayAnimation("TakeDamage");
 
+                SpawnEffect();
                 // Destroy projectile
                 Destroy(gameObject);
                 break;
             case "Wall":
+                SpawnEffect();
                 Destroy(gameObject);
                 break;
             case "Obstacle":
                 // TODO: do damage to obstacle
+                SpawnEffect();
                 Destroy(gameObject);
                 break;
 
         }
+    }
+
+    private void SpawnEffect()
+    {
+        GameObject impact = GameObject.Instantiate(m_impactEffect, transform.position, Quaternion.identity);
+        Destroy(impact, 2f);
     }
 
     // Start is called before the first frame update

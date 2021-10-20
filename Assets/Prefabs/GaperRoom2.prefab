@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6736764887957082499}
   m_Layer: 0
   m_Name: DoorEast
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -209,7 +209,7 @@ GameObject:
   - component: {fileID: 5377893466841693022}
   m_Layer: 0
   m_Name: DoorSouth
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -544,7 +544,7 @@ GameObject:
   - component: {fileID: 8709945314866244444}
   m_Layer: 0
   m_Name: DoorNorth
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -669,7 +669,7 @@ GameObject:
   - component: {fileID: 6286180896696588855}
   m_Layer: 0
   m_Name: DoorWest
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1100,6 +1100,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 096095274e58f1c43b5ae3aad32c7507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_bossRoomFlies: {fileID: 3337147604078501904, guid: f1ae689e6529596418f4484e248372d4, type: 3}
+  m_bossRoomOpen: {fileID: 4136353818613018556, guid: ab66f932d0ec142a991cc558e679d80e, type: 3}
+  m_bossRoomClosed: {fileID: 356004923696953939, guid: ab66f932d0ec142a991cc558e679d80e, type: 3}
   m_enemyActivationTime: 1
   m_spawnGrid:
   - m_object: {fileID: 425073977077010494, guid: ccb628785125efd42ba00dde2cce8fab, type: 3}
@@ -1108,7 +1111,7 @@ MonoBehaviour:
   - m_object: {fileID: 425073977077010494, guid: 19d421a7a6c8a2b47b6f2ba6513f3af5, type: 3}
     m_x: 7
     m_y: 3
-  - m_object: {fileID: 425073977077010494, guid: 921054c6c3f9fd549a53b8ad33d34e7a, type: 3}
+  - m_object: {fileID: 425073977077010494, guid: 590e7c8180ee6f642b19347c02fa8a4a, type: 3}
     m_x: 5
     m_y: 3
   - m_object: {fileID: 425073977077010494, guid: ba5b4805c22c9e94b84786760fa6a161, type: 3}

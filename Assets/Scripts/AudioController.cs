@@ -30,7 +30,7 @@ public class AudioController : MonoBehaviour
         List<AudioClip> audioClipGroup;
 
         // don't allow playing from the same AudioClipGroup if one is playing right now
-        if (m_isPlaying[name]) {
+        if (m_isPlaying.ContainsKey(name) && m_isPlaying[name]) {
             return;
         }
 

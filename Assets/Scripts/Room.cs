@@ -5,9 +5,11 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-    public float m_enemyActivationTime = 1f;
+    public GameObject m_bossRoomFlies;
+    public Sprite m_bossRoomOpen;
+    public Sprite m_bossRoomClosed;
 
-    public int m_bossDir = -1;
+    public float m_enemyActivationTime = 1f;
 
     public SpawnEntity[] m_spawnGrid;
     public RoomTrigger[] m_doorTriggers = new RoomTrigger[4];
@@ -25,13 +27,19 @@ public class Room : MonoBehaviour
     private List<(int, int)> m_obstacleCoords = new List<(int, int)>();
     public List<(int, int)> Obstacles => m_obstacleCoords;
 
-    public void Init(bool[] existingDoors, Action<int> doorCallback)
+    public void Init(bool[] existingDoors, Action<int> doorCallback, int bossDir = -1)
     {
         m_existingDoors = existingDoors;
         for (int i = 0; i < 4; i++)
         {
             m_doors[i] = transform.GetChild(i).GetComponent<Door>();
             m_doorColliders[i] = m_doors[i].GetComponent<Collider2D>();
+            if (i == bossDir)
+            {
+                m_doors[i].m_openSprite = m_bossRoomOpen;
+                m_doors[i].m_closedSprite = m_bossRoomClosed;
+                GameObject.Instantiate(m_bossRoomFlies, m_doors[i].transform);
+            }
             if (!m_existingDoors[i]) m_doors[i].gameObject.GetComponent<SpriteRenderer>().sprite = null;
         }
         for (int i = 4; i < 8; i++)

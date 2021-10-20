@@ -125,8 +125,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_openSprite: {fileID: -2869115396899081085, guid: c9d68757876784ae1bd2aa60937893de, type: 3}
   m_closedSprite: {fileID: -4950680412457382125, guid: c9d68757876784ae1bd2aa60937893de, type: 3}
-  m_bossOpenSprite: {fileID: 4136353818613018556, guid: ab66f932d0ec142a991cc558e679d80e, type: 3}
-  m_bossClosedSprite: {fileID: 356004923696953939, guid: ab66f932d0ec142a991cc558e679d80e, type: 3}
 --- !u!1 &1349882026
 GameObject:
   m_ObjectHideFlags: 0
@@ -322,8 +320,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_openSprite: {fileID: -2869115396899081085, guid: c9d68757876784ae1bd2aa60937893de, type: 3}
   m_closedSprite: {fileID: -4950680412457382125, guid: c9d68757876784ae1bd2aa60937893de, type: 3}
-  m_bossOpenSprite: {fileID: 4136353818613018556, guid: ab66f932d0ec142a991cc558e679d80e, type: 3}
-  m_bossClosedSprite: {fileID: 356004923696953939, guid: ab66f932d0ec142a991cc558e679d80e, type: 3}
 --- !u!1 &1675573094
 GameObject:
   m_ObjectHideFlags: 0
@@ -659,8 +655,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_openSprite: {fileID: -2869115396899081085, guid: c9d68757876784ae1bd2aa60937893de, type: 3}
   m_closedSprite: {fileID: -4950680412457382125, guid: c9d68757876784ae1bd2aa60937893de, type: 3}
-  m_bossOpenSprite: {fileID: 4136353818613018556, guid: ab66f932d0ec142a991cc558e679d80e, type: 3}
-  m_bossClosedSprite: {fileID: 356004923696953939, guid: ab66f932d0ec142a991cc558e679d80e, type: 3}
 --- !u!1 &1962880477
 GameObject:
   m_ObjectHideFlags: 0
@@ -786,8 +780,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_openSprite: {fileID: -2869115396899081085, guid: c9d68757876784ae1bd2aa60937893de, type: 3}
   m_closedSprite: {fileID: -4950680412457382125, guid: c9d68757876784ae1bd2aa60937893de, type: 3}
-  m_bossOpenSprite: {fileID: 4136353818613018556, guid: ab66f932d0ec142a991cc558e679d80e, type: 3}
-  m_bossClosedSprite: {fileID: 356004923696953939, guid: ab66f932d0ec142a991cc558e679d80e, type: 3}
 --- !u!1 &1125368283543465865
 GameObject:
   m_ObjectHideFlags: 0
@@ -1108,6 +1100,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 096095274e58f1c43b5ae3aad32c7507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_bossRoomFlies: {fileID: 3337147604078501904, guid: f1ae689e6529596418f4484e248372d4, type: 3}
+  m_bossRoomOpen: {fileID: 4136353818613018556, guid: ab66f932d0ec142a991cc558e679d80e, type: 3}
+  m_bossRoomClosed: {fileID: 356004923696953939, guid: ab66f932d0ec142a991cc558e679d80e, type: 3}
   m_enemyActivationTime: 1
   m_spawnGrid:
   - m_object: {fileID: 425073977077010494, guid: 1901a182066b5f947a89155b8b89e323, type: 3}

@@ -60,7 +60,15 @@ public class RoomManager : MonoBehaviour
             Room script = roomObj.GetComponent<Room>();
             room.m_room = script;
             m_roomObjs.Add(script);
-            script.Init(room.m_neigbours.Select(x => x != null).ToArray(), ChangeRoom);
+
+            // Kinda stupid way to handle this, but the floors are small so not that big of a deal
+            int bossDir = -1;
+            for (int k = 0; k < room.m_neigbours.Length; k++)
+            {
+                if (room.m_neigbours[k] == m_rooms[m_bossRoomIndex]) bossDir = k;
+            }
+
+            script.Init(room.m_neigbours.Select(x => x != null).ToArray(), ChangeRoom, bossDir);
         }
         m_roomObjs[0].OnRoomEnter();
     }

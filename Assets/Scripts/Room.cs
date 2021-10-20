@@ -12,6 +12,7 @@ public class Room : MonoBehaviour
 
     private bool m_cleared;
     private bool m_active;
+    public bool m_isStartingRoom;
 
     private bool[] m_existingDoors = new bool[4];
     private Door[] m_doors = new Door[4];
@@ -38,15 +39,20 @@ public class Room : MonoBehaviour
             m_doorTriggers[i - 4].Init(doorCallback, i - 4);
         }
 
-        m_cleared = false;
-        m_active = false;
+        m_cleared = m_isStartingRoom ? true : false;
+        m_active = m_isStartingRoom ? true : false;
+
+        // quick, bad fix for starting room
+        if (m_isStartingRoom)
+        {
+            for (int i = 0; i < 4; i++) OpenDoor(i);
+        }
     }
 
     public void OnRoomEnter()
     {
         m_active = true;
-        if (m_cleared) OpenAllDoors();
-        else
+        if (!m_cleared)
         {
             foreach (SpawnEntity entity in m_spawnGrid)
             {

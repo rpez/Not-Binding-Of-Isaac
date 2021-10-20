@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     private bool m_invincible;
     private float m_invincibilityCounter = 0f;
     private bool m_isDead;
+    private bool m_itemAnimationQueued = false;
 
     public bool IsDead => m_isDead;
 
@@ -35,6 +36,11 @@ public class PlayerController : MonoBehaviour
             Item item = collision.gameObject.GetComponent<Item>();
             m_animator.runtimeAnimatorController = item.m_mutationAnimator;
             ApplyModifiers(item);
+
+            // Because the change of animator overwrites the animation state change, queue it instead
+            m_itemAnimationQueued = true;
+
+            Destroy(item.gameObject);
         }
     }
 
@@ -146,8 +152,17 @@ public class PlayerController : MonoBehaviour
 
     private void AnimateMovement()
     {
+        if (m_itemAnimationQueued)
+        {
+            // Animation atm hard coded to the donut version
+            PlayAnimation("Item");
+            m_itemAnimationQueued = false;
+            return;
+        }
+
         // don't interrupt taking damage
-        if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("TakeDamage")) {
+        if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("TakeDamage") ||
+            m_animator.GetCurrentAnimatorStateInfo(0).IsName("Item")) {
             return;
         }
 

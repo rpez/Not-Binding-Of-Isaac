@@ -34,10 +34,10 @@ public class GameUI : MonoBehaviour
         }
     }
 
-    public void BossScreen(Action callback)
+    public void BossScreen()
     {
         m_bossScreen.SetActive(true);
-        StartCoroutine(CloseBossScreen(2f, callback));
+        StartCoroutine(CloseBossScreen(3f));
     }
 
     public void GameOver(bool victory)
@@ -57,10 +57,9 @@ public class GameUI : MonoBehaviour
         SceneManager.LoadScene("SampleScene");
     }
 
-    private IEnumerator CloseBossScreen(float delay, Action callback)
+    private IEnumerator CloseBossScreen(float delay)
     {
         yield return new WaitForSeconds(delay);
         m_bossScreen.SetActive(false);
-        callback.Invoke();
     }
 }

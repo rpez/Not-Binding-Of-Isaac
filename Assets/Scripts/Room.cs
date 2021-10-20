@@ -89,6 +89,15 @@ public class Room : MonoBehaviour
                 }
             }
 
+            if (m_bossRoom)
+            {
+                GameUI ui = GameObject.Find("Canvas").GetComponent<GameUI>();
+                if (ui != null)
+                {
+                    ui.BossScreen();
+                }
+            }
+
             CloseAllDoors();
         }
     }

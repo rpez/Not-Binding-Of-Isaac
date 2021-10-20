@@ -62,6 +62,7 @@ public class PoolBossController : MonoBehaviour, MonsterController
 
         m_director = GetComponent<PlayableDirector>();
         ChangeTimeline(m_normalTimeline);
+        m_director.Pause();
     }
     
     void FixedUpdate()
@@ -78,6 +79,7 @@ public class PoolBossController : MonoBehaviour, MonsterController
         }
 
         if (!m_active) return;
+        else if (m_director.state == PlayState.Paused) m_director.Play();
 
         switch (m_state)
         {

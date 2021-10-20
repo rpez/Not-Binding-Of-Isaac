@@ -24,8 +24,12 @@ public class Room : MonoBehaviour
     private List<(int, int)> m_obstacleCoords = new List<(int, int)>();
     public List<(int, int)> Obstacles => m_obstacleCoords;
 
+    private AudioController m_audioController;
+
     public void Init(bool[] existingDoors, Action<int> doorCallback)
     {
+        m_audioController = Camera.main.GetComponent<AudioController>();
+
         m_existingDoors = existingDoors;
         for (int i = 0; i < 4; i++)
         {
@@ -85,6 +89,7 @@ public class Room : MonoBehaviour
     public void OpenAllDoors()
     {
         for (int i = 0; i < 4; i++) OpenDoor(i);
+        m_audioController.PlayOneShot("DoorsOpen");
     }
 
     public void OpenDoor(int dir)
@@ -100,6 +105,7 @@ public class Room : MonoBehaviour
     public void CloseAllDoors()
     {
         for (int i = 0; i < 4; i++) CloseDoor(i);
+        m_audioController.PlayOneShot("DoorsClose");
     }
 
     public void CloseDoor(int dir)

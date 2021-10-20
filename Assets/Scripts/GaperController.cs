@@ -19,6 +19,8 @@ public class GaperController : MonoBehaviour, MonsterController
     private NavigationGrid m_grid = new NavigationGrid();
     private IEnumerator m_AStarMoveTo;
 
+    private AudioController m_audioController;
+
     public Animator m_animator;
     private bool m_active;
     private bool m_AStarMovingToNextNode;
@@ -26,6 +28,7 @@ public class GaperController : MonoBehaviour, MonsterController
     // Start is called before the first frame update
     void Start()
     {
+        m_audioController = Camera.main.GetComponent<AudioController>();
         m_player = GameObject.Find("Player");
         m_parentRoomPos = transform.parent.gameObject.transform.position;
         Physics2D.queriesStartInColliders = false;
@@ -144,9 +147,23 @@ public class GaperController : MonoBehaviour, MonsterController
     {
         m_active = true;
         PlayAnimation("Move");
+        m_audioController.PlayOneShot("GaperScream", playRandom: true);
+        StartCoroutine(PlaySound());
     }
 
-    private IEnumerator OnDeath() {
+    private IEnumerator PlaySound()
+    {
+        yield return new WaitForSeconds(UnityEngine.Random.Range(4.0f, 7.5f));
+        m_audioController.PlayOneShot("GaperScream", playRandom: true);
+        if (m_active && !m_isDead) {
+            PlaySound();
+        }
+    }
+
+    private IEnumerator OnDeath()
+    {
+        StopAllCoroutines();
+
         Destroy(m_rigidBody);
         Destroy(m_circleCollider);
         Destroy(m_boxCollider);

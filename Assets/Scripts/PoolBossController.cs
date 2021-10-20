@@ -43,6 +43,8 @@ public class PoolBossController : MonoBehaviour, MonsterController
 
     public SpriteRenderer m_bossSprite;
 
+    private AudioController m_audioController;
+
     private Vector2 m_chargeTarget;
     public float m_chargeTime = 1f;
     public int m_chargeAmount = 3;
@@ -53,6 +55,7 @@ public class PoolBossController : MonoBehaviour, MonsterController
     // Start is called before the first frame update
     void Start()
     {
+        m_audioController = Camera.main.GetComponent<AudioController>();
         m_player = GameObject.Find("Player");
         Physics2D.queriesStartInColliders = false;
         m_active = false;
@@ -122,12 +125,14 @@ public class PoolBossController : MonoBehaviour, MonsterController
                     StartCoroutine(Delayed(m_waitTime, () => {
                         ResetCharge();
                         m_state = BossState.Charge;
+                        PlaySound("BossScream");
                     }));
                 }
                 else
                 {
                     m_state = BossState.IntoPool;
                     ChangeTimeline(m_intoPoolTimeline);
+                    /*StartCoroutine(Delayed(29/50f, () => PlaySound("BossTeleportInto")));*/
                 }
                 break;
             case BossState.Shoot:
@@ -137,6 +142,7 @@ public class PoolBossController : MonoBehaviour, MonsterController
             case BossState.IntoPool:
                 m_state = BossState.TargetIsaac;
                 ChangeTimeline(m_outOfPoolTimeline);
+                PlaySound("BossTeleportOutof");
                 break;
             case BossState.OutOfPool:
                 m_state = BossState.Shoot;
@@ -220,6 +226,11 @@ public class PoolBossController : MonoBehaviour, MonsterController
     public void PlayAnimation(string animation)
     {
         //m_animator.Play(animation);
+    }
+
+    public void PlaySound(string sound, int index = 1, bool playRandom = false)
+    {
+        m_audioController.PlayOneShot(sound, index, playRandom);
     }
 
     public bool IsDead()

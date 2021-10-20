@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
 
     public GameObject m_projectile;
     public GameObject m_shootPosition;
+    private AudioController m_audioController;
     public GameUI m_ui;
 
     public Animator m_animator;
@@ -39,10 +40,12 @@ public class PlayerController : MonoBehaviour
                 m_health = 0;
                 m_isDead = true;
                 m_rigidBody.velocity = Vector2.zero;
+                PlaySound("IsaacDeath");
                 PlayAnimation("Death");
             }
             else
             {
+                PlaySound("IsaacDamage", playRandom: true);
                 PlayAnimation("TakeDamage");
             }
             m_ui.UpdatePlayerHealth(m_health);
@@ -52,6 +55,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        m_audioController = Camera.main.GetComponent<AudioController>();
         m_rigidBody = GetComponent<Rigidbody2D>();
         m_shootInterval = 1f / m_attackSpeed;
         m_lastShot = m_shootInterval;
@@ -100,6 +104,7 @@ public class PlayerController : MonoBehaviour
         }
 
         AnimateMovement();
+        PlayWalkSounds();
     }
 
     private void FixedUpdate()
@@ -151,6 +156,46 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void PlayWalkSounds()
+    {
+        if (MovementKeysDown())
+        {
+            PlaySound("IsaacWalk", playRandom: true);
+        }
+        else if (MovementKeysHeld())
+        {
+            StartCoroutine(PlayWalkCycleSound());
+        }
+        else if (MovementKeysUp())
+        {
+            StopAllCoroutines();
+        }
+    }
+
+    private bool MovementKeysHeld()
+    {
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) {
+            return true;
+        }
+        return false;
+    }
+
+    private bool MovementKeysUp()
+    {
+        if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.D)) {
+            return true;
+        }
+        return false;
+    }
+
+    private bool MovementKeysDown()
+    {
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D)) {
+            return true;
+        }
+        return false;
+    }
+
     private void Shoot(Vector3 dir)
     {
         GameObject pro = GameObject.Instantiate(m_projectile, m_shootPosition.transform.position, Quaternion.identity);
@@ -161,5 +206,16 @@ public class PlayerController : MonoBehaviour
     public void PlayAnimation(string animation)
     {
         m_animator.Play(animation);
+    }
+
+    public void PlaySound(string sound, int index = 1, bool playRandom = false)
+    {
+        m_audioController.PlayOneShot(sound, index, playRandom);
+    }
+
+    private IEnumerator PlayWalkCycleSound()
+    {
+        yield return new WaitForSeconds(0.25f);
+        PlaySound("IsaacWalk", playRandom: true);
     }
 }

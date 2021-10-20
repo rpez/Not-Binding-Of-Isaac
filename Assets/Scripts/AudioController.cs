@@ -18,9 +18,6 @@ public class AudioController : MonoBehaviour
     // This will return true if an AudioClipGroup is playing at the moment
     private IDictionary<string, bool> m_isPlaying = new Dictionary<string, bool>();
 
-    // List of AudioClipGroups that are not allowed to play at the same time
-    public List<string> m_dontPlayAtSameTime;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +29,8 @@ public class AudioController : MonoBehaviour
     {
         List<AudioClip> audioClipGroup;
 
-        if (m_isPlaying[name] && m_dontPlayAtSameTime.Contains(name)) {
+        // don't allow playing from the same AudioClipGroup if one is playing right now
+        if (m_isPlaying[name]) {
             return;
         }
 
@@ -45,6 +43,10 @@ public class AudioController : MonoBehaviour
             m_audioSource.PlayOneShot(audioClipGroup[index]);
 
             StartCoroutine(AudioGroupIsPlaying(name, audioClipGroup[index].length));
+        }
+        else
+        {
+            Debug.LogError("Couldn't find AudioClip with name " + name + " to play");
         }
     }
 

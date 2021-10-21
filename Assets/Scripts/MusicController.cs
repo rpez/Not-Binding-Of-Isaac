@@ -48,10 +48,8 @@ public class MusicController : MonoBehaviour
             m_currentClips[i] = m_bossMusic;
         }
 
-        m_nextEventTime = m_mainMusic.samples;
-        m_currentMusic = (int) Music.MainMusic;
-
         m_nextEventTime = AudioSettings.dspTime + 2.0d;
+        ChangeMusic(Music.MainMusic);
         m_running = true;
     }
 

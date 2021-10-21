@@ -338,6 +338,8 @@ MonoBehaviour:
   m_currentClips:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &1416484360
 GameObject:
   m_ObjectHideFlags: 0

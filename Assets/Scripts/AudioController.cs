@@ -21,7 +21,7 @@ public class AudioController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(ASyncLoadAllAudioClips());
+        ASyncLoadAllAudioClips();
     }
 
     // note: indexing here starts from 1!
@@ -57,56 +57,41 @@ public class AudioController : MonoBehaviour
         m_isPlaying[name] = false;
     }
 
-    private IEnumerator ASyncLoadAllAudioClips()
+    private void ASyncLoadAllAudioClips()
     {
-        foreach (string file in System.IO.Directory.GetFiles(Path.Combine(Application.dataPath, "Sounds")))
+        foreach (Object file in Resources.LoadAll("Sounds"))
         {
-            if (Path.GetExtension(file) != ".wav") continue;
+            string fileName = file.name;
 
-            using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(file, AudioType.WAV))
-            {
-                yield return www.SendWebRequest();
+            /*
+            Group AudioClips based on filename here.
 
-                if (www.result == UnityWebRequest.Result.ConnectionError ||
-                    www.result == UnityWebRequest.Result.ProtocolError)
-                {
-                    Debug.Log(www.error);
-                }
-                else
-                {
-                    string fileName = Path.GetFileNameWithoutExtension(file);
+            m_audioClips is a dictionary containing a list of "grouped" AudioClips.
 
-                    /*
-                    Group AudioClips based on filename here.
+            For example, if we have two files with otherwise same names, but the last two characters of the filename are an underscore and a number,
+            e.g. "boss_hit_1.wav" and "boss_hit_2.wav", put them in the same list containing AudioClips.
 
-                    m_audioClips is a dictionary containing a list of "grouped" AudioClips.
+            In our example the AudioClips can now be accessed from the dictionary via a TitleCase key "BossHit":
 
-                    For example, if we have two files with otherwise same names, but the last two characters of the filename are an underscore and a number,
-                    e.g. "boss_hit_1.wav" and "boss_hit_2.wav", put them in the same list containing AudioClips.
+                m_audioClips["BossHit"][0]; // "boss_hit_1.wav"
+                m_audioClips["BossHit"][1]; // "boss_hit_2.wav"
 
-                    In our example the AudioClips can now be accessed from the dictionary via a TitleCase key "BossHit":
+            AudioClips with other naming conventions will be put inside the dictionary normally, e.g. "boss_death.wav":
 
-                        m_audioClips["BossHit"][0]; // "boss_hit_1.wav"
-                        m_audioClips["BossHit"][1]; // "boss_hit_2.wav"
+                m_audioClips["BossDeath"][0]; // "boss_death.wav"
+                m_audioClips["BossDeath"][1]; // error, this list has only length 1
+            */
 
-                    AudioClips with other naming conventions will be put inside the dictionary normally, e.g. "boss_death.wav":
+            // Check if the last two characters of the filename are an underscore and a number.
+            Regex regex = new Regex(@"_\d$", RegexOptions.Singleline);
 
-                        m_audioClips["BossDeath"][0]; // "boss_death.wav"
-                        m_audioClips["BossDeath"][1]; // error, this list has only length 1
-                    */
+            string key = fileName.ToTitleCase();
 
-                    // Check if the last two characters of the filename are an underscore and a number.
-                    Regex regex = new Regex(@"_\d$", RegexOptions.Singleline);
+            // Key without the last two characters
+            if (regex.IsMatch(fileName) && fileName.Length > 2) key = fileName.Substring(0, fileName.Length - 2).ToTitleCase();
 
-                    string key = fileName.ToTitleCase();
-
-                    // Key without the last two characters
-                    if (regex.IsMatch(fileName) && fileName.Length > 2) key = fileName.Substring(0, fileName.Length - 2).ToTitleCase();
-
-                    m_audioClips.AddOrUpdate(key, DownloadHandlerAudioClip.GetContent(www));
-                    m_isPlaying[key] = false;
-                }
-            }
+            m_audioClips.AddOrUpdate(key, file as AudioClip);
+            m_isPlaying[key] = false;
         }
     }
 }

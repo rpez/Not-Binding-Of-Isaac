@@ -155,7 +155,7 @@ public class GaperController : MonoBehaviour, MonsterController
 
     private IEnumerator PlaySound()
     {
-        yield return new WaitForSeconds(UnityEngine.Random.Range(4.0f, 7.5f));
+        yield return new WaitForSeconds(UnityEngine.Random.Range(3.0f, 5.5f));
         m_audioController.PlayOneShot("GaperScream", playRandom: true);
         if (m_active && !m_isDead) {
             PlaySound();

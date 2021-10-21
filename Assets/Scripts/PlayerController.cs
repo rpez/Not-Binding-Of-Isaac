@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
 
     public GameObject m_projectile;
     public GameObject m_shootPosition;
-    private AudioController m_audioController;
+    private SoundController m_audioController;
     public GameUI m_ui;
 
     public Animator m_animator;
@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        m_audioController = Camera.main.GetComponent<AudioController>();
+        m_audioController = Camera.main.GetComponent<SoundController>();
         m_rigidBody = GetComponent<Rigidbody2D>();
         m_shootInterval = 1f / m_attackSpeed;
         m_lastShot = m_shootInterval;

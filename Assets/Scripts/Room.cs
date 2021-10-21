@@ -31,10 +31,10 @@ public class Room : MonoBehaviour
     private List<(int, int)> m_obstacleCoords = new List<(int, int)>();
     public List<(int, int)> Obstacles => m_obstacleCoords;
 
-    private AudioController m_audioController;
+    private SoundController m_audioController;
     public void Init(bool[] existingDoors, Action<int> doorCallback, int bossDir = -1)
     {
-        m_audioController = Camera.main.GetComponent<AudioController>();
+        m_audioController = Camera.main.GetComponent<SoundController>();
 
         m_existingDoors = existingDoors;
         for (int i = 0; i < 4; i++)

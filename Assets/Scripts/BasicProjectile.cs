@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BasicProjectile : Projectile
 {
-    private AudioController m_audioController;
+    private SoundController m_audioController;
 
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -54,7 +54,7 @@ public class BasicProjectile : Projectile
     // Start is called before the first frame update
     void Start()
     {
-        m_audioController = Camera.main.GetComponent<AudioController>();
+        m_audioController = Camera.main.GetComponent<SoundController>();
         m_audioController.PlayOneShot("IsaacProjectile", playRandom: true);
         Destroy(gameObject, m_lifeTime);
     }

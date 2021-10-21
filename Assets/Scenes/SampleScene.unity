@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
   - component: {fileID: 519420033}
+  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -230,7 +231,7 @@ AudioSource:
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 3513529137079770983, guid: 99913358c45ec2148b28451ef5b108a3, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -317,6 +318,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &519420034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb578fd05ff95894ba127f146555a647, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_bossMusic: {fileID: 8300000, guid: 60eae40da356f4948898f9136d4df018, type: 3}
+  m_mainMusic: {fileID: 8300000, guid: 1fb3f769b7f2b124fb3eb0a45fced161, type: 3}
+  m_audioMixer: {fileID: 24100000, guid: 99913358c45ec2148b28451ef5b108a3, type: 2}
+  m_bossMusicMixerGroup: {fileID: 6455481828641404658, guid: 99913358c45ec2148b28451ef5b108a3, type: 2}
+  m_mainMusicMixerGroup: {fileID: 396359787622677385, guid: 99913358c45ec2148b28451ef5b108a3, type: 2}
+  m_currentClips:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &1416484360
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,6 +422,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1116392425986212677, guid: 5aa285a8b274b1c46970cf13165ae63e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1116392426954005110, guid: 5aa285a8b274b1c46970cf13165ae63e, type: 3}
       propertyPath: m_Pivot.x
       value: 0

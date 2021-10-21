@@ -80,6 +80,14 @@ public class MusicController : MonoBehaviour
         m_lock = false;
     }
 
+    public void StopMusic()
+    {
+        foreach (AudioSource audioSource in m_audioSources)
+        {
+            audioSource.Stop();
+        }
+    }
+
     void Update()
     {
         if (!m_running)

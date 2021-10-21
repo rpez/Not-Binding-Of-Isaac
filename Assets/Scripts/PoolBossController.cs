@@ -149,6 +149,7 @@ public class PoolBossController : MonoBehaviour, MonsterController
             case BossState.OutOfPool:
                 m_state = BossState.Shoot;
                 ChangeTimeline(m_shootTimeline);
+                PlaySound("BossProjectiles");
                 break;
             default:
                 break;

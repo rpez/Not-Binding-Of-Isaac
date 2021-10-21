@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class GameUI : MonoBehaviour
 {
+    public PlayerController m_player;
+
     public Sprite m_fullHeart;
     public Sprite m_halfHeart;
     public Sprite m_emptyHeart;
@@ -15,6 +17,7 @@ public class GameUI : MonoBehaviour
     public GameObject m_bossScreen;
     public GameObject m_credits;
     public GameObject m_gameOver;
+    public GameObject m_title;
 
     private List<Image> m_hearts = new List<Image>();
 
@@ -42,6 +45,7 @@ public class GameUI : MonoBehaviour
     public void BossScreen()
     {
         m_bossScreen.SetActive(true);
+        m_player.ToggleControls(false);
         StartCoroutine(CloseBossScreen(3f));
     }
 
@@ -50,24 +54,34 @@ public class GameUI : MonoBehaviour
         if (victory)
         {
             m_credits.SetActive(true);
+            m_player.ToggleControls(false);
         }
         else
         {
             m_gameOver.SetActive(true);
             m_musicController.StopMusic();
             m_audioController.PlayOneShot("GameOver");
+            m_player.ToggleControls(false);
         }
+    }
+
+    public void CloseTitleScreen()
+    {
+        m_title.SetActive(false);
+        m_player.ToggleControls(true);
     }
 
     public void StartGame()
     {
         SceneManager.LoadScene("SampleScene");
         m_musicController.ChangeMusic(Music.MainMusic);
+        m_player.ToggleControls(false);
     }
 
     private IEnumerator CloseBossScreen(float delay)
     {
         yield return new WaitForSeconds(delay);
         m_bossScreen.SetActive(false);
+        m_player.ToggleControls(true);
     }
 }

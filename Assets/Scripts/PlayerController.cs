@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     private float m_invincibilityCounter = 0f;
     private bool m_isDead;
     private bool m_itemAnimationQueued = false;
+    private bool m_controlsActive = false;
 
     public bool IsDead => m_isDead;
 
@@ -86,6 +87,13 @@ public class PlayerController : MonoBehaviour
             
         }
     }
+
+    public void ToggleControls(bool active)
+    {
+        m_controlsActive = active;
+        m_rigidBody.velocity = Vector2.zero;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -104,6 +112,7 @@ public class PlayerController : MonoBehaviour
             Application.Quit();
         }
 
+        if (!m_controlsActive) return;
         if (m_isDead) return;
 
         m_lastShot += Time.deltaTime;
@@ -143,6 +152,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!m_controlsActive) return;
         if (m_isDead) return;
 
         // Get input direction

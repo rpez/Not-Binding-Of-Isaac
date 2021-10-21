@@ -406,6 +406,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1496981924 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1320424646, guid: 240201c9c534bb74298eb790d51d9ecc, type: 3}
+  m_PrefabInstance: {fileID: 1232198527908601241}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99442a4e44fd3b745a0f159353eb2789, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1906211545 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1116392426954005111, guid: 5aa285a8b274b1c46970cf13165ae63e, type: 3}
@@ -424,10 +435,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1116392425986212677, guid: 5aa285a8b274b1c46970cf13165ae63e, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1116392426954005110, guid: 5aa285a8b274b1c46970cf13165ae63e, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -512,13 +519,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1116392426954005111, guid: 5aa285a8b274b1c46970cf13165ae63e, type: 3}
+      propertyPath: m_player
+      value: 
+      objectReference: {fileID: 1496981924}
     - target: {fileID: 1116392426954005114, guid: 5aa285a8b274b1c46970cf13165ae63e, type: 3}
       propertyPath: m_Name
       value: Canvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 1116392427053679446, guid: 5aa285a8b274b1c46970cf13165ae63e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5aa285a8b274b1c46970cf13165ae63e, type: 3}

@@ -357,7 +357,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000061035156, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 1}
 --- !u!1 &1116392426025143057
@@ -777,6 +777,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b007d4ba88b009e41a5b8e122334691f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_player: {fileID: 0}
   m_fullHeart: {fileID: 5162449983066841312, guid: b212b2050ad5c444c915569e4b078cfd, type: 3}
   m_halfHeart: {fileID: -5109193797795297821, guid: b212b2050ad5c444c915569e4b078cfd, type: 3}
   m_emptyHeart: {fileID: 3961949487582812430, guid: b212b2050ad5c444c915569e4b078cfd, type: 3}
@@ -784,6 +785,7 @@ MonoBehaviour:
   m_bossScreen: {fileID: 1116392427053679446}
   m_credits: {fileID: 1116392426025143057}
   m_gameOver: {fileID: 1116392426827453724}
+  m_title: {fileID: 1116392425616425520}
 --- !u!1 &1116392426973385795
 GameObject:
   m_ObjectHideFlags: 0
@@ -956,7 +958,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1116392427053679447
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1155,10 +1157,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1116392425616425520}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1116392426954005111}
+        m_TargetAssemblyTypeName: GameUI, Assembly-CSharp
+        m_MethodName: CloseTitleScreen
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

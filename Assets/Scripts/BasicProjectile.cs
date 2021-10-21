@@ -8,13 +8,11 @@ public class BasicProjectile : Projectile
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.isTrigger && collision.gameObject.tag != "RoomTrigger") return;
+        
         switch (collision.gameObject.tag)
         {
             case "Enemy":
-                if (collision.isTrigger) {
-                    return;
-                }
-
                 MonsterController monster = collision.gameObject.GetComponent<MonsterController>();
 
                 if (monster == null) monster = collision.gameObject.transform.parent.GetComponent<MonsterController>();
@@ -32,6 +30,7 @@ public class BasicProjectile : Projectile
                 // Destroy projectile
                 Destroy(gameObject);
                 break;
+            case "RoomTrigger":
             case "Wall":
                 SpawnEffect();
                 Destroy(gameObject);

@@ -42,6 +42,8 @@ public class PlayerController : MonoBehaviour
             m_itemAnimationQueued = true;
 
             Destroy(item.gameObject);
+
+            PlaySound("ItemPickup");
         }
         if (collision.gameObject.tag == "FloorComplete")
         {

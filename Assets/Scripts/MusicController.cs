@@ -64,12 +64,12 @@ public class MusicController : MonoBehaviour
         if (music == Music.MainMusic)
         {
             StartCoroutine(FadeMixerGroup.StartFade(m_audioMixer, "BossMusicVolume", 1.0f, 0.0f));
-            StartCoroutine(FadeMixerGroup.StartFade(m_audioMixer, "MainMusicVolume", 1.0f, 1.0f));
+            StartCoroutine(FadeMixerGroup.StartFade(m_audioMixer, "MainMusicVolume", 1.0f, 0.85f));
         }
         else
         {
             StartCoroutine(FadeMixerGroup.StartFade(m_audioMixer, "MainMusicVolume", 1.0f, 0.0f));
-            StartCoroutine(FadeMixerGroup.StartFade(m_audioMixer, "BossMusicVolume", 1.0f, 1.0f));
+            StartCoroutine(FadeMixerGroup.StartFade(m_audioMixer, "BossMusicVolume", 1.0f, 0.75f));
         }
 
         m_currentMusic = (int) music;
@@ -86,6 +86,8 @@ public class MusicController : MonoBehaviour
         {
             audioSource.Stop();
         }
+
+        m_loopNumber = 0;
     }
 
     void Update()

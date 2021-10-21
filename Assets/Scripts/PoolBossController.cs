@@ -87,7 +87,7 @@ public class PoolBossController : MonoBehaviour, MonsterController
                 if (m_currentCharge > m_chargeAmount)
                 {
                     m_chargeSet = true;
-                    StartCoroutine(Delayed(m_waitTime, () => {
+                    StartCoroutine(Delayed(0.5f, () => {
                         ChangeTimeline(m_normalTimeline);
                         m_state = BossState.Normal;
                         m_currentCharge = 0;

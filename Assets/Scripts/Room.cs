@@ -32,9 +32,11 @@ public class Room : MonoBehaviour
     public List<(int, int)> Obstacles => m_obstacleCoords;
 
     private SoundController m_audioController;
+    private MusicController m_musicController;
     public void Init(bool[] existingDoors, Action<int> doorCallback, int bossDir = -1)
     {
         m_audioController = Camera.main.GetComponent<SoundController>();
+        m_musicController = Camera.main.GetComponent<MusicController>();
 
         m_existingDoors = existingDoors;
         for (int i = 0; i < 4; i++)
@@ -96,6 +98,7 @@ public class Room : MonoBehaviour
                 {
                     ui.BossScreen();
                 }
+                m_musicController.ChangeMusic(Music.BossMusic);
             }
 
             CloseAllDoors();
@@ -105,6 +108,10 @@ public class Room : MonoBehaviour
     public void OnRoomLeave()
     {
         m_active = false;
+        if (m_bossRoom)
+        {
+            m_musicController.ChangeMusic(Music.MainMusic);
+        }
     }
 
     public void OpenAllDoors()

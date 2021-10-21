@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
+public enum Music { MainMusic = 0, BossMusic = 2 };
+
 public class MusicController : MonoBehaviour
 {
     public AudioClip m_bossMusic;
@@ -25,8 +27,6 @@ public class MusicController : MonoBehaviour
     private int m_loopNumber = 0;
 
     private bool m_lock = false;
-
-    public enum Music { MainMusic = 0, BossMusic = 2 };
 
     private int m_currentMusic;
 

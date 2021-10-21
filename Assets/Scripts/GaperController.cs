@@ -19,7 +19,7 @@ public class GaperController : MonoBehaviour, MonsterController
     private NavigationGrid m_grid = new NavigationGrid();
     private IEnumerator m_AStarMoveTo;
 
-    private AudioController m_audioController;
+    private SoundController m_audioController;
 
     public Animator m_animator;
     private bool m_active;
@@ -30,7 +30,7 @@ public class GaperController : MonoBehaviour, MonsterController
     // Start is called before the first frame update
     void Start()
     {
-        m_audioController = Camera.main.GetComponent<AudioController>();
+        m_audioController = Camera.main.GetComponent<SoundController>();
         m_player = GameObject.Find("Player");
         m_parentRoomPos = transform.parent.gameObject.transform.position;
         Physics2D.queriesStartInColliders = false;

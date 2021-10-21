@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class AudioController : MonoBehaviour
+public class SoundController : MonoBehaviour
 {
 
     public AudioSource m_audioSource;

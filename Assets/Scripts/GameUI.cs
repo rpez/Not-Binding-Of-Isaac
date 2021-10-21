@@ -18,8 +18,13 @@ public class GameUI : MonoBehaviour
 
     private List<Image> m_hearts = new List<Image>();
 
+    private MusicController m_musicController;
+    private SoundController m_audioController;
+
     private void Start()
     {
+        m_audioController = Camera.main.GetComponent<SoundController>();
+        m_musicController = Camera.main.GetComponent<MusicController>();
         m_hearts.AddRange(m_healthContainer.GetComponentsInChildren<Image>());
     }
 
@@ -49,12 +54,15 @@ public class GameUI : MonoBehaviour
         else
         {
             m_gameOver.SetActive(true);
+            m_musicController.StopMusic();
+            m_audioController.PlayOneShot("GameOver");
         }
     }
 
     public void StartGame()
     {
         SceneManager.LoadScene("SampleScene");
+        m_musicController.ChangeMusic(Music.MainMusic);
     }
 
     private IEnumerator CloseBossScreen(float delay)

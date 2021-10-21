@@ -43,7 +43,7 @@ public class PoolBossController : MonoBehaviour, MonsterController
 
     public SpriteRenderer m_bossSprite;
 
-    private AudioController m_audioController;
+    private SoundController m_audioController;
 
     private Vector2 m_chargeTarget;
     public float m_chargeTime = 1f;
@@ -55,7 +55,7 @@ public class PoolBossController : MonoBehaviour, MonsterController
     // Start is called before the first frame update
     void Start()
     {
-        m_audioController = Camera.main.GetComponent<AudioController>();
+        m_audioController = Camera.main.GetComponent<SoundController>();
         m_player = GameObject.Find("Player");
         Physics2D.queriesStartInColliders = false;
         m_active = false;
@@ -149,6 +149,7 @@ public class PoolBossController : MonoBehaviour, MonsterController
             case BossState.OutOfPool:
                 m_state = BossState.Shoot;
                 ChangeTimeline(m_shootTimeline);
+                PlaySound("BossProjectiles");
                 break;
             default:
                 break;

@@ -67,7 +67,7 @@ public class MusicController : MonoBehaviour
         else
         {
             StartCoroutine(FadeMixerGroup.StartFade(m_audioMixer, "MainMusicVolume", 1.0f, 0.0f));
-            StartCoroutine(FadeMixerGroup.StartFade(m_audioMixer, "BossMusicVolume", 1.0f, 0.75f));
+            StartCoroutine(FadeMixerGroup.StartFade(m_audioMixer, "BossMusicVolume", 1.0f, 0.85f));
         }
 
         m_currentMusic = (int) music;
